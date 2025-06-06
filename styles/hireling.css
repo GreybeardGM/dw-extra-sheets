@@ -75,3 +75,77 @@
 .sheet-body {
   padding-top: 1rem;
 }
+
+.items-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.4rem 0;
+  border-bottom: 1px solid #ccc;
+}
+
+.item-name {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  flex-grow: 1;
+}
+
+.item-name img.item-icon {
+  height: 24px;
+  width: 24px;
+  margin-right: 0.5rem;
+  border: 1px solid #aaa;
+  border-radius: 4px;
+}
+
+.item-label {
+  font-weight: bold;
+}
+
+.item-controls {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.item-controls a {
+  color: #333;
+}
+
+.item-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.25rem;
+  font-size: 0.85rem;
+  margin-top: 0.2rem;
+}
+
+.tag {
+  background: #eee;
+  border: 1px solid #aaa;
+  border-radius: 3px;
+  padding: 0.1rem 0.3rem;
+  font-size: 0.75rem;
+}
+
+.tag.equipped {
+  background-color: #cde8cc;
+  border-color: #3a913f;
+  font-weight: bold;
+}
+
+.tag.counter {
+  background-color: #f0f0f0;
+  border-color: #bbb;
+  cursor: pointer;
+}
+
+.tag:hover {
+  background-color: #ddd;
+}
