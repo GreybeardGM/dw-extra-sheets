@@ -1,4 +1,4 @@
-<form class="hireling-sheet" autocomplete="off">
+<form class="hireling-sheet full" autocomplete="off">
   <h1><input name="name" type="text" value="{{actor.name}}" /></h1>
 
   <nav class="sheet-tabs tabs" data-group="primary">
@@ -11,9 +11,9 @@
   <section class="sheet-body">
     <div class="tab" data-group="primary" data-tab="skills">
       <div class="resource-line">
-        <label class="roll-loyalty" for="system.loyalty"><strong>Loyalty:</strong></label>
+        <label class="roll-loyalty"><strong>Loyalty:</strong></label>
         <input type="number" name="system.loyalty" value="{{actor.system.loyalty}}" />
-        <label for="system.cost"><strong>Cost:</strong></label>
+        <label><strong>Cost:</strong></label>
         <input type="text" name="system.cost" value="{{actor.system.cost}}" />
       </div>
       <hr>

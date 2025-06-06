@@ -1,9 +1,9 @@
-class HirelingSheet extends ActorSheet {
+class FullHirelingSheet extends ActorSheet {
   static get defaultOptions() {
     return foundry.utils.mergeObject(super.defaultOptions, {
-      classes: ["dungeonworld", "sheet", "actor", "hireling"],
-      template: "modules/dungeonworld-hirelings/templates/hireling-sheet.html",
-      width: 520,
+      classes: ["dungeonworld", "sheet", "actor", "hireling", "full"],
+      template: "modules/dungeonworld-hirelings/templates/full-hireling-sheet.html",
+      width: 700,
       height: "auto",
       tabs: [{ navSelector: ".sheet-tabs", contentSelector: ".sheet-body", initial: "skills" }]
     });
@@ -43,8 +43,8 @@ class HirelingSheet extends ActorSheet {
   }
 }
 
-Actors.registerSheet("dungeonworld", HirelingSheet, {
+Actors.registerSheet("dungeonworld", FullHirelingSheet, {
   types: ["npc"],
-  label: "Hireling Sheet",
+  label: "Hireling Sheet (Full)",
   makeDefault: false
 });

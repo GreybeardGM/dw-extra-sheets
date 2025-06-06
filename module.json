@@ -1,13 +1,13 @@
 {
   "name": "dungeonworld-hirelings",
-  "title": "Dungeon World Hireling Sheet",
-  "description": "Custom Actor Sheet for Hirelings in Dungeon World",
+  "title": "Dungeon World Hireling Sheets",
+  "description": "Custom sheets for Hirelings in Dungeon World, including full and simplified layouts.",
   "version": "0.1",
   "minimumCoreVersion": "12",
   "compatibleCoreVersion": "12",
   "author": "GreybeardGM",
-  "esmodules": ["scripts/hireling-sheet.js"],
-  "styles": ["styles/hireling.css"],
+  "esmodules": ["scripts/hireling-sheet.js", "scripts/full-hireling-sheet.js"],
+  "styles": [],
   "manifest": "https://greybeardgm.github.io/dungeonworld-hirelings/module.json",
   "download": "https://greybeardgm.github.io/dungeonworld-hirelings/dungeonworld-hirelings.zip"
 }
