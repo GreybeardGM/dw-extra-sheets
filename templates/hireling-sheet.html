@@ -11,15 +11,36 @@
     <hr>
     <h2><button type="button" class="reset-skills">Reset</button> Skills</h2>
     <div class="skills">
-      {{!-- Fixed skill slots 1-5 --}}
-      {{#each (range 1 6)}}
       <div class="skill-line">
-        <button type="button" class="use-skill" data-skill="{{this}}">➖</button>
-        <input type="text" name="system.skills.{{this}}.label" value="{{lookup ../actor.system.skills (string this) "label"}}" />
-        <input type="number" name="system.skills.{{this}}.value" value="{{lookup ../actor.system.skills (string this) "value"}}" /> /
-        <input type="number" name="system.skills.{{this}}.max" value="{{lookup ../actor.system.skills (string this) "max"}}" />
+        <button type="button" class="use-skill" data-skill="1">➖</button>
+        <input type="text" name="system.skills.1.label" value="{{actor.system.skills.1.label}}" />
+        <input type="number" name="system.skills.1.value" value="{{actor.system.skills.1.value}}" /> /
+        <input type="number" name="system.skills.1.max" value="{{actor.system.skills.1.max}}" />
       </div>
-      {{/each}}
+      <div class="skill-line">
+        <button type="button" class="use-skill" data-skill="2">➖</button>
+        <input type="text" name="system.skills.2.label" value="{{actor.system.skills.2.label}}" />
+        <input type="number" name="system.skills.2.value" value="{{actor.system.skills.2.value}}" /> /
+        <input type="number" name="system.skills.2.max" value="{{actor.system.skills.2.max}}" />
+      </div>
+      <div class="skill-line">
+        <button type="button" class="use-skill" data-skill="3">➖</button>
+        <input type="text" name="system.skills.3.label" value="{{actor.system.skills.3.label}}" />
+        <input type="number" name="system.skills.3.value" value="{{actor.system.skills.3.value}}" /> /
+        <input type="number" name="system.skills.3.max" value="{{actor.system.skills.3.max}}" />
+      </div>
+      <div class="skill-line">
+        <button type="button" class="use-skill" data-skill="4">➖</button>
+        <input type="text" name="system.skills.4.label" value="{{actor.system.skills.4.label}}" />
+        <input type="number" name="system.skills.4.value" value="{{actor.system.skills.4.value}}" /> /
+        <input type="number" name="system.skills.4.max" value="{{actor.system.skills.4.max}}" />
+      </div>
+      <div class="skill-line">
+        <button type="button" class="use-skill" data-skill="5">➖</button>
+        <input type="text" name="system.skills.5.label" value="{{actor.system.skills.5.label}}" />
+        <input type="number" name="system.skills.5.value" value="{{actor.system.skills.5.value}}" /> /
+        <input type="number" name="system.skills.5.max" value="{{actor.system.skills.5.max}}" />
+      </div>
     </div>
   </section>
 
