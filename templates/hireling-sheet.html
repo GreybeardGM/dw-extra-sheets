@@ -11,12 +11,13 @@
     <hr>
     <h2><button type="button" class="reset-skills">Reset</button> Skills</h2>
     <div class="skills">
-      {{#each actor.system.skills}}
+      {{!-- Fixed skill slots 1-5 --}}
+      {{#each (range 1 6)}}
       <div class="skill-line">
-        <button type="button" class="use-skill" data-skill="{{@key}}">➖</button>
-        <input type="text" name="system.skills.{{@key}}.label" value="{{this.label}}" />
-        <input type="number" name="system.skills.{{@key}}.value" value="{{this.value}}" /> /
-        <input type="number" name="system.skills.{{@key}}.max" value="{{this.max}}" />
+        <button type="button" class="use-skill" data-skill="{{this}}">➖</button>
+        <input type="text" name="system.skills.{{this}}.label" value="{{lookup ../actor.system.skills (string this) "label"}}" />
+        <input type="number" name="system.skills.{{this}}.value" value="{{lookup ../actor.system.skills (string this) "value"}}" /> /
+        <input type="number" name="system.skills.{{this}}.max" value="{{lookup ../actor.system.skills (string this) "max"}}" />
       </div>
       {{/each}}
     </div>
