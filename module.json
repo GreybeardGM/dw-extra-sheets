@@ -1,12 +1,12 @@
 {
   "name": "dungeonworld-hirelings",
-  "title": "Dungeon World Hireling Sheets",
-  "description": "Custom sheets for Hirelings in Dungeon World, including full and simplified layouts.",
+  "title": "Dungeon World Hireling Sheet",
+  "description": "Single-sheet layout for hirelings with fixed skills and item lists.",
   "version": "0.1",
   "minimumCoreVersion": "12",
   "compatibleCoreVersion": "12",
   "author": "GreybeardGM",
-  "esmodules": ["scripts/hireling-sheet.js", "scripts/full-hireling-sheet.js"],
+  "esmodules": ["scripts/hireling-sheet.js"],
   "styles": [],
   "manifest": "https://greybeardgm.github.io/dungeonworld-hirelings/module.json",
   "download": "https://greybeardgm.github.io/dungeonworld-hirelings/dungeonworld-hirelings.zip"

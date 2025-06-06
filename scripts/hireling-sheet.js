@@ -3,9 +3,9 @@ class HirelingSheet extends ActorSheet {
     return foundry.utils.mergeObject(super.defaultOptions, {
       classes: ["dungeonworld", "sheet", "actor", "hireling"],
       template: "modules/dungeonworld-hirelings/templates/hireling-sheet.html",
-      width: 520,
+      width: 600,
       height: "auto",
-      tabs: [{ navSelector: ".sheet-tabs", contentSelector: ".sheet-body", initial: "skills" }]
+      tabs: [{ navSelector: ".sheet-tabs", contentSelector: ".sheet-body", initial: "moves" }]
     });
   }
 
