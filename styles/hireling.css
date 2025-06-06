@@ -6,10 +6,18 @@
   font-size: 1.5em;
   margin-bottom: 0.5em;
 }
-.hireling-sheet ul {
-  list-style: none;
-  padding: 0;
+.resource-line {
+  display: flex;
+  gap: 0.5em;
+  align-items: center;
+  margin-bottom: 1em;
 }
-.hireling-sheet li {
+.skill-line {
+  display: flex;
+  align-items: center;
+  gap: 0.5em;
   margin-bottom: 0.5em;
+}
+.skills {
+  margin-bottom: 1em;
 }

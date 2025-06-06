@@ -3,30 +3,20 @@ class HirelingSheet extends ActorSheet {
     return mergeObject(super.defaultOptions, {
       classes: ["dungeonworld", "sheet", "actor", "hireling"],
       template: "modules/dungeonworld-hirelings/templates/hireling-sheet.html",
-      width: 500,
-      height: 500
+      width: 520,
+      height: "auto"
     });
   }
 
   getData() {
-    const context = super.getData();
-    return context;
+    return super.getData();
   }
 
   activateListeners(html) {
     super.activateListeners(html);
 
-    html.find(".skill-use").click(ev => {
-      const skillKey = ev.currentTarget.dataset.key;
-      const skills = duplicate(this.actor.system.skills);
-      if (skills[skillKey].value > 0) {
-        skills[skillKey].value -= 1;
-        this.actor.update({ "system.skills": skills });
-      }
-    });
-
     html.find(".reset-skills").click(() => {
-      const skills = duplicate(this.actor.system.skills);
+      const skills = duplicate(this.actor.system.skills || {});
       for (const key in skills) {
         skills[key].value = skills[key].max;
       }
@@ -42,12 +32,15 @@ class HirelingSheet extends ActorSheet {
 
     html.find(".remove-skill").click(ev => {
       const key = ev.currentTarget.dataset.key;
-      const skills = duplicate(this.actor.system.skills);
+      const skills = duplicate(this.actor.system.skills || {});
       delete skills[key];
-      this.actor.update({ "system.skills": skills });
+      this.actor.update({ "system.skills": skills }).then(() => {
+        this.render(); // Re-render to update the UI
+      });
     });
   }
 }
+
 Actors.registerSheet("dungeonworld", HirelingSheet, {
   types: ["npc"],
   label: "Hireling Sheet",
