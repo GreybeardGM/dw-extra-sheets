@@ -4,7 +4,7 @@ class HirelingSheet extends ActorSheet {
       classes: ["dungeonworld", "sheet", "actor", "hireling"],
       template: "modules/dungeonworld-hirelings/templates/hireling-sheet.html",
       width: 500,
-      height: 400
+      height: 500
     });
   }
 
@@ -32,9 +32,22 @@ class HirelingSheet extends ActorSheet {
       }
       this.actor.update({ "system.skills": skills });
     });
+
+    html.find(".add-skill").click(() => {
+      const skills = duplicate(this.actor.system.skills || {});
+      const newKey = `skill_${foundry.utils.randomID(5)}`;
+      skills[newKey] = { label: "New Skill", value: 1, max: 1 };
+      this.actor.update({ "system.skills": skills });
+    });
+
+    html.find(".remove-skill").click(ev => {
+      const key = ev.currentTarget.dataset.key;
+      const skills = duplicate(this.actor.system.skills);
+      delete skills[key];
+      this.actor.update({ "system.skills": skills });
+    });
   }
 }
-
 Actors.registerSheet("dungeonworld", HirelingSheet, {
   types: ["npc"],
   label: "Hireling Sheet",

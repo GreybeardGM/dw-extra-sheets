@@ -1,16 +1,26 @@
-<form class="hireling-sheet">
-  <h1>{{actor.name}}</h1>
-  <p><strong>Loyalty:</strong> {{actor.system.loyalty}}</p>
-  <p><strong>Cost:</strong> {{actor.system.cost}}</p>
+<form class="hireling-sheet" autocomplete="off">
+  <h1><input name="name" type="text" value="{{actor.name}}" /></h1>
+  <div class="resource">
+    <label for="system.loyalty">Loyalty:</label>
+    <input type="number" name="system.loyalty" value="{{actor.system.loyalty}}" />
+  </div>
+  <div class="resource">
+    <label for="system.cost">Cost:</label>
+    <input type="text" name="system.cost" value="{{actor.system.cost}}" />
+  </div>
   <hr>
   <h2>Skills</h2>
-  <ul>
-    {{#each actor.system.skills}}
+  <ul class="skills">
+    {{#each actor.system.skills as |skill key|}}
       <li>
-        {{this.label}}: {{this.value}} / {{this.max}}
-        <button type="button" class="skill-use" data-key="{{@key}}">Use</button>
+        <input type="text" name="system.skills.{{key}}.label" value="{{skill.label}}" />
+        <input type="number" name="system.skills.{{key}}.value" value="{{skill.value}}" />
+        /
+        <input type="number" name="system.skills.{{key}}.max" value="{{skill.max}}" />
+        <button type="button" class="remove-skill" data-key="{{key}}">🗑️</button>
       </li>
     {{/each}}
   </ul>
+  <button type="button" class="add-skill">Add Skill</button>
   <button type="button" class="reset-skills">Reset All</button>
 </form>
