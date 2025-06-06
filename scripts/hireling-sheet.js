@@ -31,12 +31,16 @@ class HirelingSheet extends ActorSheet {
     });
 
     html.find(".remove-skill").click(ev => {
-      const key = ev.currentTarget.dataset.key;
+      const key = ev.currentTarget.dataset.skill;
       const skills = duplicate(this.actor.system.skills || {});
       delete skills[key];
       this.actor.update({ "system.skills": skills }).then(() => {
-        this.render(); // Re-render to update the UI
+        this.render();
       });
+    });
+
+    html.find(".roll-loyalty").click(() => {
+      ui.notifications.info("Loyalty roll logic to be implemented.");
     });
   }
 }

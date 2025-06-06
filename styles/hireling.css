@@ -21,3 +21,13 @@
 .skills {
   margin-bottom: 1em;
 }
+button.remove-skill {
+  color: red;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+label.roll-loyalty {
+  cursor: pointer;
+  text-decoration: underline dotted;
+}
