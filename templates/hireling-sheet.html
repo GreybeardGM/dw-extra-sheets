@@ -11,6 +11,7 @@
   <div class="skills">
     {{#each actor.system.skills as |skill key|}}
       <div class="skill-line" data-key="{{key}}">
+        <button type="button" class="use-skill" data-skill="{{key}}">➖</button>
         <input type="text" name="system.skills.{{key}}.label" value="{{skill.label}}" />
         <input type="number" name="system.skills.{{key}}.value" value="{{skill.value}}" /> /
         <input type="number" name="system.skills.{{key}}.max" value="{{skill.max}}" />

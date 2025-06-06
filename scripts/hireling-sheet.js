@@ -1,6 +1,6 @@
 class HirelingSheet extends ActorSheet {
   static get defaultOptions() {
-    return mergeObject(super.defaultOptions, {
+    return foundry.utils.mergeObject(super.defaultOptions, {
       classes: ["dungeonworld", "sheet", "actor", "hireling"],
       template: "modules/dungeonworld-hirelings/templates/hireling-sheet.html",
       width: 520,
@@ -16,7 +16,7 @@ class HirelingSheet extends ActorSheet {
     super.activateListeners(html);
 
     html.find(".reset-skills").click(() => {
-      const skills = duplicate(this.actor.system.skills || {});
+      const skills = foundry.utils.duplicate(this.actor.system.skills || {});
       for (const key in skills) {
         skills[key].value = skills[key].max;
       }
@@ -24,7 +24,7 @@ class HirelingSheet extends ActorSheet {
     });
 
     html.find(".add-skill").click(() => {
-      const skills = duplicate(this.actor.system.skills || {});
+      const skills = foundry.utils.duplicate(this.actor.system.skills || {});
       const newKey = `skill_${foundry.utils.randomID(5)}`;
       skills[newKey] = { label: "New Skill", value: 1, max: 1 };
       this.actor.update({ "system.skills": skills });
@@ -32,11 +32,24 @@ class HirelingSheet extends ActorSheet {
 
     html.find(".remove-skill").click(ev => {
       const key = ev.currentTarget.dataset.skill;
-      const skills = duplicate(this.actor.system.skills || {});
+      const skills = foundry.utils.duplicate(this.actor.system.skills || {});
       delete skills[key];
       this.actor.update({ "system.skills": skills }).then(() => {
         this.render();
       });
+    });
+
+    html.find(".use-skill").click(ev => {
+      const key = ev.currentTarget.dataset.skill;
+      const skills = foundry.utils.duplicate(this.actor.system.skills || {});
+      const skill = skills[key];
+      if (!skill) return;
+      if (skill.value > 0) {
+        skill.value -= 1;
+        this.actor.update({ "system.skills": skills });
+      } else {
+        ui.notifications.warn(`${skill.label} has no points left to use.`);
+      }
     });
 
     html.find(".roll-loyalty").click(() => {
