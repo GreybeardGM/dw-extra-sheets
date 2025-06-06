@@ -35,8 +35,12 @@ class HirelingSheet extends ActorSheet {
       console.log("Removing skill:", key);
       const skills = foundry.utils.duplicate(this.actor.system.skills || {});
       delete skills[key];
-      this.actor.update({ "system.skills": skills }).then(() => {
-        this.render();
+
+      this.actor.update({
+        "system.skills": skills,
+        "flags.dungeonworld-hirelings.lastChange": Date.now()
+      }).then(() => {
+        this.render(true, { renderContext: "skillRemoved" });
       });
     });
 
