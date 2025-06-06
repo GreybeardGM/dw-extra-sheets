@@ -1,0 +1,16 @@
+<form class="hireling-sheet">
+  <h1>{{actor.name}}</h1>
+  <p><strong>Loyalty:</strong> {{actor.system.loyalty}}</p>
+  <p><strong>Cost:</strong> {{actor.system.cost}}</p>
+  <hr>
+  <h2>Skills</h2>
+  <ul>
+    {{#each actor.system.skills}}
+      <li>
+        {{this.name}}: {{this.points}} / {{this.maxPoints}}
+        <button type="button" class="skill-use" data-index="{{@index}}">Use</button>
+      </li>
+    {{/each}}
+  </ul>
+  <button type="button" class="reset-skills">Reset All</button>
+</form>
