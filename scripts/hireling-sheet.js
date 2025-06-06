@@ -9,8 +9,14 @@ class HirelingSheet extends ActorSheet {
     });
   }
 
-  getData() {
-    return super.getData();
+  getData(options) {
+    const data = super.getData(options);
+    const items = this.actor.items;
+  
+    data.basicMoves = items.filter(i => i.type === "npcMove" && i.system.moveType === "basic");
+    data.specialMoves = items.filter(i => i.type === "npcMove" && i.system.moveType === "special");
+  
+    return data;
   }
 
   activateListeners(html) {
