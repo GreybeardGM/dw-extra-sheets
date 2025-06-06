@@ -36,7 +36,7 @@ class HirelingSheet extends ActorSheet {
 }
 
 Actors.registerSheet("dungeonworld", HirelingSheet, {
-  types: ["hireling"],
+  types: ["npc"],
   label: "Hireling Sheet",
-  makeDefault: true
+  makeDefault: false
 });
