@@ -1,33 +1,77 @@
 .hireling-sheet {
-  font-family: 'Signika', sans-serif;
-  padding: 1em;
+  font-family: "Signika", sans-serif;
+  padding: 1rem;
 }
-.hireling-sheet h1 {
-  font-size: 1.5em;
-  margin-bottom: 0.5em;
-}
+
 .resource-line {
   display: flex;
-  gap: 0.5em;
+  gap: 1rem;
   align-items: center;
-  margin-bottom: 1em;
+  margin-bottom: 1rem;
 }
+
+.resource-line label {
+  white-space: nowrap;
+  font-weight: bold;
+}
+
+.resource-line input[type="number"],
+.resource-line input[type="text"] {
+  width: auto;
+  flex: 1;
+  min-width: 100px;
+}
+
+.skills {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
 .skill-line {
   display: flex;
   align-items: center;
-  gap: 0.5em;
-  margin-bottom: 0.5em;
+  gap: 0.5rem;
 }
-.skills {
-  margin-bottom: 1em;
+
+.skill-line input[type="text"] {
+  flex: 2;
+  min-width: 120px;
 }
-button.remove-skill {
-  color: red;
+
+.skill-line input[type="number"] {
+  width: 50px;
+}
+
+.skill-line button.use-skill {
   background: none;
-  border: none;
+  border: 1px solid #ccc;
+  font-weight: bold;
   cursor: pointer;
+  width: 2rem;
+  height: 2rem;
+  padding: 0;
 }
-label.roll-loyalty {
+
+.sheet-tabs {
+  margin-top: 1.5rem;
+  border-bottom: 1px solid #aaa;
+}
+
+.sheet-tabs .item {
+  margin-right: 1rem;
+  padding: 0.25rem 0.5rem;
   cursor: pointer;
-  text-decoration: underline dotted;
+  font-weight: bold;
+  border-radius: 4px 4px 0 0;
+}
+
+.sheet-tabs .item.active {
+  background-color: #ddd;
+  border: 1px solid #aaa;
+  border-bottom: none;
+}
+
+.sheet-body {
+  padding-top: 1rem;
 }
