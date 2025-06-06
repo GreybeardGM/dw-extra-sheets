@@ -8,6 +8,6 @@
   "author": "GreybeardGM",
   "esmodules": ["scripts/hireling-sheet.js"],
   "styles": ["styles/hireling.css"],
-  "manifest": "https://greybeardgm.github.io/hireling-manager/module.json",
-  "download": "https://greybeardgm.github.io/hireling-manager/hireling-manager.zip"
+  "manifest": "https://greybeardgm.github.io/dungeonworld-hirelings/module.json",
+  "download": "https://greybeardgm.github.io/dungeonworld-hirelings/dungeonworld-hirelings.zip"
 }
