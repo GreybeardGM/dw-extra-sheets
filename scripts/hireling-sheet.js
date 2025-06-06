@@ -4,8 +4,7 @@ class HirelingSheet extends ActorSheet {
       classes: ["dungeonworld", "sheet", "actor", "hireling"],
       template: "modules/hireling-manager/templates/hireling-sheet.html",
       width: 500,
-      height: 400,
-      tabs: [{ navSelector: ".sheet-tabs", contentSelector: ".sheet-body", initial: "description" }]
+      height: 400
     });
   }
 
@@ -16,27 +15,28 @@ class HirelingSheet extends ActorSheet {
 
   activateListeners(html) {
     super.activateListeners(html);
+
     html.find(".skill-use").click(ev => {
-      const skillIndex = Number(ev.currentTarget.dataset.index);
+      const skillKey = ev.currentTarget.dataset.key;
       const skills = duplicate(this.actor.system.skills);
-      if (skills[skillIndex].points > 0) {
-        skills[skillIndex].points -= 1;
+      if (skills[skillKey].value > 0) {
+        skills[skillKey].value -= 1;
         this.actor.update({ "system.skills": skills });
       }
     });
 
     html.find(".reset-skills").click(() => {
-      const skills = duplicate(this.actor.system.skills).map(s => {
-        s.points = s.maxPoints;
-        return s;
-      });
+      const skills = duplicate(this.actor.system.skills);
+      for (const key in skills) {
+        skills[key].value = skills[key].max;
+      }
       this.actor.update({ "system.skills": skills });
     });
   }
 }
 
 Actors.registerSheet("dungeonworld", HirelingSheet, {
-  types: ["npc"], // Or define a custom type
+  types: ["npc"],
   label: "Hireling Sheet",
   makeDefault: false
 });

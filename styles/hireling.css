@@ -1,1 +1,15 @@
-
+.hireling-sheet {
+  font-family: 'Signika', sans-serif;
+  padding: 1em;
+}
+.hireling-sheet h1 {
+  font-size: 1.5em;
+  margin-bottom: 0.5em;
+}
+.hireling-sheet ul {
+  list-style: none;
+  padding: 0;
+}
+.hireling-sheet li {
+  margin-bottom: 0.5em;
+}

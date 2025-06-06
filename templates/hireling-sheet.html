@@ -7,8 +7,8 @@
   <ul>
     {{#each actor.system.skills}}
       <li>
-        {{this.name}}: {{this.points}} / {{this.maxPoints}}
-        <button type="button" class="skill-use" data-index="{{@index}}">Use</button>
+        {{this.label}}: {{this.value}} / {{this.max}}
+        <button type="button" class="skill-use" data-key="{{@key}}">Use</button>
       </li>
     {{/each}}
   </ul>
