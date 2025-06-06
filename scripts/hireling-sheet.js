@@ -32,6 +32,7 @@ class HirelingSheet extends ActorSheet {
 
     html.find(".remove-skill").click(ev => {
       const key = ev.currentTarget.dataset.skill;
+      console.log("Removing skill:", key);
       const skills = foundry.utils.duplicate(this.actor.system.skills || {});
       delete skills[key];
       this.actor.update({ "system.skills": skills }).then(() => {

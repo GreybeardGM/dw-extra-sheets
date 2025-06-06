@@ -7,7 +7,7 @@
     <input type="text" name="system.cost" value="{{actor.system.cost}}" />
   </div>
   <hr>
-  <h2>Skills</h2>
+  <h2><button type="button" class="reset-skills">Reset</button> Skills</h2>
   <div class="skills">
     {{#each actor.system.skills as |skill key|}}
       <div class="skill-line" data-key="{{key}}">
@@ -20,5 +20,4 @@
     {{/each}}
   </div>
   <button type="button" class="add-skill">Add Skill</button>
-  <button type="button" class="reset-skills">Reset All</button>
 </form>
