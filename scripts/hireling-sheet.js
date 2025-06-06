@@ -2,7 +2,7 @@ class HirelingSheet extends ActorSheet {
   static get defaultOptions() {
     return mergeObject(super.defaultOptions, {
       classes: ["dungeonworld", "sheet", "actor", "hireling"],
-      template: "modules/hireling-manager/templates/hireling-sheet.html",
+      template: "modules/dungeonworld-hirelings/templates/hireling-sheet.html",
       width: 500,
       height: 400
     });
@@ -36,7 +36,7 @@ class HirelingSheet extends ActorSheet {
 }
 
 Actors.registerSheet("dungeonworld", HirelingSheet, {
-  types: ["npc"],
+  types: ["hireling"],
   label: "Hireling Sheet",
-  makeDefault: false
+  makeDefault: true
 });
