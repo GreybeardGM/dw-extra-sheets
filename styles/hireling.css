@@ -1,3 +1,4 @@
+/* skill lines */
 .hireling-sheet .skills {
   display: flex;
   flex-direction: column;
@@ -18,12 +19,23 @@
   flex: 1;
 }
 
-.hireling-sheet .sheet-body,
-.hireling-sheet .sheet-content,
+/* width fix */
+.hireling-sheet .sheet-tabs {
+  width: 100%;
+  border-bottom: 2px solid var(--color-border-light-tertiary);
+  margin-top: 1em;
+  padding: 0 0.5em;
+  box-sizing: border-box;
+}
+
+.hireling-sheet .sheet-body {
+  width: 100%;
+  padding: 0.5em;
+  box-sizing: border-box;
+}
+
 .hireling-sheet .tab {
   width: 100%;
-  box-sizing: border-box;
-  clear: both;
 }
 
 .hireling-sheet .sheet-body {
@@ -32,6 +44,7 @@
   gap: 1rem;
 }
 
+/* buttons */
 .hireling-sheet button {
   min-width: 2em;
   width: 2em;
@@ -50,6 +63,7 @@
   line-height: 1.2em;
 }
 
+/* rescource line */
 .hireling-sheet .resource-line {
   display: flex;
   align-items: center;
