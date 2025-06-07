@@ -31,9 +31,6 @@ export function defineHirelingSheet(baseClass) {
         system.skills.skill5,
       ];
     
-      // 🔧 Add equipment manually if not inherited from base class
-      context.equipment = this.actor.items.filter(i => i.type === "equipment");
-    
       return context;
     }
 
