@@ -1,11 +1,10 @@
 {
   "name": "dungeonworld-hirelings",
   "title": "Dungeon World Hireling Sheet",
-  "version": "0.106",
+  "version": "0.107",
   "author": "GreybeardGM",
   "minimumCoreVersion": "12",
   "compatibleCoreVersion": "12",
-  "scripts": ["scripts/module.js"],
   "styles": ["styles/hireling.css"],
   "esmodules": ["scripts/hireling-sheet.js"],
   "url": "https://github.com/GreybeardGM/dungeonworld-hirelings",
