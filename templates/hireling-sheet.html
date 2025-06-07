@@ -17,13 +17,16 @@
       {{!-- Attributes --}}
       <section class="sheet-attributes sheet-attributes--npc">
 
-        <div class="cell">
+        <div class="cell cell--damage">
           <label class="cell__title damage-rollable rollable" data-roll="2d6 + {{system.loyalty.value}}" data-label="Loyalty" ><i class="fas fa-dice-d20"></i> Loyalty</label>
           <input type="text" name="system.loyalty.value" value="{{system.loyalty.value}}" placeholder="e.g. 1" data-dtype="Number"/>
         </div>
 
-        <div class="cell">
-          <label class="cell__title">Cost</label>
+        <div class="cell cell--damage">
+          <label class="cell__title">
+            Cost
+            
+          </label>
           <input type="text" name="system.loyalty.cost" value="{{system.loyalty.cost}}" data-dtype="Number"/>
         </div>
 
@@ -34,8 +37,13 @@
         </div>
         
         {{!-- Skills --}}
-        <h2><button type="button" class="item-control skill-reset"><i class="fas fa-redo"></i></button> Skills</h2>
-        <div class="skills">
+        <div class="cell skills">
+          <h2>
+            <div class="item-control">
+              <button type="button" class="item-control skill-reset"><i class="fas fa-redo"></i></button>
+            </div> 
+            Skills
+          </h2>
           <div class="skill-line">
             <button type="button" class="item-control skill-use" data-skill="1">➖</button>
             <input type="text" class="input" name="system.skills.skill1.label" value="{{system.skills.skill1.label}}" />
