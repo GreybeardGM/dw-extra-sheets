@@ -1,11 +1,13 @@
-export default class HirelingSheet extends CONFIG.Actor.sheetClasses["npc"].cls {
+export class HirelingSheet extends ActorSheet {
   static get defaultOptions() {
     return mergeObject(super.defaultOptions, {
       classes: ["dungeonworld", "sheet", "actor", "hireling"],
       template: "modules/dungeonworld-hirelings/templates/hireling-sheet.html",
       width: 600,
       height: 400,
-      tabs: [{ navSelector: ".sheet-tabs", contentSelector: ".sheet-body", initial: "moves" }]
+      tabs: [
+        { navSelector: ".sheet-tabs", contentSelector: ".sheet-body", initial: "description" }
+      ]
     });
   }
 
@@ -61,8 +63,12 @@ export default class HirelingSheet extends CONFIG.Actor.sheetClasses["npc"].cls 
   }
 }
 
-Actors.registerSheet("dungeonworld", HirelingSheet, {
-  types: ["npc"],
-  label: "Hireling Sheet",
-  makeDefault: false
+// Register inside the module scope
+Hooks.once("init", () => {
+  console.log("✅ Registering HirelingSheet for NPCs");
+  Actors.registerSheet("dungeonworld-hirelings", HirelingSheet, {
+    types: ["npc"],
+    label: "Hireling Sheet",
+    makeDefault: false
+  });
 });
