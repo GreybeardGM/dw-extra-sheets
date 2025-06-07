@@ -1,4 +1,10 @@
 /* === Skills Section === */
+.hireling-sheet .skills-header {
+  display: flex;
+  align-items: center;
+  gap: 0.5em;
+}
+
 .hireling-sheet .skills {
   display: flex;
   flex-direction: column;
