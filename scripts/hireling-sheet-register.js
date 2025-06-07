@@ -13,7 +13,7 @@ Hooks.once("ready", () => {
 
   console.log("✅ Registering HirelingSheet…");
   Actors.registerSheet("dungeonworld-hirelings", HirelingSheet, {
-    types: ["npc"],
+    types: Object.keys(CONFIG.Actor.sheetClasses.npc),
     label: "Hireling Sheet",
     makeDefault: false
   });
