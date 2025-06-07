@@ -2,7 +2,7 @@
   "name": "dungeonworld-hirelings",
   "title": "Dungeon World Hireling Sheet",
   "description": "Custom hireling sheet for Dungeon World NPCs.",
-  "version": "0.122",
+  "version": "0.123",
   "author": "GreybeardGM",
   "type": "module",
   "systems": ["dungeonworld"],
