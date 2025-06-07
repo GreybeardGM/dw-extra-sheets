@@ -1,113 +1,141 @@
-<form class="hireling-sheet sheet npc" autocomplete="off">
+<form class="{{cssClass}}" autocomplete="off">
+
   <div class="sheet-wrapper">
 
     {{!-- Sheet Header --}}
     <header class="sheet-header">
       <div class="cell cell--image">
-        <img class="profile-img" src="{{actor.img}}" data-edit="img" title="{{actor.name}}" height="100" width="100" />
+        <img class="profile-img" src="{{actor.img}}" data-edit="img" title="{{actor.name}}" height="100" width="100"/>
       </div>
       <div class="sheet-header__fields">
-        <input class="input--title" name="name" type="text" value="{{actor.name}}" placeholder="Name" />
-        <div class="resource-line">
-          <label class="loyalty-roll"><strong>Loyalty:</strong></label>
-          <input type="number" name="system.loyalty" value="{{system.loyalty}}" />
-          <label><strong>Cost:</strong></label>
-          <input type="text" name="system.cost" value="{{system.cost}}" />
-        </div>
+        <input class="input--title" name="name" type="text" value="{{actor.name}}" placeholder="Name"/>
       </div>
     </header>
-    
-    <section class="sheet-top">
-      {{!-- Skills --}}
-      <h2><button type="button" class="item-control skill-reset"><i class="fas fa-redo"></i> Skills</h2>
-      <div class="skills">
-        <div class="skill-line">
-          <button type="button" class="item-control skill-use" data-skill="1">➖</button>
-            <input type="text" class="input" name="system.skills.skill1.label" value="{{system.skills.skill1.label}}" />
-            <input type="number" class="input" name="system.skills.skill1.value" value="{{system.skills.skill1.value}}" /> /
-            <input type="number" class="input" name="system.skills.skill1.max" value="{{system.skills.skill1.max}}" />
+
+    {{!-- Main --}}
+    <section class="sheet-main">
+      {{!-- Attributes --}}
+      <section class="sheet-attributes sheet-attributes--npc">
+
+        <div class="cell">
+          <label class="cell__title damage-rollable rollable" data-roll="{{system.loyalty}}" data-label="Loyalty" ><i class="fas fa-dice-d20"></i> Loyalty</label>
+          <input type="text" name="system.loyalty" value="{{system.loyalty}}" placeholder="e.g. 1" data-dtype="Number"/>
         </div>
-        <div class="skill-line">
-          <button type="button" class="item-control skill-use" data-skill="2">➖</button>
-          <input type="text" class="input" name="system.skills.skill2.label" value="{{system.skills.skill2.label}}" />
-          <input type="number" class="input" name="system.skills.skill2.value" value="{{system.skills.skill2.value}}" /> /
-          <input type="number" class="input" name="system.skills.skill2.max" value="{{system.skills.skill2.max}}" />
+
+        <div class="cell>
+          <label class="cell__title">Cost</label>
+          <input type="text" name="system.cost" value="{{system.cost}}" data-dtype="Number"/>
         </div>
-        <div class="skill-line">
-          <button type="button" class="item-control skill-use" data-skill="3">➖</button>
-          <input type="text" class="input" name="system.skills.skill3.label" value="{{system.skills.skill3.label}}" />
-          <input type="number" class="input" name="system.skills.skill3.value" value="{{system.skills.skill3.value}}" /> /
-          <input type="number" class="input" name="system.skills.skill3.max" value="{{system.skills.skill3.max}}" />
+
+        <div class="cell cell--tags">
+          <label for="tag" class="control-label">{{localize "DW.Tags"}}</label>
+          <div class="help-text"><p>{{localize "DW.TagsHelp" }}</p></div>
+          <input class='tags-input-source' name="system.tags" placeholder='write some tags' value='{{ system.tags }}'/>
         </div>
-        <div class="skill-line">
-          <button type="button" class="item-control skill-use" data-skill="4">➖</button>
-          <input type="text" class="input" name="system.skills.skill4.label" value="{{system.skills.skill4.label}}" />
-          <input type="number" class="input" name="system.skills.skill4.value" value="{{system.skills.skill4.value}}" /> /
-          <input type="number" class="input" name="system.skills.skill4.max" value="{{system.skills.skill4.max}}" />
-        </div>
-        <div class="skill-line">
-          <button type="button" class="item-control skill-use" data-skill="5">➖</button>
-          <input type="text" class="input" name="system.skills.skill5.label" value="{{system.skills.skill5.label}}" />
-          <input type="number" class="input" name="system.skills.skill5.value" value="{{system.skills.skill5.value}}" /> /
-          <input type="number" class="input" name="system.skills.skill5.max" value="{{system.skills.skill5.max}}" />
-        </div>
-      </div>
-    </section>
-  
-    <nav class="sheet-tabs tabs" data-group="primary">
-      <a class="item" data-tab="moves">Moves</a>
-      <a class="item" data-tab="description">Description</a>
-    </nav>
-  
-    <section class="sheet-body">
-      {{!-- Moves Tab --}}
-      <div class="tab moves" data-group="primary" data-tab="moves">
-        <section class="sheet-tab">
-  
-          <div class="cell cell--basic-moves">
-            <h2 class="cell__title">
-              <label>{{localize "DW.MovesBasic"}}</label>
-              <div class="item-controls">
-                <button  type="button" class="item-control item-create" title='{{localize "DW.MoveCreate"}}' data-type="npcMove" data-moveType="basic">
-                  <i class="fas fa-plus"></i>
-                </button>
-              </div>
-            </h2>
-            <ol class="items-list">
-            {{#each basicMoves as |item id|}}
-              <li class="item flexrow" data-item-id="{{item._id}}" draggable="true">
-                {{> "systems/dungeonworld/templates/parts/sheet-moves.html" item=item rollData=../../rollData statSettings=../../system.statSettings}}
-              </li>
-            {{/each}}
-            </ol>
+        
+        {{!-- Skills --}}
+        <h2><button type="button" class="item-control skill-reset"><i class="fas fa-redo"></i></button> Skills</h2>
+        <div class="skills">
+          <div class="skill-line">
+            <button type="button" class="item-control skill-use" data-skill="1">➖</button>
+              <input type="text" class="input" name="system.skills.skill1.label" value="{{system.skills.skill1.label}}" />
+              <input type="number" class="input" name="system.skills.skill1.value" value="{{system.skills.skill1.value}}" /> /
+              <input type="number" class="input" name="system.skills.skill1.max" value="{{system.skills.skill1.max}}" />
           </div>
-  
-          <div class="cell cell--special-moves">
-            <h2 class="cell__title">
-              <label>{{localize "DW.MovesSpecial"}}</label>
-              <div class="item-controls">
-                <button  type="button" class="item-control item-create" title='{{localize "DW.MoveCreate"}}' data-type="npcMove" data-moveType="special">
-                  <i class="fas fa-plus"></i>
-                </button>
-              </div>
-            </h2>
-            <ol class="items-list">
-            {{#each specialMoves as |item id|}}
-              <li class="item flexrow" data-item-id="{{item._id}}" draggable="true">
-                {{> "systems/dungeonworld/templates/parts/sheet-moves.html" item=item rollData=../../rollData statSettings=../../system.statSettings}}
-              </li>
-            {{/each}}
-            </ol>
+          <div class="skill-line">
+            <button type="button" class="item-control skill-use" data-skill="2">➖</button>
+            <input type="text" class="input" name="system.skills.skill2.label" value="{{system.skills.skill2.label}}" />
+            <input type="number" class="input" name="system.skills.skill2.value" value="{{system.skills.skill2.value}}" /> /
+            <input type="number" class="input" name="system.skills.skill2.max" value="{{system.skills.skill2.max}}" />
           </div>
-      
-        </section>
-      </div>
-  
-      {{!-- Description Tab --}}
-      <div class="tab" data-group="primary" data-tab="description">
-        {{editor actor.system.details.biography target="system.details.biography" button=true owner=owner editable=editable}}
-      </div>
+          <div class="skill-line">
+            <button type="button" class="item-control skill-use" data-skill="3">➖</button>
+            <input type="text" class="input" name="system.skills.skill3.label" value="{{system.skills.skill3.label}}" />
+            <input type="number" class="input" name="system.skills.skill3.value" value="{{system.skills.skill3.value}}" /> /
+            <input type="number" class="input" name="system.skills.skill3.max" value="{{system.skills.skill3.max}}" />
+          </div>
+          <div class="skill-line">
+            <button type="button" class="item-control skill-use" data-skill="4">➖</button>
+            <input type="text" class="input" name="system.skills.skill4.label" value="{{system.skills.skill4.label}}" />
+            <input type="number" class="input" name="system.skills.skill4.value" value="{{system.skills.skill4.value}}" /> /
+            <input type="number" class="input" name="system.skills.skill4.max" value="{{system.skills.skill4.max}}" />
+          </div>
+          <div class="skill-line">
+            <button type="button" class="item-control skill-use" data-skill="5">➖</button>
+            <input type="text" class="input" name="system.skills.skill5.label" value="{{system.skills.skill5.label}}" />
+            <input type="number" class="input" name="system.skills.skill5.value" value="{{system.skills.skill5.value}}" /> /
+            <input type="number" class="input" name="system.skills.skill5.max" value="{{system.skills.skill5.max}}" />
+          </div>
+        </div>
+        
+      </section>
+
+      {{!-- Sheet Tab Navigation --}}
+        <nav class="sheet-tabs tabs" data-group="primary">
+          <a class="item" data-tab="description">{{localize "DW.Description"}}</a>
+          <a class="item" data-tab="moves">{{localize "DW.Moves"}}</a>
+        </nav>
+
+      {{!-- Sheet Body --}}
+      <section class="sheet-body">
+
+        <div class="tab description" data-group="primary" data-tab="description">
+          <section class="sheet-tab">
+            <div class="cell cell--special-qualities">
+              <label class="cell__title">{{localize "DW.SpecialQualities"}}</label>
+              <input type="text" name="system.attributes.specialQualities.value" value="{{system.attributes.specialQualities.value}}" data-dtype="String"/>
+            </div>
+            <div class="cell cell--description">
+              <label class="cell__title">{{localize "DW.Description"}}</label>
+              {{editor system.details.biographyEnriched target="system.details.biography" button=true owner=owner editable=editable}}
+            </div>
+          </section>
+        </div>
+
+        <div class="tab moves active" data-group="primary" data-tab="moves">
+          <section class="sheet-tab">
+
+            <div class="cell cell--basic-moves">
+              <h2 class="cell__title">
+                <label>{{localize "DW.MovesBasic"}}</label>
+                <div class="item-controls">
+                  <button  type="button" class="item-control item-create" title='{{localize "DW.MoveCreate"}}' data-type="npcMove" data-moveType="basic">
+                    <i class="fas fa-plus"></i>
+                  </button>
+                </div>
+              </h2>
+              <ol class="items-list">
+              {{#each basicMoves as |item id|}}
+                <li class="item flexrow" data-item-id="{{item._id}}" draggable="true">
+                  {{> "systems/dungeonworld/templates/parts/sheet-moves.html" item=item rollData=../../rollData statSettings=../../system.statSettings}}
+                </li>
+              {{/each}}
+              </ol>
+            </div>
+
+            <div class="cell cell--special-moves">
+              <h2 class="cell__title">
+                <label>{{localize "DW.MovesSpecial"}}</label>
+                <div class="item-controls">
+                  <button  type="button" class="item-control item-create" title='{{localize "DW.MoveCreate"}}' data-type="npcMove" data-moveType="special">
+                    <i class="fas fa-plus"></i>
+                  </button>
+                </div>
+              </h2>
+              <ol class="items-list">
+              {{#each specialMoves as |item id|}}
+                <li class="item flexrow" data-item-id="{{item._id}}" draggable="true">
+                  {{> "systems/dungeonworld/templates/parts/sheet-moves.html" item=item rollData=../../rollData statSettings=../../system.statSettings}}
+                </li>
+              {{/each}}
+              </ol>
+            </div>
+          </section>
+        </div>
+      </section>
+
     </section>
 
   </div>
+
 </form>
