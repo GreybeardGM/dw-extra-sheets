@@ -1,33 +1,20 @@
-Hooks.once("ready", async function () {
-  // Wait until the DW NPC sheet is available
-  let retries = 0;
-  let DwActorSheet;
+// hireling-sheet-register.js
+import { createHirelingSheet } from "./hireling-sheet-class.js";
 
-  while (!DwActorSheet && retries < 10) {
-    DwActorSheet = Object.values(CONFIG.Actor.sheetClasses.npc || {}).find(cls =>
-      cls.id?.includes("DwActorNpcSheet")
-    )?.cls;
+Hooks.once("ready", () => {
+  const npcSheetClass = CONFIG.Actor.sheetClasses.npc?.["dungeonworld.DwActorNpcSheet"]?.cls;
 
-    if (!DwActorSheet) {
-      retries++;
-      await new Promise(resolve => setTimeout(resolve, 200));
-    }
-  }
-
-  if (!DwActorSheet) {
-    console.error("❌ Gave up waiting for Dungeon World sheet class.");
+  if (!npcSheetClass) {
+    console.error("❌ Dungeon World NPC sheet class not found.");
     return;
   }
 
-  // Import the sheet logic and extend from DwActorSheet
-  const { HirelingSheet } = await import("./hireling-sheet-class.js");
+  const HirelingSheet = createHirelingSheet(npcSheetClass);
 
-  // Register the sheet
+  console.log("✅ Registering HirelingSheet…");
   Actors.registerSheet("dungeonworld-hirelings", HirelingSheet, {
     types: ["npc"],
     label: "Hireling Sheet",
     makeDefault: false
   });
-
-  console.log("✅ Hireling sheet registered.");
 });
