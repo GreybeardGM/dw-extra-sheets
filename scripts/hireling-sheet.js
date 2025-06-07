@@ -1,10 +1,13 @@
-Hooks.once("ready", function () {
-  const DwActorSheet = CONFIG.Actor.sheetClasses.npc["dungeonworld"]?.cls;
+console.log("📦 hireling-sheet.js loaded.");
 
-  if (!DwActorSheet) {
-    console.error("Dungeon World NPC sheet not found");
+Hooks.once("ready", function () {
+  const dwConfig = CONFIG.Actor.sheetClasses.npc["dungeonworld"];
+  if (!dwConfig) {
+    console.error("❌ Dungeon World NPC sheet not found in CONFIG.");
     return;
   }
+
+  const DwActorSheet = dwConfig.cls;
   
   class HirelingSheet extends DwActorSheet {
 
@@ -82,9 +85,9 @@ Hooks.once("ready", function () {
   Actors.registerSheet("dungeonworld-hirelings", HirelingSheet, {
     types: ["npc"],
     label: "Hireling Sheet",
-    makeDefault: true
+    makeDefault: false
   });
 
-  console.log("Hireling sheet registered via deferred hook.");
+  console.log("✅ Hireling sheet registered.");
 });
 
