@@ -1,11 +1,16 @@
 Hooks.once("ready", async function () {
-  const DwActorSheet = game.dungeonworld?.DwActorSheet || CONFIG.Actor.sheetClasses.npc["dungeonworld"].cls;
+  const npcSheets = CONFIG.Actor.sheetClasses["npc"];
+  const dwEntry = Object.entries(npcSheets).find(([key, value]) => {
+    return value.cls?.name === "DwActorNpcSheet";
+  });
+
+  const DwActorSheet = dwEntry?.[1]?.cls;
 
   if (!DwActorSheet) {
-    console.error("Dungeon World Actor Sheet not found");
+    console.error("Dungeon World NPC sheet not found");
     return;
   }
-
+  
   class HirelingSheet extends DwActorSheet {
 
     static get defaultOptions() {
