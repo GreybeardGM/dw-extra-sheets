@@ -4,25 +4,22 @@
     {{!-- Sheet Header --}}
     <header class="sheet-header">
       <div class="cell cell--image">
-        <img class="profile-img" src="{{actor.img}}" data-edit="img" title="{{actor.name}}" height="100" width="100"/>
+        <img class="profile-img" src="{{actor.img}}" data-edit="img" title="{{actor.name}}" height="100" width="100" />
       </div>
       <div class="sheet-header__fields">
-        <input class="input--title" name="name" type="text" value="{{actor.name}}" placeholder="Name"/>
+        <input class="input--title" name="name" type="text" value="{{actor.name}}" placeholder="Name" />
+        <div class="resource-line">
+          <label class="loyalty-roll"><strong>Loyalty:</strong></label>
+          <input type="number" name="system.loyalty" value="{{system.loyalty}}" />
+          <label><strong>Cost:</strong></label>
+          <input type="text" name="system.cost" value="{{system.cost}}" />
+        </div>
       </div>
     </header>
-
+    
     <section class="sheet-top">
-      {{!-- Loyalty --}}
-      <div class="resource-line">
-        <label class="loyalty-roll"><strong>Loyalty:</strong></label>
-        <input type="number" name="system.loyalty" value="{{system.loyalty}}" />
-        <label><strong>Cost:</strong></label>
-        <input type="text" name="system.cost" value="{{system.cost}}" />
-      </div>
-      <hr>
-      
       {{!-- Skills --}}
-      <h2><button type="button" class="item-control skill-reset"><i class="fas fa-redo"></i>Skills</h2>
+      <h2><button type="button" class="item-control skill-reset"><i class="fas fa-redo"></i> Skills</h2>
       <div class="skills">
         <div class="skill-line">
           <button type="button" class="item-control skill-use" data-skill="1">➖</button>
