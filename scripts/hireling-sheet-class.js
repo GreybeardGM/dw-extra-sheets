@@ -50,7 +50,7 @@ export function defineHirelingSheet(baseClass) {
       });
 
       // Reset Skill Points
-      html.find(".skill-reset").click(async ev => {").click(async ev => {
+      html.find(".skill-reset").click(async ev => {
         ev.preventDefault();
         const updates = {};
         for (let i = 1; i <= 5; i++) {
