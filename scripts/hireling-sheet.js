@@ -19,7 +19,11 @@ Hooks.once("ready", async function () {
       options.tabs = [{ navSelector: ".sheet-tabs", contentSelector: ".sheet-body", initial: "moves" }];
       return options;
     }
-  
+    
+    get template() {
+      return "modules/dungeonworld-hirelings/templates/hireling-sheet.html";
+    }
+
     /** @inheritdoc */
     async getData(options) {
       const context = await super.getData(options);
