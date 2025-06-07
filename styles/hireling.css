@@ -1,13 +1,14 @@
 /* === Base Layout === */
 .hireling-sheet {
-  height: 100%;
-  width: 100%;
   display: flex;
   flex-direction: column;
+  height: 100%;
+  width: 100%;
   overflow: hidden;
   box-sizing: border-box;
 }
 
+/* === Form === */
 .hireling-sheet form {
   height: 100%;
   width: 100%;
@@ -15,13 +16,46 @@
   flex-direction: column;
 }
 
-/* === Header Section === */
-.hireling-sheet .sheet-top {
-  flex: 0 0 auto;
+/* === Header (mimics NPC sheet) === */
+.hireling-sheet .sheet-header {
+  display: flex;
+  align-items: flex-start;
   padding: 0.5em 1em;
+  gap: 1em;
+}
+
+.hireling-sheet .cell--image {
+  flex: 0 0 auto;
+}
+
+.hireling-sheet .profile-img {
+  max-width: 100px;
+  height: auto;
+  border: 1px solid var(--color-border-dark);
+}
+
+.hireling-sheet .sheet-header__fields {
+  flex: 1 1 auto;
   display: flex;
   flex-direction: column;
   gap: 0.5em;
+}
+
+.hireling-sheet input.input--title {
+  font-size: 1.2em;
+  font-weight: bold;
+  padding: 0.2em 0.5em;
+  background: var(--color-bg-input);
+  border: 1px solid var(--color-border-dark);
+  color: var(--color-text-light-primary);
+}
+
+/* === Prevent Floating === */
+.hireling-sheet .sheet-body,
+.hireling-sheet .tab,
+.hireling-sheet .skills,
+.hireling-sheet .resource-line {
+  flex-shrink: 0;
 }
 
 /* === Resource Line === */
