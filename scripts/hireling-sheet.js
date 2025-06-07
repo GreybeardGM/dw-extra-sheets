@@ -1,4 +1,5 @@
 import { DwActorSheet } from "../../dungeonworld/module/actor/actor-sheet.js";
+console.log(DwActorSheet);
 
 export class HirelingSheet extends DwActorSheet {
   static get defaultOptions() {
@@ -6,6 +7,7 @@ export class HirelingSheet extends DwActorSheet {
     options.classes = [...options.classes, "hireling"];
     options.width = 560;
     options.height = 600;
+    options.template = "modules/dungeonworld-hirelings/templates/hireling-sheet.html";
     options.tabs = [{ navSelector: ".sheet-tabs", contentSelector: ".sheet-body", initial: "moves" }];
     return options;
   }
