@@ -18,12 +18,17 @@
       {{!-- Attributes --}}
       <section class="sheet-attributes sheet-attributes--npc">
 
-        <div class="cell cell--damage">
-          <label class="cell__title damage-rollable rollable" data-roll="2d6 + {{system.loyalty.value}}" data-label="Loyalty" >
+        <div class="cell">
+          <label class="cell__title">Rank</label>
+          <input type="number" name="system.hireling.rank" value="{{system.hireling.rank}}" placeholder="2 to 10" data-dtype="Number"/>
+        </div>
+
+        <div class="cell">
+          <label class="cell__title damage-rollable rollable" data-roll="2d6 + {{system.hireling.loyalty.value}}" data-label="Loyalty" >
             <i class="fas fa-dice-d20"></i>
             Loyalty
           </label>
-          <input type="text" name="system.loyalty.value" value="{{system.loyalty.value}}" placeholder="e.g. 1" data-dtype="Number"/>
+          <input type="text" name="system.hireling.loyalty.value" value="{{system.hireling.loyalty.value}}" placeholder="0 to 2" data-dtype="Number"/>
         </div>
 
         <div class="cell cell--damage">
@@ -31,7 +36,7 @@
             Cost
             <i class="fas fa-coins attribute-icon"></i>
           </label>
-          <input type="text" name="system.loyalty.cost" value="{{system.loyalty.cost}}" data-dtype="String"/>
+          <input type="text" name="system.hireling.loyalty.cost" value="{{system.hireling.loyalty.cost}}" data-dtype="String"/>
         </div>
 
         <div class="cell cell--tags">
@@ -53,38 +58,38 @@
           
           <div class="skill-line">
             <button type="button" class="resource-control resource-decrease skill-use" data-skill="1">➖</button>
-            <input type="number" class="input" name="system.skills.skill1.value" value="{{system.skills.skill1.value}}" />
+            <input type="number" class="input" name="system.hireling.skills.skill1.value" value="{{system.hireling.skills.skill1.value}}" />
             <span class="skill-separator">/</span>
-            <input type="number" class="input" name="system.skills.skill1.max" value="{{system.skills.skill1.max}}" />
-            <input type="text" class="input" name="system.skills.skill1.label" value="{{system.skills.skill1.label}}" />
+            <input type="number" class="input" name="system.hireling.skills.skill1.max" value="{{system.hireling.skills.skill1.max}}" />
+            <input type="text" class="input" name="system.hireling.skills.skill1.label" value="{{system.hireling.skills.skill1.label}}" />
           </div>
           <div class="skill-line">
             <button type="button" class="resource-control resource-decrease skill-use" data-skill="2">➖</button>
-            <input type="number" class="input" name="system.skills.skill2.value" value="{{system.skills.skill2.value}}" />
+            <input type="number" class="input" name="system.hireling.skills.skill2.value" value="{{system.hireling.skills.skill2.value}}" />
             <span class="skill-separator">/</span>
-            <input type="number" class="input" name="system.skills.skill2.max" value="{{system.skills.skill2.max}}" />
-            <input type="text" class="input" name="system.skills.skill2.label" value="{{system.skills.skill2.label}}" />
+            <input type="number" class="input" name="system.hireling.skills.skill2.max" value="{{system.hireling.skills.skill2.max}}" />
+            <input type="text" class="input" name="system.hireling.skills.skill2.label" value="{{system.hireling.skills.skill2.label}}" />
           </div>
           <div class="skill-line">
             <button type="button" class="resource-control resource-decrease skill-use" data-skill="3">➖</button>
-            <input type="number" class="input" name="system.skills.skill3.value" value="{{system.skills.skill3.value}}" />
+            <input type="number" class="input" name="system.hireling.skills.skill3.value" value="{{system.hireling.skills.skill3.value}}" />
             <span class="skill-separator">/</span>
-            <input type="number" class="input" name="system.skills.skill3.max" value="{{system.skills.skill3.max}}" />
-            <input type="text" class="input" name="system.skills.skill3.label" value="{{system.skills.skill3.label}}" />
+            <input type="number" class="input" name="system.hireling.skills.skill3.max" value="{{system.hireling.skills.skill3.max}}" />
+            <input type="text" class="input" name="system.hireling.skills.skill3.label" value="{{system.hireling.skills.skill3.label}}" />
           </div>
           <div class="skill-line">
             <button type="button" class="resource-control resource-decrease skill-use" data-skill="4">➖</button>
-            <input type="number" class="input" name="system.skills.skill4.value" value="{{system.skills.skill4.value}}" />
+            <input type="number" class="input" name="system.hireling.skills.skill4.value" value="{{system.hireling.skills.skill4.value}}" />
             <span class="skill-separator">/</span>
-            <input type="number" class="input" name="system.skills.skill4.max" value="{{system.skills.skill4.max}}" />
-            <input type="text" class="input" name="system.skills.skill4.label" value="{{system.skills.skill4.label}}" />
+            <input type="number" class="input" name="system.hireling.skills.skill4.max" value="{{system.hireling.skills.skill4.max}}" />
+            <input type="text" class="input" name="system.hireling.skills.skill4.label" value="{{system.hireling.skills.skill4.label}}" />
           </div>
           <div class="skill-line">
             <button type="button" class="resource-control resource-decrease skill-use" data-skill="5">➖</button>
-            <input type="number" class="input" name="system.skills.skill5.value" value="{{system.skills.skill5.value}}" />
+            <input type="number" class="input" name="system.hireling.skills.skill5.value" value="{{system.hireling.skills.skill5.value}}" />
             <span class="skill-separator">/</span>
-            <input type="number" class="input" name="system.skills.skill5.max" value="{{system.skills.skill5.max}}" />
-            <input type="text" class="input" name="system.skills.skill5.label" value="{{system.skills.skill5.label}}" />
+            <input type="number" class="input" name="system.hireling.skills.skill5.max" value="{{system.hireling.skills.skill5.max}}" />
+            <input type="text" class="input" name="system.hireling.skills.skill5.label" value="{{system.hireling.skills.skill5.label}}" />
           </div>
         </div>
 
