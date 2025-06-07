@@ -1,4 +1,4 @@
-import { HirelingSheet } from "./hireling-sheet.js";
+import { HirelingSheet } from "./scripts/hireling-sheet.js";
 
 Hooks.once("init", () => {
   console.log("dungeonworld-hirelings | Initializing hireling sheet");
