@@ -4,8 +4,8 @@ Hooks.once("init", () => {
   console.log("dungeonworld-hirelings | Initializing hireling sheet");
   
   Actors.registerSheet("dungeonworld-hirelings", HirelingSheet, {
-    types: ["hireling"], // or ["npc"]
+    types: ["npc"],
     label: "Hireling Sheet",
-    makeDefault: true // or false, depending on your setup
+    makeDefault: false
   });
 });
