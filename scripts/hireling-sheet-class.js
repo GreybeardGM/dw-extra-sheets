@@ -1,14 +1,17 @@
-// hireling-sheet-class.js
-export function createHirelingSheet(BaseSheet) {
-  return class HirelingSheet extends BaseSheet {
+export function defineHirelingSheet(baseClass) {
+  return class HirelingSheet extends baseClass {
     static get defaultOptions() {
       const options = super.defaultOptions;
       options.classes = [...options.classes, "hireling"];
       options.width = 560;
       options.height = 600;
-      options.template = "modules/dungeonworld-hirelings/templates/hireling-sheet.html";
+      options.template = `modules/${game.modules.get("dungeonworld-hirelings")?.id}/templates/hireling-sheet.html`;
       options.tabs = [{ navSelector: ".sheet-tabs", contentSelector: ".sheet-body", initial: "moves" }];
       return options;
+    }
+
+    get template() {
+      return "modules/dungeonworld-hirelings/templates/hireling-sheet.html";
     }
 
     async getData(options) {
