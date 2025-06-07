@@ -17,3 +17,52 @@
 .hireling-sheet .skill-line input[type="text"].input {
   flex: 1;
 }
+
+.hireling-sheet .sheet-body,
+.hireling-sheet .sheet-content,
+.hireling-sheet .tab {
+  width: 100%;
+  box-sizing: border-box;
+  clear: both;
+}
+
+.hireling-sheet .sheet-body {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.hireling-sheet button {
+  min-width: 2em;
+  width: 2em;
+  padding: 0.2em;
+  text-align: center;
+  line-height: 1em;
+}
+
+.hireling-sheet .skill-use,
+.hireling-sheet .reset-skills {
+  width: 2em;
+  min-width: 2em;
+  padding: 0.2em;
+  font-size: 1em;
+  text-align: center;
+  line-height: 1.2em;
+}
+
+.hireling-sheet .resource-line {
+  display: flex;
+  align-items: center;
+  gap: 1em;
+  margin-bottom: 0.5em;
+}
+
+.hireling-sheet .resource-line label {
+  margin-right: 0.3em;
+  white-space: nowrap;
+}
+
+.hireling-sheet .resource-line input[type="number"],
+.hireling-sheet .resource-line input[type="text"] {
+  max-width: 5em;
+}
