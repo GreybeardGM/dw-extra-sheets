@@ -2,7 +2,7 @@
   "name": "dungeonworld-hirelings",
   "title": "Dungeon World Hireling Sheet",
   "systems": ["dungeonworld"],
-  "version": "0.116",
+  "version": "0.117",
   "author": "GreybeardGM",
   "minimumCoreVersion": "12",
   "compatibleCoreVersion": "12",
