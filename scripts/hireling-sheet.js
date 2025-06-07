@@ -87,7 +87,7 @@ Hooks.once("ready", async function () {
   Actors.registerSheet("dungeonworld-hirelings", HirelingSheet, {
     types: ["npc"],
     label: "Hireling Sheet",
-    makeDefault: false
+    makeDefault: true
   });
 
   console.log("Hireling sheet registered via deferred hook.");
