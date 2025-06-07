@@ -1,74 +1,72 @@
-export class HirelingSheet extends ActorSheet {
+import { DwActorSheet } from "../../dungeonworld/module/actor/actor-sheet.js";
+
+export class HirelingSheet extends DwActorSheet {
   static get defaultOptions() {
-    return mergeObject(super.defaultOptions, {
-      classes: ["dungeonworld", "sheet", "actor", "hireling"],
-      template: "modules/dungeonworld-hirelings/templates/hireling-sheet.html",
-      width: 600,
-      height: 400,
-      tabs: [
-        { navSelector: ".sheet-tabs", contentSelector: ".sheet-body", initial: "description" }
-      ]
-    });
+    const options = super.defaultOptions;
+    options.classes = [...options.classes, "hireling"];
+    options.width = 560;
+    options.height = 600;
+    options.tabs = [{ navSelector: ".sheet-tabs", contentSelector: ".sheet-body", initial: "moves" }];
+    return options;
   }
 
-  getData(options) {
-    const data = super.getData(options);
-    const items = this.actor.items;
+  /** @inheritdoc */
+  async getData(options) {
+    const context = await super.getData(options);
 
-    data.basicMoves = items.filter(i => i.type === "npcMove" && i.system.moveType === "basic");
-    data.specialMoves = items.filter(i => i.type === "npcMove" && i.system.moveType === "special");
+    // Add loyalty value and skills directly from system
+    const system = this.actor.system;
+    context.system.loyalty = system.loyalty;
 
-    return data;
+    // Inject skills as fixed list
+    context.skills = [
+      system.skills.skill1,
+      system.skills.skill2,
+      system.skills.skill3,
+      system.skills.skill4,
+      system.skills.skill5,
+    ];
+
+    return context;
   }
 
+  /** @inheritdoc */
   activateListeners(html) {
-    // Reuse DW's logic for item edit/delete/create
     super.activateListeners(html);
-  
-    // === Loyalty Roll Click ===
-    html.find(".roll-loyalty").click(ev => {
-      const loyalty = this.actor.system.loyalty;
-      ChatMessage.create({
-        user: game.user.id,
-        speaker: ChatMessage.getSpeaker({ actor: this.actor }),
-        content: `<strong>Loyalty Check:</strong> ${loyalty}`,
-      });
-    });
-  
-    // === Use Skill ===
-    html.find(".use-skill").click(ev => {
-      const skillId = ev.currentTarget.dataset.skill;
-      const skill = this.actor.system.skills?.[skillId];
-      if (!skill) return;
-  
-      if (skill.value > 0) {
-        const path = `system.skills.${skillId}.value`;
-        this.actor.update({ [path]: skill.value - 1 });
-      } else {
-        ui.notifications.warn(`${skill.label || "This skill"} is already at 0.`);
+
+    if (!this.options.editable) return;
+
+    // Skill use buttons - decrement skill value if greater than 0
+    html.find(".skill-use").click(async ev => {
+      ev.preventDefault();
+      const idx = ev.currentTarget.dataset.skill;
+      const path = `system.skills.skill${idx}.value`;
+      const current = getProperty(this.actor, path);
+      if (typeof current === "number" && current > 0) {
+        await this.actor.update({ [path]: current - 1 });
       }
     });
-  
-    // === Reset Skills Button ===
-    html.find(".reset-skills").click(() => {
+
+    // Skill reset button - reset all skills to their max
+    html.find(".skill-reset").click(async ev => {
+      ev.preventDefault();
       const updates = {};
       for (let i = 1; i <= 5; i++) {
-        const skill = this.actor.system.skills?.[i];
-        if (skill) {
-          updates[`system.skills.${i}.value`] = skill.max ?? skill.value ?? 0;
+        const skill = this.actor.system.skills[`skill${i}`];
+        if (skill && typeof skill.max === "number") {
+          updates[`system.skills.skill${i}.value`] = skill.max;
         }
       }
-      this.actor.update(updates);
+      await this.actor.update(updates);
+    });
+
+    // Loyalty check button
+    html.find(".loyalty-roll").click(async ev => {
+      ev.preventDefault();
+      const loyalty = this.actor.system.loyalty?.value || 0;
+      const roll = new Roll("2d6 + @loyalty", { loyalty });
+      await roll.roll({ async: true });
+      roll.toMessage({ speaker: ChatMessage.getSpeaker({ actor: this.actor }), flavor: "Loyalty Check" });
     });
   }
 }
-
-// Register inside the module scope
-Hooks.once("init", () => {
-  console.log("✅ Registering HirelingSheet for NPCs");
-  Actors.registerSheet("dungeonworld-hirelings", HirelingSheet, {
-    types: ["npc"],
-    label: "Hireling Sheet",
-    makeDefault: false
-  });
-});
