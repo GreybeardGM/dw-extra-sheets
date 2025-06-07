@@ -21,21 +21,31 @@ export function defineHirelingSheet(baseClass) {
       const context = await super.getData(options);
       const system = this.actor.system;
     
-      // Fallback in case of missing skill structure
-      const safeSkill = (skill) => skill ?? { label: "", value: 0, max: 0 };
+      // === Initialize blank hireling structure if missing ===
+      system.hireling ??= {};
+      const h = system.hireling;
     
-      context.loyalty = [
-        system.loyalty?.value ?? 0,
-        system.loyalty?.cost ?? "",
-      ];
+      h.loyalty ??= { value: 0, cost: "" };
+      h.skills ??= {};
+      for (let i = 1; i <= 5; i++) {
+        h.skills[`skill${i}`] ??= { label: "", value: 0, max: 0 };
+      }
+      h.active ??= false;
+      h.rank ??= 0;
+      h.hirelingClass ??= "";
     
+      // === Prepare view context ===
+      context.loyalty = [h.loyalty.value, h.loyalty.cost];
       context.skills = [
-        safeSkill(system.skills?.skill1),
-        safeSkill(system.skills?.skill2),
-        safeSkill(system.skills?.skill3),
-        safeSkill(system.skills?.skill4),
-        safeSkill(system.skills?.skill5),
+        h.skills.skill1,
+        h.skills.skill2,
+        h.skills.skill3,
+        h.skills.skill4,
+        h.skills.skill5,
       ];
+      context.active = h.active;
+      context.rank = h.rank;
+      context.hirelingClass = h.hirelingClass;
     
       return context;
     }
