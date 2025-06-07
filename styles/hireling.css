@@ -1,151 +1,19 @@
-.hireling-sheet {
-  font-family: "Signika", sans-serif;
-  padding: 1rem;
-}
-
-.resource-line {
-  display: flex;
-  gap: 1rem;
-  align-items: center;
-  margin-bottom: 1rem;
-}
-
-.resource-line label {
-  white-space: nowrap;
-  font-weight: bold;
-}
-
-.resource-line input[type="number"],
-.resource-line input[type="text"] {
-  width: auto;
-  flex: 1;
-  min-width: 100px;
-}
-
-.skills {
+.hireling-sheet .skills {
   display: flex;
   flex-direction: column;
-  gap: 0.5rem;
+  gap: 0.5em;
 }
 
-.skill-line {
+.hireling-sheet .skill-line {
   display: flex;
   align-items: center;
-  gap: 0.5rem;
+  gap: 6px;
 }
 
-.skill-line input[type="text"] {
-  flex: 2;
-  min-width: 120px;
-}
-
-.skill-line input[type="number"] {
+.hireling-sheet .skill-line input.input {
   width: 50px;
 }
 
-.skill-line button.use-skill {
-  background: none;
-  border: 1px solid #ccc;
-  font-weight: bold;
-  cursor: pointer;
-  width: 2rem;
-  height: 2rem;
-  padding: 0;
-}
-
-.sheet-tabs {
-  margin-top: 1.5rem;
-  border-bottom: 1px solid #aaa;
-}
-
-.sheet-tabs .item {
-  margin-right: 1rem;
-  padding: 0.25rem 0.5rem;
-  cursor: pointer;
-  font-weight: bold;
-  border-radius: 4px 4px 0 0;
-}
-
-.sheet-tabs .item.active {
-  background-color: #ddd;
-  border: 1px solid #aaa;
-  border-bottom: none;
-}
-
-.sheet-body {
-  padding-top: 1rem;
-}
-
-.items-list {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-}
-
-.item {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 0.4rem 0;
-  border-bottom: 1px solid #ccc;
-}
-
-.item-name {
-  display: flex;
-  align-items: center;
-  cursor: pointer;
-  flex-grow: 1;
-}
-
-.item-name img.item-icon {
-  height: 24px;
-  width: 24px;
-  margin-right: 0.5rem;
-  border: 1px solid #aaa;
-  border-radius: 4px;
-}
-
-.item-label {
-  font-weight: bold;
-}
-
-.item-controls {
-  display: flex;
-  gap: 0.5rem;
-}
-
-.item-controls a {
-  color: #333;
-}
-
-.item-meta {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.25rem;
-  font-size: 0.85rem;
-  margin-top: 0.2rem;
-}
-
-.tag {
-  background: #eee;
-  border: 1px solid #aaa;
-  border-radius: 3px;
-  padding: 0.1rem 0.3rem;
-  font-size: 0.75rem;
-}
-
-.tag.equipped {
-  background-color: #cde8cc;
-  border-color: #3a913f;
-  font-weight: bold;
-}
-
-.tag.counter {
-  background-color: #f0f0f0;
-  border-color: #bbb;
-  cursor: pointer;
-}
-
-.tag:hover {
-  background-color: #ddd;
+.hireling-sheet .skill-line input[type="text"].input {
+  flex: 1;
 }
