@@ -17,21 +17,24 @@ export function defineHirelingSheet(baseClass) {
 
     async getData(options) {
       console.log("✔ getData reached in HirelingSheet");
-
+    
       const context = await super.getData(options);
       const system = this.actor.system;
-
-      // Inject stats
+    
+      // Fallback in case of missing skill structure
+      const safeSkill = (skill) => skill ?? { label: "", value: 0, max: 0 };
+    
       context.loyalty = [
-        system.loyalty.value,
-        system.loyalty.cost,
+        system.loyalty?.value ?? 0,
+        system.loyalty?.cost ?? "",
       ];
+    
       context.skills = [
-        system.skills.skill1,
-        system.skills.skill2,
-        system.skills.skill3,
-        system.skills.skill4,
-        system.skills.skill5,
+        safeSkill(system.skills?.skill1),
+        safeSkill(system.skills?.skill2),
+        safeSkill(system.skills?.skill3),
+        safeSkill(system.skills?.skill4),
+        safeSkill(system.skills?.skill5),
       ];
     
       return context;
