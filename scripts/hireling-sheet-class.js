@@ -58,33 +58,25 @@ export function defineHirelingSheet(baseClass) {
       html.find(".skill-use").click(async ev => {
         ev.preventDefault();
         const idx = ev.currentTarget.dataset.skill;
-        const path = `system.skills.skill${idx}.value`;
+        const path = `system.hireling.skills.${idx}.value`;
         const current = getProperty(this.actor, path);
         if (typeof current === "number" && current > 0) {
           await this.actor.update({ [path]: current - 1 });
         }
       });
-
+      
       // Reset Skill Points
       html.find(".skill-reset").click(async ev => {
         ev.preventDefault();
         const updates = {};
         for (let i = 1; i <= 5; i++) {
-          const skill = this.actor.system.skills[`skill${i}`];
-          if (skill && typeof skill.max === "number") {
-            updates[`system.skills.skill${i}.value`] = skill.max;
+          const base = `system.hireling.skills.skill${i}`;
+          const max = getProperty(this.actor, `${base}.max`);
+          if (typeof max === "number") {
+            updates[`${base}.value`] = max;
           }
         }
         await this.actor.update(updates);
-      });
-
-      // Loyalty Roll
-      html.find(".loyalty-roll").click(async ev => {
-        ev.preventDefault();
-        const loyalty = this.actor.system.loyalty?.value || 0;
-        const roll = new Roll("2d6 + @loyalty", { loyalty });
-        await roll.roll({ async: true });
-        roll.toMessage({ speaker: ChatMessage.getSpeaker({ actor: this.actor }), flavor: "Loyalty Check" });
       });
     }
   };
