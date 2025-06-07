@@ -1,6 +1,7 @@
 import { defineHirelingSheet } from "./hireling-sheet-class.js";
 
 Hooks.once("ready", () => {
+  console.log("✅ Hook is hooking!");
   const npcSheets = CONFIG.Actor.sheetClasses.npc;
   const dwEntry = npcSheets["dungeonworld.DwActorNpcSheet"];
   const DwActorSheet = dwEntry?.cls;
