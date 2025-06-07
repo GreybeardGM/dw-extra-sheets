@@ -15,10 +15,24 @@
 
 .hireling-sheet .skill-line {
   display: flex;
-  flex-direction: row;
   align-items: center;
-  gap: 6px;
-  width:100%;
+  gap: 0.3em;
+}
+
+.hireling-sheet .skill-line input[type="number"] {
+  width: 2em;
+  flex: 0 0 auto;
+  text-align: center;
+}
+
+.hireling-sheet .skill-line input[type="text"] {
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+.skill-separator {
+  padding: 0 0.2em;
+  user-select: none;
 }
 
 /* === Buttons === */
