@@ -10,6 +10,7 @@ export function defineHirelingSheet(baseClass) {
       return options;
     }
 
+    // Change the Template
     get template() {
       return "modules/dungeonworld-hirelings/templates/hireling-sheet.html";
     }
@@ -17,6 +18,8 @@ export function defineHirelingSheet(baseClass) {
     async getData(options) {
       const context = await super.getData(options);
       const system = this.actor.system;
+
+      // Inject stats
       context.system.loyalty = system.loyalty;
       context.skills = [
         system.skills.skill1,
@@ -25,6 +28,10 @@ export function defineHirelingSheet(baseClass) {
         system.skills.skill4,
         system.skills.skill5,
       ];
+    
+      // 🔧 Add equipment manually if not inherited from base class
+      context.equipment = this.actor.items.filter(i => i.type === "equipment");
+    
       return context;
     }
 
@@ -32,6 +39,7 @@ export function defineHirelingSheet(baseClass) {
       super.activateListeners(html);
       if (!this.options.editable) return;
 
+      // Use a Skill Point
       html.find(".skill-use").click(async ev => {
         ev.preventDefault();
         const idx = ev.currentTarget.dataset.skill;
@@ -42,7 +50,8 @@ export function defineHirelingSheet(baseClass) {
         }
       });
 
-      html.find(".skill-reset").click(async ev => {
+      // Reset Skill Points
+      html.find(".skill-reset").click(async ev => {").click(async ev => {
         ev.preventDefault();
         const updates = {};
         for (let i = 1; i <= 5; i++) {
@@ -54,6 +63,7 @@ export function defineHirelingSheet(baseClass) {
         await this.actor.update(updates);
       });
 
+      // Loyalty Roll
       html.find(".loyalty-roll").click(async ev => {
         ev.preventDefault();
         const loyalty = this.actor.system.loyalty?.value || 0;
