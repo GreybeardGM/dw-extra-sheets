@@ -5,6 +5,7 @@
   "author": "GreybeardGM",
   "minimumCoreVersion": "12",
   "compatibleCoreVersion": "12",
+  "scripts": ["scripts/module.js"]
   "styles": ["styles/hireling.css"],
   "esmodules": ["scripts/hireling-sheet.js"],
   "url": "https://github.com/GreybeardGM/dungeonworld-hirelings",
