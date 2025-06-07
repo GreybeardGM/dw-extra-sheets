@@ -18,13 +18,13 @@
       <section class="sheet-attributes sheet-attributes--npc">
 
         <div class="cell">
-          <label class="cell__title damage-rollable rollable" data-roll="{{system.loyalty}}" data-label="Loyalty" ><i class="fas fa-dice-d20"></i> Loyalty</label>
-          <input type="text" name="system.loyalty" value="{{system.loyalty}}" placeholder="e.g. 1" data-dtype="Number"/>
+          <label class="cell__title damage-rollable rollable" data-roll="2d6 + {{system.loyalty.value}}" data-label="Loyalty" ><i class="fas fa-dice-d20"></i> Loyalty</label>
+          <input type="text" name="system.loyalty.value" value="{{system.loyalty.value}}" placeholder="e.g. 1" data-dtype="Number"/>
         </div>
 
-        <div class="cell>
+        <div class="cell">
           <label class="cell__title">Cost</label>
-          <input type="text" name="system.cost" value="{{system.cost}}" data-dtype="Number"/>
+          <input type="text" name="system.loyalty.cost" value="{{system.loyalty.cost}}" data-dtype="Number"/>
         </div>
 
         <div class="cell cell--tags">
@@ -38,9 +38,9 @@
         <div class="skills">
           <div class="skill-line">
             <button type="button" class="item-control skill-use" data-skill="1">➖</button>
-              <input type="text" class="input" name="system.skills.skill1.label" value="{{system.skills.skill1.label}}" />
-              <input type="number" class="input" name="system.skills.skill1.value" value="{{system.skills.skill1.value}}" /> /
-              <input type="number" class="input" name="system.skills.skill1.max" value="{{system.skills.skill1.max}}" />
+            <input type="text" class="input" name="system.skills.skill1.label" value="{{system.skills.skill1.label}}" />
+            <input type="number" class="input" name="system.skills.skill1.value" value="{{system.skills.skill1.value}}" /> /
+            <input type="number" class="input" name="system.skills.skill1.max" value="{{system.skills.skill1.max}}" />
           </div>
           <div class="skill-line">
             <button type="button" class="item-control skill-use" data-skill="2">➖</button>
