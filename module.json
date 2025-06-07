@@ -1,4 +1,4 @@
-{
+ng{
   "name": "dungeonworld-hirelings",
   "title": "Dungeon World Hireling Sheet",
   "description": "Custom hireling sheet for Dungeon World NPCs.",
@@ -11,7 +11,7 @@
   "styles": ["styles/hireling.css"],
   "esmodules": [
     "scripts/hireling-sheet-class.js",
-    "scripts/testing.js"
+    "scripts/hireling-sheet-register.js"
   ],
   "url": "https://github.com/GreybeardGM/dungeonworld-hirelings",
   "manifest": "https://raw.githubusercontent.com/GreybeardGM/dungeonworld-hirelings/main/module.json",
