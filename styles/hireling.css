@@ -9,8 +9,7 @@
   display: flex;
   flex-direction: column;
   gap: 0.5em;
-  flex: 0 0 100%;
-  max-width: 100%;
+  grid-column: 1 / -1;
 }
 
 .hireling-sheet .skill-line {
