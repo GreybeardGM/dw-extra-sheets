@@ -6,16 +6,15 @@
   box-sizing: border-box;
 }
 
+.hireling-sheet .window-content {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
 .hireling-sheet .sheet-top {
   flex: 0 0 auto;
   padding: 0.5em 1em;
-}
-
-.hireling-sheet .sheet-tabs {
-  flex: 0 0 auto;
-  border-bottom: 1px solid var(--color-border-dark);
-  padding: 0 1em;
-  margin-bottom: 0;
 }
 
 .hireling-sheet .sheet-body {
@@ -49,6 +48,7 @@
   box-sizing: border-box;
 }
 
+/* input fix */
 .hireling-sheet input[type="text"],
 .hireling-sheet input[type="number"] {
   background: var(--color-bg-input);
@@ -58,33 +58,14 @@
   color: var(--color-text-light-primary);
 }
 
-/* skill lines */
-.hireling-sheet .skills {
-  display: flex;
-  flex-direction: column;
-  gap: 0.5em;
-}
-
-.hireling-sheet .skill-line {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-}
-
-.hireling-sheet .skill-line input.input {
-  width: 50px;
-}
-
-.hireling-sheet .skill-line input[type="text"].input {
-  flex: 1;
-}
-
 /* width fix */
 .hireling-sheet .sheet-tabs {
+  flex: 0 0 auto;
+  display: flex;
   width: 100%;
   border-bottom: 2px solid var(--color-border-light-tertiary);
-  margin-top: 1em;
   padding: 0 0.5em;
+  margin-top: 1em;
   box-sizing: border-box;
 }
 
@@ -133,4 +114,25 @@
 .hireling-sheet .resource-line input[type="number"],
 .hireling-sheet .resource-line input[type="text"] {
   max-width: 5em;
+}
+
+/* skill lines */
+.hireling-sheet .skills {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5em;
+}
+
+.hireling-sheet .skill-line {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.hireling-sheet .skill-line input.input {
+  width: 50px;
+}
+
+.hireling-sheet .skill-line input[type="text"].input {
+  flex: 1;
 }
