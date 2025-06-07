@@ -18,7 +18,7 @@ Hooks.once("ready", async function () {
       options.classes = [...options.classes, "hireling"];
       options.width = 560;
       options.height = 600;
-      options.template = "modules/dungeonworld-hirelings/templates/hireling-sheet.html";
+      options.template = `modules/${game.modules.get("dungeonworld-hirelings")?.id}/templates/hireling-sheet.html`;
       options.tabs = [{ navSelector: ".sheet-tabs", contentSelector: ".sheet-body", initial: "moves" }];
       return options;
     }
