@@ -1,10 +1,5 @@
-Hooks.once("ready", async function () {
-  const npcSheets = CONFIG.Actor.sheetClasses["npc"];
-  const dwEntry = Object.entries(npcSheets).find(([key, value]) => {
-    return value.cls?.name === "DwActorNpcSheet";
-  });
-
-  const DwActorSheet = dwEntry?.[1]?.cls;
+Hooks.once("ready", function () {
+  const DwActorSheet = CONFIG.Actor.sheetClasses.npc["dungeonworld"]?.cls;
 
   if (!DwActorSheet) {
     console.error("Dungeon World NPC sheet not found");
