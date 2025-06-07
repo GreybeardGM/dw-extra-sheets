@@ -9,6 +9,12 @@
       </div>
       <div class="sheet-header__fields">
         <input class="input--title" name="name" type="text" value="{{actor.name}}" placeholder="Name"/>
+        <div class="field--checkbox">
+          <label>
+            <input type="checkbox" name="system.hireling.active" {{checked system.hireling.active}} />
+            Active Duty
+          </label>
+        </div>
       </div>
     </header>
 
