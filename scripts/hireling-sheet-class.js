@@ -22,7 +22,10 @@ export function defineHirelingSheet(baseClass) {
       const system = this.actor.system;
 
       // Inject stats
-      context.system.loyalty = system.loyalty;
+      context.loyalty = [
+        system.loyalty.value,
+        system.loyalty.cost,
+      ];
       context.skills = [
         system.skills.skill1,
         system.skills.skill2,
