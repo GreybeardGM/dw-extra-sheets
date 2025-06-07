@@ -22,12 +22,12 @@
       <hr>
       
       {{!-- Skills --}}
-      <h2><button type="button" class="item-control reset-skills"><i class="fas fa-redo"></i>Reset</button>Skills</h2>
+      <h2><button type="button" class="item-control skills-reset"><i class="fas fa-redo"></i> {{localize "DW.Reset"}}Skills</h2>
       <div class="skills">
         <div class="skill-line">
           <button type="button" class="item-control skill-use" data-skill="1">➖</button>
             <input type="text" class="input" name="system.skills.skill1.label" value="{{system.skills.skill1.label}}" />
-            <input type="number" class="input" name="system.skills.skill1.value" value="{{system.skills.skill1.value}}" />
+            <input type="number" class="input" name="system.skills.skill1.value" value="{{system.skills.skill1.value}}" /> /
             <input type="number" class="input" name="system.skills.skill1.max" value="{{system.skills.skill1.max}}" />
         </div>
         <div class="skill-line">
