@@ -1,8 +1,6 @@
-import { HirelingSheet } from "./scripts/hireling-sheet.js";
+import { HirelingSheet } from "./hireling-sheet.js";
 
 Hooks.once("init", () => {
-  console.log("dungeonworld-hirelings | Initializing hireling sheet");
-  
   Actors.registerSheet("dungeonworld-hirelings", HirelingSheet, {
     types: ["npc"],
     label: "Hireling Sheet",
