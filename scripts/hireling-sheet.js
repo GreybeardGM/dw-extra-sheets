@@ -70,3 +70,12 @@ export class HirelingSheet extends DwActorSheet {
     });
   }
 }
+
+// Register the Sheet
+Hooks.once("init", () => {
+  Actors.registerSheet("dungeonworld-hirelings", HirelingSheet, {
+    types: ["npc"],
+    label: "Hireling Sheet",
+    makeDefault: false
+  });
+});
