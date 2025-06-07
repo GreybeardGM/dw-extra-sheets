@@ -16,6 +16,8 @@ export function defineHirelingSheet(baseClass) {
     }
 
     async getData(options) {
+      console.log("✔ getData reached in HirelingSheet");
+
       const context = await super.getData(options);
       const system = this.actor.system;
 
