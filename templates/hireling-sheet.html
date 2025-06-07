@@ -14,18 +14,24 @@
 
     {{!-- Main --}}
     <section class="sheet-main">
+
       {{!-- Attributes --}}
       <section class="sheet-attributes sheet-attributes--npc">
 
         <div class="cell cell--damage">
-          <label class="cell__title damage-rollable rollable" data-roll="2d6 + {{system.loyalty.value}}" data-label="Loyalty" ><i class="fas fa-dice-d20"></i> Loyalty</label>
+          <label class="cell__title damage-rollable rollable" data-roll="2d6 + {{system.loyalty.value}}" data-label="Loyalty" >
+            <i class="fas fa-dice-d20"></i>
+            Loyalty
+          </label>
           <input type="text" name="system.loyalty.value" value="{{system.loyalty.value}}" placeholder="e.g. 1" data-dtype="Number"/>
         </div>
 
         <div class="cell cell--damage">
           <label class="cell__title">
             Cost
-            
+            <i class="fas fa-coins attribute-icon">
+              ::before
+            </i>
           </label>
           <input type="text" name="system.loyalty.cost" value="{{system.loyalty.cost}}" data-dtype="Number"/>
         </div>
@@ -35,7 +41,7 @@
           <div class="help-text"><p>{{localize "DW.TagsHelp" }}</p></div>
           <input class='tags-input-source' name="system.tags" placeholder='write some tags' value='{{ system.tags }}'/>
         </div>
-        
+
         {{!-- Skills --}}
         <div class="cell skills">
           <h2>
@@ -75,8 +81,9 @@
             <input type="number" class="input" name="system.skills.skill5.max" value="{{system.skills.skill5.max}}" />
           </div>
         </div>
-        
+
       </section>
+
 
       {{!-- Sheet Tab Navigation --}}
         <nav class="sheet-tabs tabs" data-group="primary">
