@@ -33,6 +33,7 @@
   flex-direction: column;
   gap: 0.5em;
   grid-column: 1 / -1;
+  margin-top: 1em;
 }
 
 .hireling-sheet .skill-line {
