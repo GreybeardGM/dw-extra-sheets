@@ -58,7 +58,7 @@ export function defineHirelingSheet(baseClass) {
       html.find(".skill-use").click(async ev => {
         ev.preventDefault();
         const idx = ev.currentTarget.dataset.skill;
-        const path = `system.hireling.skills.${idx}.value`;
+        const path = `system.hireling.skills.skill${idx}.value`;
         const current = getProperty(this.actor, path);
         if (typeof current === "number" && current > 0) {
           await this.actor.update({ [path]: current - 1 });
