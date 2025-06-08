@@ -10,10 +10,8 @@
       <div class="sheet-header__fields">
         <input class="input--title" name="name" type="text" value="{{actor.name}}" placeholder="Name"/>
         <div class="field--checkbox">
-          <label>
-            <input type="checkbox" name="system.hireling.active" {{checked system.hireling.active}} />
-            Active Duty
-          </label>
+          <input type="checkbox" id="hireling-active" name="system.hireling.active" {{checked system.hireling.active}} />
+          <label for="hireling-active">Active Duty</label>
         </div>
       </div>
     </header>
@@ -23,6 +21,11 @@
 
       {{!-- Attributes --}}
       <section class="sheet-attributes sheet-attributes--npc">
+
+        <div class="cell">
+          <label class="cell__title">Class</label>
+          <input type="test" name="system.hireling.hirelingClass" value="{{system.hireling.hirelingClass}}" data-dtype="String"/>
+        </div>
 
         <div class="cell">
           <label class="cell__title">Rank</label>
@@ -37,12 +40,12 @@
           <input type="text" name="system.hireling.loyalty.value" value="{{system.hireling.loyalty.value}}" placeholder="0 to 2" data-dtype="Number"/>
         </div>
 
-        <div class="cell cell--damage">
+        <div class="cell>
           <label class="cell__title">
             Cost
             <i class="fas fa-coins attribute-icon"></i>
           </label>
-          <input type="text" name="system.hireling.loyalty.cost" value="{{system.hireling.loyalty.cost}}" data-dtype="String"/>
+          <input type="text" name="system.hireling.loyalty.cost" value="{{system.hireling.loyalty.cost}}" placeholder="e.g. Glory" data-dtype="String"/>
         </div>
 
         <div class="cell cell--tags">
