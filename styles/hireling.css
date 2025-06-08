@@ -10,12 +10,11 @@
   display: flex;
   align-items: center;
   gap: 0.5em;
-  font-size: 0.9em;
   margin-top: 0.2em;
+  padding-right: 1em;
 }
 
 .hireling-sheet .field--checkbox input[type="checkbox"] {
-  transform: scale(1.5); /* makes checkbox bigger */
   accent-color: var(--color-border-highlight); /* optional: theme color */
   margin: 0;
   padding: 0;
