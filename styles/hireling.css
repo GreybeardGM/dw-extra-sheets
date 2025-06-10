@@ -46,3 +46,22 @@
   min-width: 4em;
   padding: 0.25em 0.5em;
 }
+
+.skill-max-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 0.25em;
+}
+
+.skill-max-input {
+  text-align: center;
+}
+
+.skill-max-label {
+  color: #aaa;
+  font-style: italic;
+  margin-left: 0.15em;
+  white-space: nowrap;
+  pointer-events: none;
+  user-select: none;
+}
