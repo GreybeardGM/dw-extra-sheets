@@ -97,12 +97,6 @@
           </div>
         </div>
 
-        {{!-- Tags --}}
-        <div class="cell cell--tags">
-          <label for="tag" class="control-label">{{localize "DW.Tags"}}</label>
-          <div class="help-text"><p>{{localize "DW.TagsHelp" }}</p></div>
-          <input class='tags-input-source' name="system.tags" placeholder='write some tags' value='{{ system.tags }}'/>
-        </div>
       </section>
 
 
@@ -117,10 +111,19 @@
 
         <div class="tab description" data-group="primary" data-tab="description">
           <section class="sheet-tab">
+
+            {{!-- Tags --}}
+            <div class="cell cell--tags">
+              <label for="tag" class="control-label">{{localize "DW.Tags"}}</label>
+              <div class="help-text"><p>{{localize "DW.TagsHelp" }}</p></div>
+              <input class='tags-input-source' name="system.tags" placeholder='write some tags' value='{{ system.tags }}'/>
+            </div>
+
             <div class="cell cell--description">
               <label class="cell__title">{{localize "DW.Description"}}</label>
               {{editor system.details.biographyEnriched target="system.details.biography" button=true owner=owner editable=editable}}
             </div>
+
           </section>
         </div>
 
