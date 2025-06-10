@@ -54,6 +54,19 @@ export function defineHirelingSheet(baseClass) {
       super.activateListeners(html);
       if (!this.options.editable) return;
 
+      // Config button
+      html.find(".skill-configure").click(ev => {
+        ev.preventDefault();
+        this.options.configureSkills = true;
+        this.render();
+      });
+      // Config done    
+      html.find(".skill-done").click(ev => {
+        ev.preventDefault();
+        this.options.configureSkills = false;
+        this.render();
+      });
+
       // Use a Skill Point
       html.find(".skill-use").click(async ev => {
         ev.preventDefault();
