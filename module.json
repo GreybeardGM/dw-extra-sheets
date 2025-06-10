@@ -1,13 +1,15 @@
 {
-  "name": "dungeonworld-hirelings",
+  "id": "dungeonworld-hirelings",
   "title": "Dungeon World Hireling Sheet",
   "description": "Custom hireling sheet for Dungeon World NPCs.",
   "version": "0.154",
   "author": "GreybeardGM",
   "type": "module",
   "system": "dungeonworld",
-  "minimumCoreVersion": "12",
-  "compatibleCoreVersion": "12",
+  "compatibility": {
+    "minimum": "12",
+    "verified": "12"
+  },
   "styles": ["styles/hireling.css"],
   "esmodules": [
     "scripts/hireling-sheet-class.js",
