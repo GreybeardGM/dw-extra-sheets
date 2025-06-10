@@ -43,8 +43,10 @@
 }
 
 .skills--control {
+  font-size: 1em;
   min-width: 4em;
-  padding: 0.25em 0.5em;
+  padding: 0;
+  margin: 3px 1px;
 }
 
 .skill-max-wrapper {
