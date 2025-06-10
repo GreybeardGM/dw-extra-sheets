@@ -50,7 +50,23 @@
 
         {{!-- Skills --}}
         <div class="skills">
-          <h2 class="skill_header">Skills</h2>
+          <h2 class="skill_header">
+            <label>Skills</label>
+            <div class="skills--controls">
+              <button type="button" class="skills--control skill-reset" title="Reset Skills">
+                <i class="fas fa-redo"></i>
+              </button>
+              {{#if options.configureSkills}}
+                <button type="button" class="skills--control skill-done" title="Done">
+                  ✅
+                </button>
+              {{else}}
+                <button type="button" class="skills--control skill-configure" title="Configure Skills">
+                  ⚙️
+                </button>
+              {{/if}}
+            </div>
+          </h2>
           <div class="cell cell--abilities">
             <ol class="abilities-list">
               {{#each system.hireling.skills as |skill key|}}
@@ -77,20 +93,6 @@
                   </li>
                 {{/if}}
               {{/each}}
-              <li class="skills--controls">
-                <button type="button" class="skill-button skill-reset" title="Reset Skills">
-                  <i class="fas fa-redo"></i>
-                </button>
-                {{#if options.configureSkills}}
-                  <button type="button" class="skill-button skill-done" title="Done">
-                    ✅
-                  </button>
-                {{else}}
-                  <button type="button" class="skill-button skill-configure" title="Configure Skills">
-                    ⚙️
-                  </button>
-                {{/if}}
-              </li>
             </ol>
           </div>
         </div>
