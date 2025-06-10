@@ -5,7 +5,7 @@
   "version": "0.154",
   "author": "GreybeardGM",
   "type": "module",
-  "systems": ["dungeonworld"],
+  "system": "dungeonworld",
   "minimumCoreVersion": "12",
   "compatibleCoreVersion": "12",
   "styles": ["styles/hireling.css"],
