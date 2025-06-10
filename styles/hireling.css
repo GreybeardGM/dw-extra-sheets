@@ -26,10 +26,20 @@
   grid-column: 1 / -1;
 }
 
-.hireling-sheet .skills--controls {
+.skill_header {
   display: flex;
   align-items: center;
-  gap: 0.25em;
-  list-style: none;   /* removes the ::marker (the bullet/dash/number) */
-  padding-left: 0;    /* optional: for extra alignment */
+  justify-content: space-between;
+  gap: 0.5em;
+}
+
+.skills--controls {
+  display: flex;
+  align-items: center;
+  gap: 0.2em;
+}
+
+.skills--control {
+  min-width: 2em;
+  padding: 0.25em 0.5em;
 }
