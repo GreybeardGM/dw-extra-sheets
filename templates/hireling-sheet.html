@@ -90,14 +90,16 @@
                   </li>
                 {{/if}}
               {{/each}}
+              <li>
+                {{#unless options.configureSkills}}
+                  <button type="button" class="skill-configure">⚙️</button>
+                {{/unless}}
+                {{#if options.configureSkills}}
+                  <button type="button" class="skill-done">✅</button>
+                {{/if}}
+              </li>
             </ol>
           </div>
-          {{#unless options.configureSkills}}
-            <button type="button" class="skill-configure">⚙️ Configure Skills</button>
-          {{/unless}}
-          {{#if options.configureSkills}}
-            <button type="button" class="skill-done">✅ Done</button>
-          {{/if}}
         </div>
       </section>
 
