@@ -48,12 +48,6 @@
           <input type="text" name="system.hireling.loyalty.cost" value="{{system.hireling.loyalty.cost}}" placeholder="e.g. Glory" data-dtype="String"/>
         </div>
 
-        <div class="cell cell--tags">
-          <label for="tag" class="control-label">{{localize "DW.Tags"}}</label>
-          <div class="help-text"><p>{{localize "DW.TagsHelp" }}</p></div>
-          <input class='tags-input-source' name="system.tags" placeholder='write some tags' value='{{ system.tags }}'/>
-        </div>
-
         {{!-- Skills --}}
         <div class="skills">
           <h2 class="cell__title">
@@ -99,6 +93,13 @@
               </li>
             </ol>
           </div>
+        </div>
+
+        {{!-- Tags --}}
+        <div class="cell cell--tags">
+          <label for="tag" class="control-label">{{localize "DW.Tags"}}</label>
+          <div class="help-text"><p>{{localize "DW.TagsHelp" }}</p></div>
+          <input class='tags-input-source' name="system.tags" placeholder='write some tags' value='{{ system.tags }}'/>
         </div>
       </section>
 
