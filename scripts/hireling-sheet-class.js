@@ -106,11 +106,9 @@ export function defineHirelingSheet(baseClass) {
     // Prepare Equipment
     async _prepareHirelingItems(sheetData) {
       const equipment = [];
-      const items = Array.isArray(sheetData.items)
-        ? sheetData.items
-        : Object.values(sheetData.items ?? {});
-      for (let i of items) {
-        // Optional: Enrich description for Foundry-style formatting
+      // Use this.actor.items instead of sheetData.items
+      const itemsArr = this.actor.items ? Array.from(this.actor.items) : [];
+      for (let i of itemsArr) {
         if (i.system?.description) {
           i.system.descriptionEnriched = await TextEditor.enrichHTML(i.system.description, {
             async: true,
