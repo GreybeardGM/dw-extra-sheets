@@ -67,3 +67,20 @@
   pointer-events: none;
   user-select: none;
 }
+
+/* === Tags Fix === */
+.tags-label-row {
+  display: flex;
+  align-items: center;
+  gap: 0.5em;
+  margin-bottom: 0.2em; /* space between row and input */
+}
+
+.help-text-inline {
+  color: #888;
+  font-size: 0.95em;
+  font-style: italic;
+  opacity: 0.85;
+  white-space: nowrap;
+}
+
