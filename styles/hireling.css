@@ -26,7 +26,7 @@
   grid-column: 1 / -1;
 }
 
-.skill_header {
+.hireling-sheet .skill_header {
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -36,31 +36,30 @@
   padding: 0.13em;
 }
 
-.skills--controls {
+.hireling-sheet .skills--controls {
   display: flex;
   align-items: center;
   gap: 0.2em;
-  margin-right: 12px;
 }
 
-.skills--control {
+.hireling-sheet .skills--control {
   font-size: 1em !important;
   min-width: 4em;
   padding: 1px;
   margin: 3px 1px;
 }
 
-.skill-max-wrapper {
+.hireling-sheet .skill-max-wrapper {
   display: flex;
   align-items: center;
   gap: 0.25em;
 }
 
-.skill-max-input {
+.hireling-sheet .skill-max-input {
   text-align: center !important;
 }
 
-.skill-max-label {
+.hireling-sheet .skill-max-label {
   color: #aaa;
   font-style: italic;
   margin-left: 0.15em;
@@ -70,12 +69,12 @@
 }
 
 /* === Tags Fix === */
-.tags-label-row {
+.hireling-sheet .tags-label-row {
   display: flex;
   align-items: center;
 }
 
-.help-text-inline {
+.hireling-sheet .help-text-inline {
   white-space: nowrap;
 }
 
@@ -84,7 +83,7 @@
   height: calc(100% - 109px);
 }
 /* Adds room for scrollbar in the equipment and moves lists */
-.items-list .item-controls {
+.hireling-sheet .items-list .item-controls {
   margin-right: 12px;
 }
 
