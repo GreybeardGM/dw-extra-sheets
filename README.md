@@ -1,0 +1,1 @@
+<p>Custom hireling sheet for Dungeon World NPCs.</p><p>This sheet is added to NPC-Actors. It allows management of hirelings as per default hireling rules, plus additiona functionality for convenience.</p><ul><li>Skill management</li><li>Loyalty management</li><li>Carry equipment</li><li>Use NPC-Moves</li><li>Tags</li></ul>
