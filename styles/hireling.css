@@ -43,9 +43,9 @@
 }
 
 .skills--control {
-  font-size: 1em;
+  font-size: 1em !important;
   min-width: 4em;
-  padding: 0;
+  padding: 1px;
   margin: 3px 1px;
 }
 
