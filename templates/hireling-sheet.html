@@ -33,7 +33,7 @@
         </div>
 
         <div class="cell">
-          <label class="cell__title ability-rollable rollable" data-roll="2d6 + {{system.hireling.loyalty.value}}" data-label="Loyalty" >
+          <label class="cell__title ability-rollable rollable" data-mod="{{system.hireling.loyalty.value}}" data-label="Loyalty" >
             <i class="fas fa-dice-d20"></i>
             Loyalty
           </label>
@@ -115,7 +115,7 @@
             <div class="cell cell--tags">
               <div class="tags-label-row">
                 <label for="tag" class="control-label">{{localize "DW.Tags"}}</label>
-                <span class="help-text-inline">{{localize "DW.TagsHelp"}}</span>
+                <span class="help-text help-text-inline">{{localize "DW.TagsHelp"}}</span>
               </div>
               <input class="tags-input-source" name="system.tags" id="tag" placeholder="write some tags" value="{{ system.tags }}" />
             </div>
