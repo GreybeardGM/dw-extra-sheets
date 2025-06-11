@@ -47,8 +47,7 @@ export function defineHirelingSheet(baseClass) {
       context.rank = h.rank;
       context.hirelingClass = h.hirelingClass;
 
-      // === Necessary to prepare Equipment ===
-      await this._prepareCharacterItems(context);
+      await this._prepareHirelingItems(context);
       
       return context;
     }
@@ -95,5 +94,25 @@ export function defineHirelingSheet(baseClass) {
         await this.actor.update(updates);
       });
     }
+
+    // Prepare Equipment
+    async _prepareHirelingItems(sheetData) {
+      const equipment = [];
+      for (let i of sheetData.items) {
+        // Fancying up the descrptions
+        if (i.system?.description) {
+          i.system.descriptionEnriched = await TextEditor.enrichHTML(i.system.description, {
+            async: true,
+            documents: true,
+            secrets: this.actor.isOwner,
+            rollData: this.actor.getRollData(),
+          });
+        }
+        // Here is whee the magic happens
+        if (i.type === "equipment") equipment.push(i);
+      }
+      sheetData.equipment = equipment;
+    }
+
   };
 }
