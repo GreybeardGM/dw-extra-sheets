@@ -48,14 +48,6 @@ export function defineHirelingSheet(baseClass) {
       context.hirelingClass = h.hirelingClass;
 
       await this._prepareHirelingItems(context);
-      let itemsArr;
-      if (Array.isArray(context.items)) itemsArr = context.items;
-      else if (context.items && typeof context.items === "object") itemsArr = Object.values(context.items);
-      else itemsArr = [];
-      
-      console.log("All item types:", itemsArr.map(i => i.type));
-      console.log("context.items (raw):", context.items);
-      console.log("context.equipment:", context.equipment);
       
       return context;
     }
