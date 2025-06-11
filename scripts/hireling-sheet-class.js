@@ -48,7 +48,7 @@ export function defineHirelingSheet(baseClass) {
       context.hirelingClass = h.hirelingClass;
 
       // === Necessary to prepare Equipment ===
-      this.prepareCharacterItems(context);
+      await this._prepareCharacterItems(context);
       
       return context;
     }
