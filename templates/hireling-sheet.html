@@ -113,9 +113,11 @@
 
             {{!-- Tags --}}
             <div class="cell cell--tags">
-              <label for="tag" class="control-label">{{localize "DW.Tags"}}</label>
-              <div class="help-text"><p>{{localize "DW.TagsHelp" }}</p></div>
-              <input class='tags-input-source' name="system.tags" placeholder='write some tags' value='{{ system.tags }}'/>
+              <div class="tags-label-row">
+                <label for="tag" class="control-label">{{localize "DW.Tags"}}</label>
+                <span class="help-text-inline">{{localize "DW.TagsHelp"}}</span>
+              </div>
+              <input class="tags-input-source" name="system.tags" id="tag" placeholder="write some tags" value="{{ system.tags }}" />
             </div>
 
             <div class="cell cell--description">
