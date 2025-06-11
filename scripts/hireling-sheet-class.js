@@ -98,8 +98,11 @@ export function defineHirelingSheet(baseClass) {
     // Prepare Equipment
     async _prepareHirelingItems(sheetData) {
       const equipment = [];
-      for (let i of sheetData.items) {
-        // Fancying up the descrptions
+      const items = Array.isArray(sheetData.items)
+        ? sheetData.items
+        : Object.values(sheetData.items ?? {});
+      for (let i of items) {
+        // Optional: Enrich description for Foundry-style formatting
         if (i.system?.description) {
           i.system.descriptionEnriched = await TextEditor.enrichHTML(i.system.description, {
             async: true,
@@ -108,7 +111,6 @@ export function defineHirelingSheet(baseClass) {
             rollData: this.actor.getRollData(),
           });
         }
-        // Here is whee the magic happens
         if (i.type === "equipment") equipment.push(i);
       }
       sheetData.equipment = equipment;
