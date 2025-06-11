@@ -23,8 +23,9 @@ export function defineHirelingSheet(baseClass) {
     
       // === Initialize blank hireling structure if missing ===
       system.hireling ??= {};
-      const h = system.hireling;
-    
+
+      // === Prepare Hireling Stats ===
+      const h = system.hireling;    
       h.loyalty ??= { value: 0, cost: "" };
       h.skills ??= {};
       for (let i = 1; i <= 5; i++) {
@@ -34,7 +35,6 @@ export function defineHirelingSheet(baseClass) {
       h.rank ??= 0;
       h.hirelingClass ??= "";
     
-      // === Prepare view context ===
       context.loyalty = [h.loyalty.value, h.loyalty.cost];
       context.skills = [
         h.skills.skill1,
@@ -46,7 +46,10 @@ export function defineHirelingSheet(baseClass) {
       context.active = h.active;
       context.rank = h.rank;
       context.hirelingClass = h.hirelingClass;
-    
+
+      // === Necessary to prepare Equipment ===
+      this.prepareCharacterItems(context);
+      
       return context;
     }
 
