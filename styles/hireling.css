@@ -40,6 +40,7 @@
   display: flex;
   align-items: center;
   gap: 0.2em;
+  margin-right: 12px;
 }
 
 .skills--control {
@@ -76,5 +77,14 @@
 
 .help-text-inline {
   white-space: nowrap;
+}
+
+/* === Scrollbar Fix === */
+.dungeonworld.sheet .sheet-wrapper .sheet-main {
+  height: calc(100% - 109px);
+}
+/* Adds room for scrollbar in the equipment and moves lists */
+.items-list .item-controls {
+  margin-right: 12px;
 }
 
