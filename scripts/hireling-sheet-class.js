@@ -48,6 +48,8 @@ export function defineHirelingSheet(baseClass) {
       context.hirelingClass = h.hirelingClass;
 
       await this._prepareHirelingItems(context);
+      console.log("HirelingSheet context.equipment:", context.equipment);
+      console.log("All item types:", (context.items ?? []).map(i => i.type));
       
       return context;
     }
