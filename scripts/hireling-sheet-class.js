@@ -4,7 +4,7 @@ export function defineHirelingSheet(baseClass) {
       const options = super.defaultOptions;
       options.classes = [...options.classes, "hireling"];
       options.width = 560;
-      options.height = 670;
+      options.height = 730;
       options.template = `modules/${game.modules.get("dungeonworld-hirelings")?.id}/templates/hireling-sheet.html`;
       options.tabs = [{ navSelector: ".sheet-tabs", contentSelector: ".sheet-body", initial: "moves" }];
       return options;
