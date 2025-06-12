@@ -131,7 +131,7 @@ export function defineHirelingSheet(baseClass) {
         <section class="dw-chat-card">
           <div class="cell cell--chat dw chat-card move-card">
             <div class="chat-title row flexrow">
-              <img class="item-icon" src="icons/svg/d20.svg" alt="Order Hirelings"/>
+              <img class="item-icon" src="icons/magic/symbols/symbol-lightning-bolt.webp" alt="Order Hirelings"/>
               <h2 class="cell__title">Order Hirelings</h2>
             </div>
             <div class="row"><strong>Trigger:</strong> When a hireling finds themselves in a dangerous, degrading, or just flat-out crazy situation due to your orders, <b>roll +Loyalty</b>.</div>
