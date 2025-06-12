@@ -110,7 +110,7 @@ export function defineHirelingSheet(baseClass) {
       const roll = new Roll("2d6 + @loyalty", { loyalty });
       await roll.evaluate({ async: true });
     
-      // Determine DW result band
+      // DW result bands
       let resultType, resultLabel, resultText;
       if (roll.total >= 10) {
         resultType = "success";
@@ -126,12 +126,15 @@ export function defineHirelingSheet(baseClass) {
         resultText = "They refuse, panic, or make things worse.";
       }
     
-      // Create a chat card (replace with your preferred template if you wish)
+      // Render the roll breakdown using Foundry's dice roller
+      const rollHTML = await roll.render();
+    
+      // Build your chat card, embedding the rollHTML
       const content = `
         <section class="dw-chat-card">
           <div class="cell cell--chat dw chat-card move-card">
             <div class="chat-title row flexrow">
-              <img class="item-icon" src="symbol-lightning-bolt.webp" alt="Order Hirelings"/>
+              <img class="item-icon" src="icons/svg/d20.svg" alt="Order Hirelings"/>
               <h2 class="cell__title">Order Hirelings</h2>
             </div>
             <div class="row"><strong>Trigger:</strong> When a hireling finds themselves in a dangerous, degrading, or just flat-out crazy situation due to your orders, <b>roll +Loyalty</b>.</div>
@@ -139,23 +142,28 @@ export function defineHirelingSheet(baseClass) {
               <div class="result-label">${resultLabel}</div>
               <div class="result-details">${resultText}</div>
             </div>
-            <div class="roll ${resultType}">${roll.result} <b>=</b> <span class="dice-total">${roll.total}</span></div>
+            <div class="roll ${resultType}">${rollHTML}</div>
           </div>
         </section>
       `;
     
-      // Create chat message with the roll attached
+      // Send chat message with roll object and content
       const chatData = {
         user: game.user.id,
         speaker: ChatMessage.getSpeaker({ actor }),
         content,
         type: CONST.CHAT_MESSAGE_TYPES.ROLL,
         sound: CONFIG.sounds.dice,
-        roll: roll,               // Attach the Roll object (new in FVTT 10+)
-        rolls: [roll],            // For DSN compatibility (FVTT 10+)
+        roll: roll,
+        rolls: [roll]
       };
     
       const message = await ChatMessage.create(chatData);
+    
+      // Optional: Show with Dice So Nice if present
+      if (game.dice3d) {
+        game.dice3d.showForRoll(roll, game.user, true, message.whisper, message.blind);
+      }
     }
 
     // Prepare Equipment
