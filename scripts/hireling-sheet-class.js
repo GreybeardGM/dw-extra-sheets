@@ -110,7 +110,7 @@ export function defineHirelingSheet(baseClass) {
       const roll = new Roll("2d6 + @loyalty", { loyalty });
       await roll.evaluate({ async: true });
     
-      // DW result bands
+      // Determine result
       let resultType, resultLabel, resultText;
       if (roll.total >= 10) {
         resultType = "success";
@@ -126,10 +126,10 @@ export function defineHirelingSheet(baseClass) {
         resultText = "They refuse, panic, or make things worse.";
       }
     
-      // Render the roll breakdown using Foundry's dice roller
+      // Get Foundry's rendered roll HTML
       const rollHTML = await roll.render();
     
-      // Build your chat card, embedding the rollHTML
+      // Build the chat card
       const content = `
         <section class="dw-chat-card">
           <div class="cell cell--chat dw chat-card move-card">
@@ -147,20 +147,20 @@ export function defineHirelingSheet(baseClass) {
         </section>
       `;
     
-      // Send chat message with roll object and content
+      // Send as type "OTHER" (not "ROLL"!) to preserve your content
       const chatData = {
         user: game.user.id,
         speaker: ChatMessage.getSpeaker({ actor }),
         content,
-        type: CONST.CHAT_MESSAGE_TYPES.ROLL,
         sound: CONFIG.sounds.dice,
         roll: roll,
-        rolls: [roll]
+        rolls: [roll],
+        // type: CONST.CHAT_MESSAGE_TYPES.ROLL, // <-- REMOVE THIS LINE
       };
     
       const message = await ChatMessage.create(chatData);
     
-      // Optional: Show with Dice So Nice if present
+      // Show with Dice So Nice if present
       if (game.dice3d) {
         game.dice3d.showForRoll(roll, game.user, true, message.whisper, message.blind);
       }
