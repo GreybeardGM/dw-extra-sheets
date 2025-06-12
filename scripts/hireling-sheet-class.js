@@ -156,11 +156,6 @@ export function defineHirelingSheet(baseClass) {
       };
     
       const message = await ChatMessage.create(chatData);
-    
-      // Optional: Show dice with Dice So Nice (DSN), if available
-      if (game.dice3d) {
-        game.dice3d.showForRoll(roll, game.user, true, message.whisper, message.blind);
-      }
     }
 
     // Prepare Equipment
