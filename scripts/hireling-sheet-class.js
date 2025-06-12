@@ -106,7 +106,7 @@ export function defineHirelingSheet(baseClass) {
     }
 
     // Loyalty Roll
-    async _rollHirelingLoyalty = function() {
+    async _rollHirelingLoyalty () {
       const loyalty = this.actor.system.hireling.loyalty?.value ?? 0;
     
       // Build pseudo-move
