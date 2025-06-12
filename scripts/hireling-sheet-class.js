@@ -1,3 +1,5 @@
+import { rollMove } from "dungeonworld/module/rolls.js";
+
 export function defineHirelingSheet(baseClass) {
   return class HirelingSheet extends baseClass {
     static get defaultOptions() {
@@ -15,6 +17,7 @@ export function defineHirelingSheet(baseClass) {
       return "modules/dungeonworld-hirelings/templates/hireling-sheet.html";
     }
 
+    // Get Data
     async getData(options) {
       console.log("✔ getData reached in HirelingSheet");
     
@@ -52,10 +55,17 @@ export function defineHirelingSheet(baseClass) {
       return context;
     }
 
+    // Listeners
     activateListeners(html) {
       super.activateListeners(html);
       if (!this.options.editable) return;
 
+      // Loyalty Roll
+      html.find(".hireling-loyalty-roll").click(ev => {
+        ev.preventDefault();
+        this._rollHirelingLoyalty();
+      });
+      
       // Config button
       html.find(".skill-configure").click(ev => {
         ev.preventDefault();
@@ -94,6 +104,34 @@ export function defineHirelingSheet(baseClass) {
         await this.actor.update(updates);
       });
     }
+
+    // Loyalty Roll
+    async _rollHirelingLoyalty = function() {
+      const loyalty = this.actor.system.hireling.loyalty?.value ?? 0;
+    
+      // Build pseudo-move
+      const move = {
+        name: "Order Hirelings",
+        img: "icons/svg/d20.svg",
+        system: {
+          description: "When a hireling finds themselves in a dangerous, degrading, or just flat-out crazy situation due to your orders, roll +Loyalty.",
+          moveType: "basic",
+          moveResults: {
+            success: { value: "They stand firm and carry out the order." },
+            partial: { value: "They do it for now, but come back with serious demands later. Meet them or the hireling quits on the worst terms." },
+            failure: { value: "They refuse, panic, or make things worse." }
+          }
+        }
+      };
+    
+      // Pass loyalty as the modifier using modOverride
+      rollMove({
+        actor: this.actor,
+        item: move,
+        modOverride: loyalty,
+        showDialog: false // skip dialog for speed
+      });
+    };
 
     // Prepare Equipment
     async _prepareHirelingItems(sheetData) {
