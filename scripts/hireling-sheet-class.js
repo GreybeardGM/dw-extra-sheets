@@ -1,5 +1,3 @@
-import { rollMove } from "../../systems/dungeonworld/module/rolls.js";
-
 export function defineHirelingSheet(baseClass) {
   return class HirelingSheet extends baseClass {
     static get defaultOptions() {
@@ -106,32 +104,55 @@ export function defineHirelingSheet(baseClass) {
     }
 
     // Loyalty Roll
-    async _rollHirelingLoyalty () {
-      const loyalty = this.actor.system.hireling.loyalty?.value ?? 0;
+    async _rollHirelingLoyalty() {
+      const actor = this.actor;
+      const loyalty = actor.system.hireling.loyalty?.value ?? 0;
+      const roll = new Roll("2d6 + @loyalty", { loyalty });
+      await roll.evaluate({ async: true });
     
-      // Build pseudo-move
-      const move = {
-        name: "Order Hirelings",
-        img: "icons/svg/d20.svg",
-        system: {
-          description: "When a hireling finds themselves in a dangerous, degrading, or just flat-out crazy situation due to your orders, roll +Loyalty.",
-          moveType: "basic",
-          moveResults: {
-            success: { value: "They stand firm and carry out the order." },
-            partial: { value: "They do it for now, but come back with serious demands later. Meet them or the hireling quits on the worst terms." },
-            failure: { value: "They refuse, panic, or make things worse." }
-          }
-        }
-      };
+      // Figure out DW result band
+      let resultType, resultLabel, resultText;
+      if (roll.total >= 10) {
+        resultType = "success";
+        resultLabel = "Success";
+        resultText = "They stand firm and carry out the order.";
+      } else if (roll.total >= 7) {
+        resultType = "partial";
+        resultLabel = "Partial Success";
+        resultText = "They do it for now, but come back with serious demands later. Meet them or the hireling quits on the worst terms.";
+      } else {
+        resultType = "failure";
+        resultLabel = "Failure";
+        resultText = "They refuse, panic, or make things worse.";
+      }
     
-      // Pass loyalty as the modifier using modOverride
-      rollMove({
-        actor: this.actor,
-        item: move,
-        modOverride: loyalty,
-        showDialog: false // skip dialog for speed
+      // Create a chat card (using a template if you want, or just HTML)
+      const content = `
+        <section class="dw-chat-card">
+          <div class="cell cell--chat dw chat-card move-card">
+            <div class="chat-title row flexrow">
+              <img class="item-icon" src="icons/svg/d20.svg" alt="Order Hirelings"/>
+              <h2 class="cell__title">Order Hirelings</h2>
+            </div>
+            <div class="row"><strong>Trigger:</strong> When a hireling finds themselves in a dangerous, degrading, or just flat-out crazy situation due to your orders, <b>roll +Loyalty</b>.</div>
+            <div class="row result ${resultType}">
+              <div class="result-label">${resultLabel}</div>
+              <div class="result-details">${resultText}</div>
+            </div>
+            <div class="roll ${resultType}">${roll.result} <b>=</b> <span class="dice-total">${roll.total}</span></div>
+          </div>
+        </section>
+      `;
+    
+      ChatMessage.create({
+        user: game.user.id,
+        speaker: ChatMessage.getSpeaker({ actor }),
+        content,
+        type: CONST.CHAT_MESSAGE_TYPES.ROLL,
+        roll,
+        sound: CONFIG.sounds.dice
       });
-    };
+    }
 
     // Prepare Equipment
     async _prepareHirelingItems(sheetData) {
