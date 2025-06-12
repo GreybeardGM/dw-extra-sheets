@@ -151,7 +151,7 @@ export function defineHirelingSheet(baseClass) {
       const chatData = {
         user: game.user.id,
         speaker: ChatMessage.getSpeaker({ actor }),
-        content,
+        content: content,
         sound: CONFIG.sounds.dice,
         roll: roll,
         rolls: [roll],
@@ -159,12 +159,7 @@ export function defineHirelingSheet(baseClass) {
       };
     
       const message = await ChatMessage.create(chatData);
-    
-      // Show with Dice So Nice if present
-      if (game.dice3d) {
-        game.dice3d.showForRoll(roll, game.user, true, message.whisper, message.blind);
-      }
-    }
+        }
 
     // Prepare Equipment
     async _prepareHirelingItems(sheetData) {
