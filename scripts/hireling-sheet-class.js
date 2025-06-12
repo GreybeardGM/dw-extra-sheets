@@ -1,4 +1,4 @@
-import { rollMove } from "dungeonworld/module/rolls.js";
+import { rollMove } from "../../systems/dungeonworld/module/rolls.js";
 
 export function defineHirelingSheet(baseClass) {
   return class HirelingSheet extends baseClass {
