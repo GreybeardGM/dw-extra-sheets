@@ -110,7 +110,6 @@ export function defineHirelingSheet(baseClass) {
       const roll = new Roll("2d6 + @loyalty", { loyalty });
       await roll.evaluate({ async: true });
     
-      // Determine result
       let resultType, resultLabel, resultText;
       if (roll.total >= 10) {
         resultType = "success";
@@ -126,10 +125,8 @@ export function defineHirelingSheet(baseClass) {
         resultText = "They refuse, panic, or make things worse.";
       }
     
-      // Get Foundry's rendered roll HTML
       const rollHTML = await roll.render();
     
-      // Build the chat card
       const content = `
         <section class="dw-chat-card">
           <div class="cell cell--chat dw chat-card move-card">
@@ -147,19 +144,18 @@ export function defineHirelingSheet(baseClass) {
         </section>
       `;
     
-      // Send as type "OTHER" (not "ROLL"!) to preserve your content
       const chatData = {
         user: game.user.id,
         speaker: ChatMessage.getSpeaker({ actor }),
-        content: content,
+        content,
         sound: CONFIG.sounds.dice,
         roll: roll,
-        rolls: [roll],
-        // type: CONST.CHAT_MESSAGE_TYPES.ROLL, // <-- REMOVE THIS LINE
+        rolls: [roll]
+        // type: CONST.CHAT_MESSAGE_TYPES.ROLL, // DO NOT SET THIS
       };
     
-      const message = await ChatMessage.create(chatData);
-        }
+      await ChatMessage.create(chatData);
+    }
 
     // Prepare Equipment
     async _prepareHirelingItems(sheetData) {
