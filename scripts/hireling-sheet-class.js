@@ -144,10 +144,10 @@ export function defineHirelingSheet(baseClass) {
         </section>
       `;
     
-      await roll.toMessage({
+      await ChatMessage.create({
+        user: game.user.id,
         speaker: ChatMessage.getSpeaker({ actor }),
-        flavor: flavor,
-        sound: CONFIG.sounds.dice
+        content: content
       });
     }
 
