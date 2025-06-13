@@ -125,13 +125,11 @@ export function defineHirelingSheet(baseClass) {
         resultText = "They refuse, panic, or make things worse.";
       }
     
-      const rollHTML = await roll.render();
-    
-      const content = `
+      const flavor = `
         <section class="dw-chat-card">
           <div class="cell cell--chat dw chat-card move-card">
             <div class="chat-title row flexrow">
-              <img class="item-icon" src="icons/svg/d20.svg" alt="Order Hirelings"/>
+              <img class="item-icon" src="icons/magic/symbols/symbol-lightning-bolt.webp" alt="Order Hirelings"/>
               <h2 class="cell__title">Order Hirelings</h2>
             </div>
             <div class="row"><strong>Trigger:</strong> When a hireling finds themselves in a dangerous, degrading, or just flat-out crazy situation due to your orders, <b>roll +Loyalty</b>.</div>
@@ -139,21 +137,16 @@ export function defineHirelingSheet(baseClass) {
               <div class="result-label">${resultLabel}</div>
               <div class="result-details">${resultText}</div>
             </div>
-            <div class="roll ${resultType}">${rollHTML}</div>
           </div>
         </section>
       `;
     
-      await ChatMessage.create({
-        user: game.user.id,
+      await roll.toMessage({
         speaker: ChatMessage.getSpeaker({ actor }),
-        content
+        flavor: flavor,
+        sound: CONFIG.sounds.dice
+        // You can add flags or whisper here as well
       });
-
-      // Show with Dice So Nice if present
-      if (game.dice3d) {
-        game.dice3d.showForRoll(roll, game.user, true, message.whisper, message.blind);
-      }
     }
 
     // Prepare Equipment
