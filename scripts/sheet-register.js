@@ -27,4 +27,5 @@ Hooks.once("ready", () => {
     makeDefault: false
   });
 
+  console.log("✅📜 Greybeard.GM addon sheets ready!");
 });
