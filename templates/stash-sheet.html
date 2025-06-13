@@ -19,19 +19,55 @@
       <section class="sheet-body">
 
         {{!-- Filter --}}
-        <div class="item-filters flexrow" style="gap: 1em; margin-bottom: 0.5em;">
-          <label><input type="radio" name="itemFilter" value="all" {{#if (eq activeFilter "all")}}checked{{/if}}> All</label>
-          <label><input type="radio" name="itemFilter" value="weapon" {{#if (eq activeFilter "weapon")}}checked{{/if}}> Weapons</label>
-          <label><input type="radio" name="itemFilter" value="armor" {{#if (eq activeFilter "armor")}}checked{{/if}}> Armor</label>
-          <label><input type="radio" name="itemFilter" value="dungeongear" {{#if (eq activeFilter "dungeongear")}}checked{{/if}}> Gear</label>
-          <label><input type="radio" name="itemFilter" value="poison" {{#if (eq activeFilter "poison")}}checked{{/if}}> Poison</label>
-          <label><input type="radio" name="itemFilter" value="meal" {{#if (eq activeFilter "meal")}}checked{{/if}}> Meal</label>
-          <label><input type="radio" name="itemFilter" value="service" {{#if (eq activeFilter "service")}}checked{{/if}}> Service</label>
-          <label><input type="radio" name="itemFilter" value="transport" {{#if (eq activeFilter "transport")}}checked{{/if}}> Transport</label>
-          <label><input type="radio" name="itemFilter" value="bribe" {{#if (eq activeFilter "bribe")}}checked{{/if}}> Bribe</label>
-          <label><input type="radio" name="itemFilter" value="giftsfinery" {{#if (eq activeFilter "giftsfinery")}}checked{{/if}}> Gifts & Finery</label>
-          <label><input type="radio" name="itemFilter" value="hoard" {{#if (eq activeFilter "hoard")}}checked{{/if}}> Hoard</label>
-          <label><input type="radio" name="itemFilter" value="landbuilding" {{#if (eq activeFilter "landbuilding")}}checked{{/if}}> Land/Building</label>
+        <div class="item-filters flexrow">
+          <label class="{{#if (eq activeFilter "all")}}selected{{/if}}>
+            <input type="radio" name="itemFilter" value="all" {{#if (eq activeFilter "all")}}checked{{/if}}>
+            <span>All</span>
+          </label>
+          <label class="{{#if (eq activeFilter "weapon")}}selected{{/if}}>
+            <input type="radio" name="itemFilter" value="weapon" {{#if (eq activeFilter "weapon")}}checked{{/if}}>
+            <span>Weapons</span>
+          </label>
+          <label class="{{#if (eq activeFilter "armor")}}selected{{/if}}>
+            <input type="radio" name="itemFilter" value="armor" {{#if (eq activeFilter "armor")}}checked{{/if}}>
+            <span>Armor</span>
+          </label>
+          <label class="{{#if (eq activeFilter "dungeongear")}}selected{{/if}}>
+            <input type="radio" name="itemFilter" value="dungeongear" {{#if (eq activeFilter "dungeongear")}}checked{{/if}}><span>
+            <span>Gear</span>
+          </label>
+          <label class="{{#if (eq activeFilter "poison")}}selected{{/if}}>
+            <input type="radio" name="itemFilter" value="poison" {{#if (eq activeFilter "poison")}}checked{{/if}}> 
+            <span>Poison</span>
+          </label>
+          <label class="{{#if (eq activeFilter "meal")}}selected{{/if}}>
+            <input type="radio" name="itemFilter" value="meal" {{#if (eq activeFilter "meal")}}checked{{/if}}>
+            <span>Meal</span>
+          </label>
+          <label class="{{#if (eq activeFilter "service")}}selected{{/if}}>
+            <input type="radio" name="itemFilter" value="service" {{#if (eq activeFilter "service")}}checked{{/if}}>
+            <span>Service</span>
+          </label>
+          <label class="{{#if (eq activeFilter "transport")}}selected{{/if}}>
+            <input type="radio" name="itemFilter" value="transport" {{#if (eq activeFilter "transport")}}checked{{/if}}>
+            <span>Transport</span>
+          </label>
+          <label class="{{#if (eq activeFilter "bribe")}}selected{{/if}}>
+            <input type="radio" name="itemFilter" value="bribe" {{#if (eq activeFilter "bribe")}}checked{{/if}}>
+            <span>Bribe
+          </label>
+          <label class="{{#if (eq activeFilter "giftsfinery")}}selected{{/if}}>
+            <input type="radio" name="itemFilter" value="giftsfinery" {{#if (eq activeFilter "giftsfinery")}}checked{{/if}}>
+            <span>Gifts & Finery</span>
+          </label>
+          <label class="{{#if (eq activeFilter "hoard")}}selected{{/if}}>
+            <input type="radio" name="itemFilter" value="hoard" {{#if (eq activeFilter "hoard")}}checked{{/if}}>
+            <span>Hoard
+          </label>
+          <label class="{{#if (eq activeFilter "landbuilding")}}selected{{/if}}>
+            <input type="radio" name="itemFilter" value="landbuilding" {{#if (eq activeFilter "landbuilding")}}checked{{/if}}>
+            <span>Land/Building</span>
+          </label>
         </div>
         
         {{!-- Owned Equipment Tab --}}
