@@ -44,6 +44,20 @@ export function defineStashSheet(baseClass) {
         hoard: "Hoard",
         landbuilding: "Land & Buildings"
       };
+      context.typeIcons = {
+        weapon: "fa-sword",
+        armor: "fa-shield-alt",
+        dungeongear: "fa-tools",
+        poison: "fa-flask",
+        meal: "fa-drumstick-bite",
+        service: "fa-hands-helping",
+        transport: "fa-horse-head",
+        bribe: "fa-coins",
+        giftsfinery: "fa-gem",
+        hoard: "fa-treasure-chest",
+        landbuilding: "fa-home"
+      };
+
       
       // Filtering logic
       let itemsToShow;
