@@ -2,7 +2,6 @@
 .stash-sheet .item-filters {
   padding: 0.5em 1em;
   display: flex;
-  flex-wrap: nowrap;
   gap: 0.5em;
   margin-bottom: 0.5em;
   overflow-x: auto;
