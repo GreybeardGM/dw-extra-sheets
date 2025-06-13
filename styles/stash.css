@@ -1,0 +1,4 @@
+/* Adds room for scrollbar in the equipment and moves lists */
+.hireling-sheet .items-list .item-controls {
+  margin-right: 12px;
+}
