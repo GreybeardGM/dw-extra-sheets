@@ -149,6 +149,11 @@ export function defineHirelingSheet(baseClass) {
         speaker: ChatMessage.getSpeaker({ actor }),
         content: content
       });
+
+      // Show with Dice So Nice if present
+      if (game.dice3d) {
+        game.dice3d.showForRoll(roll, game.user, true, message.whisper, message.blind);
+      }
     }
 
     // Prepare Equipment
