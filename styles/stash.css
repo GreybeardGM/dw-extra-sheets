@@ -31,7 +31,6 @@
 }
 
 /* Selected state */
-.stash-sheet .item-filters input[type="radio"]:checked + span,
 .stash-sheet .item-filters label.selected {
   background: #23272b;
   border-color: #65a3e1;
