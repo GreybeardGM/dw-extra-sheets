@@ -23,12 +23,18 @@
       <section class="sheet-attributes sheet-attributes--npc">
 
         <div class="cell">
-          <label class="cell__title">Class</label>
+          <label class="cell__title">
+            Class
+            <i class="fas fa-user attribute-icon"></i>
+          </label>
           <input type="text" name="system.hireling.hirelingClass" value="{{system.hireling.hirelingClass}}" data-dtype="String"/>
         </div>
 
         <div class="cell">
-          <label class="cell__title">Rank</label>
+          <label class="cell__title">
+            Rank
+            <i class="fas fa-chevron-up attribute-icon"></i>
+          </label>
           <input type="number" name="system.hireling.rank" value="{{system.hireling.rank}}" placeholder="2 to 10" data-dtype="Number"/>
         </div>
 
@@ -36,6 +42,7 @@
           <label class="cell__title hireling-loyalty-roll rollable">
             <i class="fas fa-dice-d20"></i>
             Loyalty
+            <i class="fas fa-handshake attribute-icon"></i>
           </label>
           <input type="text" name="system.hireling.loyalty.value" value="{{system.hireling.loyalty.value}}" placeholder="0 to 2" data-dtype="Number"/>
         </div>
@@ -58,11 +65,11 @@
               </button>
               {{#if options.configureSkills}}
                 <button type="button" class="skills--control skill-done" title="Done">
-                  ✅
+                  <i class="fa-solid fa-check"></i>
                 </button>
               {{else}}
                 <button type="button" class="skills--control skill-configure" title="Configure Skills">
-                  ⚙️
+                  <i class="fa-solid fa-gear"></i>
                 </button>
               {{/if}}
             </div>
