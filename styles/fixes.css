@@ -3,3 +3,8 @@
 .stash-sheet .items-list .item-controls {
   margin-right: 12px;
 }
+
+/* === Scrollbar Fix === */
+.dungeonworld.sheet .sheet-wrapper .sheet-main {
+  height: calc(100% - 109px);
+}
