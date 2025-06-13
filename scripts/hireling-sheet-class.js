@@ -127,7 +127,7 @@ export function defineHirelingSheet(baseClass) {
     
       const rollHTML = await roll.render();
     
-      const flavor = `
+      const content = `
         <section class="dw-chat-card">
           <div class="cell cell--chat dw chat-card move-card">
             <div class="chat-title row flexrow">
@@ -147,7 +147,7 @@ export function defineHirelingSheet(baseClass) {
       await ChatMessage.create({
         user: game.user.id,
         speaker: ChatMessage.getSpeaker({ actor }),
-        content: content
+        content
       });
 
       // Show with Dice So Nice if present
