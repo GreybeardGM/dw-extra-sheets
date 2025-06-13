@@ -23,12 +23,18 @@ export function defineStashSheet(baseClass) {
       // All items
       const allItems = Array.from(this.actor.items || []);
     
-      // Get unique itemTypes actually present
+      // Get unique itemTypes actually present and sort them
+      const ITEM_TYPE_ORDER = [
+        "weapon", "armor", "dungeongear", "poison", "meal",
+        "service", "transport", "bribe", "giftsfinery", "hoard", "landbuilding"
+      ];
       const typeSet = new Set();
       for (let item of allItems) {
         if (item.system?.itemType) typeSet.add(item.system.itemType);
       }
-      context.filterTypes = Array.from(typeSet).sort();
+      const filterTypes = Array.from(typeSet);
+      filterTypes.sort((a, b) => ITEM_TYPE_ORDER.indexOf(a) - ITEM_TYPE_ORDER.indexOf(b));
+      context.filterTypes = filterTypes;
 
       // Provide Type Labels
       context.typeLabels = {
@@ -57,7 +63,6 @@ export function defineStashSheet(baseClass) {
         hoard: "fa-treasure-chest",
         landbuilding: "fa-home"
       };
-
       
       // Filtering logic
       let itemsToShow;
