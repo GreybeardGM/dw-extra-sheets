@@ -1,3 +1,5 @@
+import { prepareEquipmentItems } from "./items.js";
+
 export function defineHirelingSheet(baseClass) {
   return class HirelingSheet extends baseClass {
     static get defaultOptions() {
@@ -48,7 +50,7 @@ export function defineHirelingSheet(baseClass) {
       context.rank = h.rank;
       context.hirelingClass = h.hirelingClass;
 
-      await this._prepareHirelingItems(context);
+      context.equipment = await prepareEquipmentItems(this.actor);;
       
       return context;
     }
@@ -147,25 +149,6 @@ export function defineHirelingSheet(baseClass) {
         sound: CONFIG.sounds.dice
         // You can add flags or whisper here as well
       });
-    }
-
-    // Prepare Equipment
-    async _prepareHirelingItems(sheetData) {
-      const equipment = [];
-      // Use this.actor.items instead of sheetData.items
-      const itemsArr = this.actor.items ? Array.from(this.actor.items) : [];
-      for (let i of itemsArr) {
-        if (i.system?.description) {
-          i.system.descriptionEnriched = await TextEditor.enrichHTML(i.system.description, {
-            async: true,
-            documents: true,
-            secrets: this.actor.isOwner,
-            rollData: this.actor.getRollData(),
-          });
-        }
-        if (i.type === "equipment") equipment.push(i);
-      }
-      sheetData.equipment = equipment;
     }
 
   };
