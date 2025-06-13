@@ -77,13 +77,3 @@
 .hireling-sheet .help-text-inline {
   white-space: nowrap;
 }
-
-/* === Scrollbar Fix === */
-.dungeonworld.sheet .sheet-wrapper .sheet-main {
-  height: calc(100% - 109px);
-}
-/* Adds room for scrollbar in the equipment and moves lists */
-.hireling-sheet .items-list .item-controls {
-  margin-right: 12px;
-}
-
