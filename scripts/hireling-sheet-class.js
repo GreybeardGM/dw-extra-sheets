@@ -127,7 +127,7 @@ export function defineHirelingSheet(baseClass) {
     
       const rollHTML = await roll.render();
     
-      const content = `
+      const flavor = `
         <section class="dw-chat-card">
           <div class="cell cell--chat dw chat-card move-card">
             <div class="chat-title row flexrow">
@@ -144,17 +144,11 @@ export function defineHirelingSheet(baseClass) {
         </section>
       `;
     
-      const chatData = {
-        user: game.user.id,
+      await roll.toMessage({
         speaker: ChatMessage.getSpeaker({ actor }),
-        content,
-        sound: CONFIG.sounds.dice,
-        roll: roll,
-        rolls: [roll]
-        // type: CONST.CHAT_MESSAGE_TYPES.ROLL, // DO NOT SET THIS
-      };
-    
-      await ChatMessage.create(chatData);
+        flavor: flavor,
+        sound: CONFIG.sounds.dice
+      });
     }
 
     // Prepare Equipment
