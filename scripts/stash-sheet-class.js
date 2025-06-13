@@ -1,3 +1,5 @@
+import { prepareEquipmentItems } from "./items.js";
+
 export function defineStashSheet(baseClass) {
   return class StashSheet extends baseClass {
     static get defaultOptions() {
@@ -20,8 +22,8 @@ export function defineStashSheet(baseClass) {
     async getData(options) {
       const context = await super.getData(options);
     
-      // All items
-      const allItems = Array.from(this.actor.items || []);
+      // Get and Prep all items
+      const allItems = await prepareEquipmentItems(this.actor);
     
       // Get unique itemTypes actually present and sort them
       const ITEM_TYPE_ORDER = [
