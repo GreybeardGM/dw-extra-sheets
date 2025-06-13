@@ -10,7 +10,11 @@
     "minimum": "12",
     "verified": "12"
   },
-  "styles": ["styles/hireling.css"],
+  "styles": [
+    "styles/hireling.css",
+    "styles/stash.css",
+    "styles/fixes.css"
+  ],
   "esmodules": [
     "scripts/hireling-sheet-class.js",
     "scripts/stash-sheet-class.js",
