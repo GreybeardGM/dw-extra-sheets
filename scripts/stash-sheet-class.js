@@ -16,21 +16,45 @@ export function defineStashSheet(baseClass) {
     // Save filter selection (survives re-render)
     itemFilter = "all";
 
+    // Get Data
     async getData(options) {
       const context = await super.getData(options);
-
-      // Get all items, filter only "equipment" type for display
+    
+      // All items
       const allItems = Array.from(this.actor.items || []);
+    
+      // Get unique itemTypes actually present
+      const typeSet = new Set();
+      for (let item of allItems) {
+        if (item.system?.itemType) typeSet.add(item.system.itemType);
+      }
+      context.filterTypes = Array.from(typeSet).sort();
+
+      // Provide Type Labels
+      context.typeLabels = {
+        weapon: "Weapons",
+        armor: "Armor",
+        dungeongear: "Gear",
+        poison: "Poison",
+        meal: "Meal",
+        service: "Service",
+        transport: "Transport",
+        bribe: "Bribe",
+        giftsfinery: "Gifts & Finery",
+        hoard: "Hoard",
+        landbuilding: "Land & Buildings"
+      };
+      
+      // Filtering logic
       let itemsToShow;
       if (this.itemFilter === "all") {
         itemsToShow = allItems;
       } else {
         itemsToShow = allItems.filter(i => i.system?.itemType === this.itemFilter);
       }
-
       context.equipment = itemsToShow;
       context.activeFilter = this.itemFilter;
-
+    
       return context;
     }
 
