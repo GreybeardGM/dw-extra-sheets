@@ -23,7 +23,8 @@ export function defineStashSheet(baseClass) {
       const context = await super.getData(options);
     
       // Get and Prep all items
-      const allItems = await prepareEquipmentItems(this.actor);
+      await prepareEquipmentItems(context, this.actor);
+      const allItems = context.equipment;
     
       // Get unique itemTypes actually present and sort them
       const ITEM_TYPE_ORDER = [
