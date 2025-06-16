@@ -24,7 +24,7 @@ class HirelingManagerApp extends Application {
     super.activateListeners(html);
 
     // Spend skill point
-    html.find(".skill-dot.available").click(async ev => {
+    html.find(".hireling-skill").click(async ev => {
       const actorId = ev.currentTarget.dataset.actorId;
       const skillKey = ev.currentTarget.dataset.skillKey;
       const actor = game.actors.get(actorId);
