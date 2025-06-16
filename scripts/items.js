@@ -6,6 +6,8 @@
  * @param {Actor|Object} actor - The actor, for ownership/rollData.
  */
 export async function prepareEquipmentItems(sheetData, actor) {
+  sheetData.items = Array.from(actor.items ?? []);
+  
   // Tag stringification, if needed
   if (sheetData.system.tags != undefined && sheetData.system.tags != '') {
     let tagArray = [];
