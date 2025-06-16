@@ -50,7 +50,7 @@ export function defineHirelingSheet(baseClass) {
       context.rank = h.rank;
       context.hirelingClass = h.hirelingClass;
 
-      context.equipment = await prepareEquipmentItems(this.actor);;
+      await prepareEquipmentItems(context, this.actor);
       
       return context;
     }
