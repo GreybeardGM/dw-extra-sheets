@@ -1,4 +1,5 @@
 import { prepareEquipmentItems } from "./items.js";
+import { useHirelingSkill, resetHirelingSkills } from "./hireling-utils.js";
 
 export function defineHirelingSheet(baseClass) {
   return class HirelingSheet extends baseClass {
@@ -83,25 +84,15 @@ export function defineHirelingSheet(baseClass) {
       html.find(".skill-use").click(async ev => {
         ev.preventDefault();
         const idx = ev.currentTarget.dataset.skill;
-        const path = `system.hireling.skills.${idx}.value`;
-        const current = getProperty(this.actor, path);
-        if (typeof current === "number" && current > 0) {
-          await this.actor.update({ [path]: current - 1 });
-        }
+        await useHirelingSkill(this.actor, idx);
+        this.render();
       });
       
       // Reset Skill Points
       html.find(".skill-reset").click(async ev => {
         ev.preventDefault();
-        const updates = {};
-        for (let i = 1; i <= 5; i++) {
-          const base = `system.hireling.skills.skill${i}`;
-          const max = getProperty(this.actor, `${base}.max`);
-          if (typeof max === "number") {
-            updates[`${base}.value`] = max;
-          }
-        }
-        await this.actor.update(updates);
+        await resetHirelingSkills(this.actor);
+        this.render();
       });
     }
 
