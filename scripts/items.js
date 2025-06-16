@@ -5,17 +5,25 @@
  * @param {context|Object} context from the getData to manipulate.
  * @param {Actor|Object} actor - The actor, for ownership/rollData.
  */
-export async function prepareEquipmentItems(sheetData, actor) {
-  sheetData.items = Array.from(actor.items ?? []);
-  
+export async function prepareEquipmentItems(context, actor) {
+  const actorData = actor.toObject(false);
+  context.actor = actorData;
+  context.system = actorData.system;
+  context.items = actorData.items ?? [];
+  context.items.sort((a, b) => (a.sort || 0) - (b.sort || 0));
+  for (let i of context.items) {
+    const item = this.actor.items.get(i._id);
+    if (item) i.labels = item.labels;
+  }
+    
   // Tag stringification, if needed
-  if (sheetData.system.tags != undefined && sheetData.system.tags != '') {
+  if (context.system.tags != undefined && context.system.tags != '') {
     let tagArray = [];
-    try { tagArray = JSON.parse(sheetData.system.tags); }
-    catch (e) { tagArray = [sheetData.system.tags]; }
-    sheetData.system.tagsString = tagArray.map(item => item.value).join(', ');
+    try { tagArray = JSON.parse(context.system.tags); }
+    catch (e) { tagArray = [context.system.tags]; }
+    context.system.tagsString = tagArray.map(item => item.value).join(', ');
   } else {
-    sheetData.system.tags = sheetData.system.tagsString;
+    context.system.tags = context.system.tagsString;
   }
 
   const enrichmentOptions = {
@@ -26,7 +34,7 @@ export async function prepareEquipmentItems(sheetData, actor) {
   };
 
   const equipment = [];
-  for (let i of sheetData.items) {
+  for (let i of context.items) {
     const item = actor.items.get(i._id);
     enrichmentOptions.relativeTo = item;
     enrichmentOptions.rollData = item.getRollData();
@@ -37,5 +45,5 @@ export async function prepareEquipmentItems(sheetData, actor) {
     if (i.type === 'equipment') equipment.push(i);
   }
 
-  sheetData.equipment = equipment;
+  context.equipment = equipment;
 }
