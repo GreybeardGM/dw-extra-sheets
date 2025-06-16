@@ -12,7 +12,7 @@ export async function prepareEquipmentItems(context, actor) {
   context.items = actorData.items ?? [];
   context.items.sort((a, b) => (a.sort || 0) - (b.sort || 0));
   for (let i of context.items) {
-    const item = this.actor.items.get(i._id);
+    const item = actor.items.get(i._id);
     if (item) i.labels = item.labels;
   }
     
