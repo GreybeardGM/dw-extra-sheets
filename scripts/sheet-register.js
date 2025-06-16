@@ -29,3 +29,14 @@ Hooks.once("ready", () => {
 
   console.log("✅📜 Greybeard.GM addon sheets ready!");
 });
+
+// handlebars-helpers
+Handlebars.registerHelper('skillDots', function(value, max, options) {
+  let result = '';
+  for (let i = 0; i < max; i++) {
+    // You can use Handlebars.SafeString for safe HTML
+    const filled = i < value ? 'filled' : 'empty';
+    result += `<span class="skill-dot ${filled}"></span>`;
+  }
+  return new Handlebars.SafeString(result);
+});
