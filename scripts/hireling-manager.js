@@ -40,3 +40,4 @@ class HirelingManagerApp extends Application {
     });
   }
 }
+window.HirelingManagerApp = HirelingManagerApp;
