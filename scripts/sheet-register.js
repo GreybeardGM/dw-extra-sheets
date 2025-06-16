@@ -1,6 +1,6 @@
 import { defineHirelingSheet } from "./hireling-sheet-class.js";
 import { defineStashSheet } from "./stash-sheet-class.js";
-import { useHirelingSkill, resetHirelingSkill } from "./hireling-utils.js";
+import { useHirelingSkill, resetHirelingSkills } from "./hireling-utils.js";
 
 Hooks.once("ready", () => {
   const npcSheets = CONFIG.Actor.sheetClasses.npc;
@@ -30,7 +30,7 @@ Hooks.once("ready", () => {
 
   // Expose Hireling Helpers
   window.useHirelingSkill = useHirelingSkill;
-  window.resetHirelingSkill = resetHirelingSkill;
+  window.resetHirelingSkills = resetHirelingSkills;
   
   console.log("✅📜 Greybeard.GM addon sheets ready!");
 });
