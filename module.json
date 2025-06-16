@@ -17,6 +17,8 @@
   ],
   "esmodules": [
     "scripts/hireling-manager.js",
+    "scripts/hireling-sheet-class.js",
+    "scripts/stash-sheet-class.js",
     "scripts/sheet-register.js"
   ],
   "url": "https://github.com/GreybeardGM/dungeonworld-hirelings",
