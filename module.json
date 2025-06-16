@@ -20,7 +20,7 @@
     "scripts/stash-sheet-class.js",
     "scripts/sheet-register.js"
   ],
-  "url": "https://github.com/GreybeardGM/dungeonworld-hirelings",
-  "manifest": "https://raw.githubusercontent.com/GreybeardGM/dungeonworld-hirelings/main/module.json",
-  "download": "https://github.com/GreybeardGM/dungeonworld-hirelings/archive/refs/heads/main.zip"
+  "url": "https://github.com/GreybeardGM/dw-extra-sheets",
+  "manifest": "https://raw.githubusercontent.com/GreybeardGM/dw-extra-sheets/main/module.json",
+  "download": "https://github.com/GreybeardGM/dw-extra-sheets/archive/refs/heads/main.zip"
 }
