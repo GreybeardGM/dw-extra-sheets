@@ -14,7 +14,7 @@ Hooks.once("ready", () => {
 
   // Register Hireling Sheet
   const HirelingSheet = defineHirelingSheet(DwActorSheet);
-  Actors.registerSheet("dungeonworld-hirelings", HirelingSheet, {
+  Actors.registerSheet("dw-extra-sheets", HirelingSheet, {
     types: ["npc"],
     label: "Hireling Sheet",
     makeDefault: false
@@ -22,7 +22,7 @@ Hooks.once("ready", () => {
 
   // Register Stash Sheet
   const StashSheet = defineStashSheet(DwActorSheet);
-  Actors.registerSheet("dungeonworld-hirelings", StashSheet, {
+  Actors.registerSheet("dw-extra-sheets", StashSheet, {
     types: ["npc"],
     label: "Stash Sheet",
     makeDefault: false
