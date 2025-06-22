@@ -12,7 +12,7 @@ export function defineStashSheet(baseClass) {
     }
 
     get template() {
-      return "modules/dungeonworld-hirelings/templates/stash-sheet.html";
+      return "modules/dw-extra-sheets/templates/stash-sheet.html";
     }
 
     // Save filter selection (survives re-render)
