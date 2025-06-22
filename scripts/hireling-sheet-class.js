@@ -8,14 +8,14 @@ export function defineHirelingSheet(baseClass) {
       options.classes = [...options.classes, "hireling"];
       options.width = 560;
       options.height = 730;
-      options.template = `modules/${game.modules.get("dungeonworld-hirelings")?.id}/templates/hireling-sheet.html`;
+      options.template = `modules/${game.modules.get("dw-extra-sheets")?.id}/templates/hireling-sheet.html`;
       options.tabs = [{ navSelector: ".sheet-tabs", contentSelector: ".sheet-body", initial: "moves" }];
       return options;
     }
 
     // Change the Template
     get template() {
-      return "modules/dungeonworld-hirelings/templates/hireling-sheet.html";
+      return "modules/dw-extra-sheets/templates/hireling-sheet.html";
     }
 
     // Get Data
