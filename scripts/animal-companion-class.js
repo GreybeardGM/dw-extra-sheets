@@ -32,13 +32,13 @@ export function defineAnimalCompanionSheet(baseClass) {
       ac.active ??= false;
       ac.owner ??= "";
       ac.species ??= "";
-      ac.ferocity ??= 0;
-      ac.cunning ??= 0;
-      ac.armor ??= 0;
-      ac.instinct ??= 0;
-      ac.strengths ??= [];
-      ac.trainings ??= [];
-      ac.weaknesses ??= [];
+      ac.skills.ferocity ??= 0;
+      ac.skills.cunning ??= 0;
+      ac.skills.armor ??= 0;
+      ac.skills.instinct ??= 0;
+      ac.feats.strengths ??= [];
+      ac.feats.trainings ??= [];
+      ac.feats.weaknesses ??= [];
       
       context.animalCompanion = ac;
       
