@@ -22,7 +22,7 @@ Hooks.once("ready", () => {
   });
 
   // Register Animal Companion Sheet
-  const AnimalCompanionSheet = defineHirelingSheet(DwActorSheet);
+  const AnimalCompanionSheet = defineAnimalCompanionSheet(DwActorSheet);
   Actors.registerSheet("dw-extra-sheets", AnimalCompanionSheet, {
     types: ["npc"],
     label: "Animal Companion Sheet",
