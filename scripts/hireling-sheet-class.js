@@ -1,5 +1,5 @@
-import { prepareEquipmentItems } from "./items.js";
-import { useHirelingSkill, resetHirelingSkills } from "./hireling-utils.js";
+import { prepareEquipmentItems } from "./utils/items.js";
+import { useHirelingSkill, resetHirelingSkills } from "./utils/hireling-utils.js";
 
 export function defineHirelingSheet(baseClass) {
   return class HirelingSheet extends baseClass {
