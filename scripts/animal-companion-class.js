@@ -1,4 +1,5 @@
-import { prepareEquipmentItems } from "./items.js";
+import { prepareEquipmentItems } from ".utils/items.js";
+import { useAnimalCompanionSkill, resetAnimalCompanionSkills } from ".utils/animal-companion-utils.js";
 
 export function defineAnimalCompanionSheet(baseClass) {
   return class AnimalCompanionSheet extends baseClass {
@@ -62,6 +63,21 @@ export function defineAnimalCompanionSheet(baseClass) {
       html.find(".done").click(ev => {
         ev.preventDefault();
         this.options.configureSkills = false;
+        this.render();
+      });
+
+      // Use a Skill Point
+      html.find(".skill-use").click(async ev => {
+        ev.preventDefault();
+        const idx = ev.currentTarget.dataset.skill;
+        await useAnimalCompanionSkill(this.actor, idx);
+        this.render();
+      });
+      
+      // Reset Skill Points
+      html.find(".skill-reset").click(async ev => {
+        ev.preventDefault();
+        await resetAnimalCompanionSkills(this.actor);
         this.render();
       });
   };
