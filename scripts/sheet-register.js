@@ -1,6 +1,7 @@
 import { defineHirelingSheet } from "./hireling-sheet-class.js";
+import { AnimalCompanionSheet } from "./animal-companion-sheet-class.js";
 import { defineStashSheet } from "./stash-sheet-class.js";
-import { useHirelingSkill, resetHirelingSkills } from "./hireling-utils.js";
+import { useCompanionSkill, resetCompanionSkills } from "./companion-utils.js";
 
 Hooks.once("ready", () => {
   const npcSheets = CONFIG.Actor.sheetClasses.npc;
@@ -20,6 +21,14 @@ Hooks.once("ready", () => {
     makeDefault: false
   });
 
+  // Register Animal Companion Sheet
+  const AnimalCompanionSheet = defineHirelingSheet(DwActorSheet);
+  Actors.registerSheet("dw-extra-sheets", AnimalCompanionSheet, {
+    types: ["npc"],
+    label: "Animal Companion Sheet",
+    makeDefault: false
+  });
+
   // Register Stash Sheet
   const StashSheet = defineStashSheet(DwActorSheet);
   Actors.registerSheet("dw-extra-sheets", StashSheet, {
@@ -28,9 +37,9 @@ Hooks.once("ready", () => {
     makeDefault: false
   });
 
-  // Expose Hireling Helpers
-  window.useHirelingSkill = useHirelingSkill;
-  window.resetHirelingSkills = resetHirelingSkills;
+  // Expose Helpers
+  window.useCompanionkill = useCompanionSkill;
+  window.resetCompanionkills = resetCompanionSkills;
   
   console.log("✅📜 Greybeard.GM addon sheets ready!");
 });
