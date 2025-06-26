@@ -51,16 +51,6 @@ export function defineHirelingSheet(baseClass) {
       context.rank = h.rank;
       context.hirelingClass = h.hirelingClass;
 
-      // Enrich the bio field.
-      context.enrichmentOptions = {
-        async: true,
-        documents: true,
-        secrets: this.actor.isOwner,
-        rollData: this.actor.getRollData(),
-        relativeTo: this.actor
-      };
-      context.system.details.biographyEnriched = await TextEditor.enrichHTML(context.system.details.biography, context.enrichmentOptions);
-      
       await prepareEquipmentItems(context, this.actor);
       
       return context;
