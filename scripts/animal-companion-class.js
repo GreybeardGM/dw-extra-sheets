@@ -52,13 +52,13 @@ export function defineAnimalCompanionSheet(baseClass) {
       super.activateListeners(html);
       if (!this.options.editable) return;
 
-      html.find(".configure").click(ev => {
+      html.find(".skill-configure").click(ev => {
         ev.preventDefault();
         this.options.configureSkills = true;
         this.render();
       });
 
-      html.find(".done").click(ev => {
+      html.find(".skill-done").click(ev => {
         ev.preventDefault();
         this.options.configureSkills = false;
         this.render();
