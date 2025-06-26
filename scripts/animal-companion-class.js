@@ -26,17 +26,22 @@ export function defineAnimalCompanionSheet(baseClass) {
       system.animalCompanion ??= {};
 
       // === Prepare Hireling Stats ===
-      const context = system.animalCompanion;    
-      context.active ??= false;
-      context.species ??= "";
-      context.ferocity ??= 0;
-      context.cunning ??= 0;
-      context.armor ??= 0;
-      context.instinct ??= 0;
-      context.strenghts ??= {};
-      context.trainings ??= {};
-      context.weaknesses ??= {};
-    
+      const context = await super.getData(options);
+      const ac = system.animalCompanion;
+      
+      ac.active ??= false;
+      ac.owner ??= "";
+      ac.species ??= "";
+      ac.ferocity ??= 0;
+      ac.cunning ??= 0;
+      ac.armor ??= 0;
+      ac.instinct ??= 0;
+      ac.strengths ??= [];
+      ac.trainings ??= [];
+      ac.weaknesses ??= [];
+      
+      context.animalCompanion = ac;
+      
       await prepareEquipmentItems(context, this.actor);
       
       return context;
