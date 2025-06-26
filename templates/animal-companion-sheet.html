@@ -82,6 +82,27 @@
           </div>
         </div>
 
+        <div class="cell cell--feats">
+          <h2 class="cell__title">Feats</h2>
+        
+          {{#each (object "strengths" "Strengths" "trainings" "Trainings" "weaknesses" "Weaknesses") as |label key|}}
+            <div class="feat-category" data-category="{{key}}">
+              <label class="feat-category-label">{{label}}</label>
+              <ul class="feat-list">
+                {{#each ../system.animalCompanion.feats.[key] as |feat idx|}}
+                  <li class="feat-entry flexrow">
+                    <input type="text" name="system.animalCompanion.feats.{{key}}.{{idx}}" value="{{feat}}" />
+                    <a class="feat-remove" data-category="{{key}}" data-index="{{idx}}" title="Remove"><i class="fas fa-trash"></i></a>
+                  </li>
+                {{/each}}
+              </ul>
+              <button type="button" class="feat-add" data-category="{{key}}">
+                <i class="fas fa-plus"></i> Add {{label}}
+              </button>
+            </div>
+          {{/each}}
+        </div>
+
       </section>
 
 
