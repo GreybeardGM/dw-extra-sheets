@@ -19,7 +19,7 @@
     {{!-- Main --}}
     <section class="sheet-main">
 
-      {{!-- AC-Skills --}}
+      {{!-- Attributes --}}
       <section class="sheet-attributes sheet-attributes--npc">
 
         <div class="cell">
@@ -37,6 +37,9 @@
           </label>
           <input type="text" name="system.animalCompanion.owner" value="{{system.animalCompanion.owner}}" data-dtype="String"/>
         </div>
+
+        <div>placeholder</div>
+        <div>placeholder</div>
 
         {{!-- AC-Skills --}}
         <div class="skills">
@@ -58,7 +61,7 @@
             </div>
           </h2>
           <div class="cell cell--abilities">
-            <ol class="skill-list">
+            <ol class="abilities-list">
               {{#each system.animalCompanion.skills as |skill key|}}
                 {{#if (or ../options.configureSkills skill.label)}}
                   <li class="ability flexrow" data-skill="{{key}}">
