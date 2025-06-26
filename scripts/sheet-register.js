@@ -1,7 +1,7 @@
 import { defineHirelingSheet } from "./hireling-sheet-class.js";
 import { defineAnimalCompanionSheet } from "./animal-companion-sheet-class.js";
 import { defineStashSheet } from "./stash-sheet-class.js";
-import { useHirelingSkill, resetHirelingnSkills } from "./hireling-utils.js";
+import { useHirelingSkill, resetHirelingnSkills } from "./utils/hireling-utils.js";
 
 Hooks.once("ready", () => {
   const npcSheets = CONFIG.Actor.sheetClasses.npc;
