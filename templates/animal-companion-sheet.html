@@ -85,22 +85,50 @@
         <div class="cell cell--feats">
           <h2 class="cell__title">Feats</h2>
         
-          {{#each (object "strengths" "Strengths" "trainings" "Trainings" "weaknesses" "Weaknesses") as |label key|}}
-            <div class="feat-category" data-category="{{key}}">
-              <label class="feat-category-label">{{label}}</label>
+            <div class="feat-category" data-category="strengths">
+              <label class="feat-category-label">Strengths</label>
               <ul class="feat-list">
-                {{#each ../system.animalCompanion.feats.[key] as |feat idx|}}
+                {{#each system.animalCompanion.feats.strengths as |feat idx|}}
                   <li class="feat-entry flexrow">
-                    <input type="text" name="system.animalCompanion.feats.{{key}}.{{idx}}" value="{{feat}}" />
-                    <a class="feat-remove" data-category="{{key}}" data-index="{{idx}}" title="Remove"><i class="fas fa-trash"></i></a>
+                    <input type="text" name="system.animalCompanion.feats.strengths.{{idx}}" value="{{feat}}" />
+                    <a class="feat-remove" data-category="strengths" data-index="{{idx}}" title="Remove"><i class="fas fa-trash"></i></a>
                   </li>
                 {{/each}}
               </ul>
-              <button type="button" class="feat-add" data-category="{{key}}">
-                <i class="fas fa-plus"></i> Add {{label}}
+              <button type="button" class="feat-add" data-category="strengths">
+                <i class="fas fa-plus"></i> Add Strength
               </button>
             </div>
-          {{/each}}
+            
+            <div class="feat-category" data-category="trainings">
+              <label class="feat-category-label">Trainings</label>
+              <ul class="feat-list">
+                {{#each system.animalCompanion.feats.trainings as |feat idx|}}
+                  <li class="feat-entry flexrow">
+                    <input type="text" name="system.animalCompanion.feats.trainings.{{idx}}" value="{{feat}}" />
+                    <a class="feat-remove" data-category="trainings" data-index="{{idx}}" title="Remove"><i class="fas fa-trash"></i></a>
+                  </li>
+                {{/each}}
+              </ul>
+              <button type="button" class="feat-add" data-category="trainings">
+                <i class="fas fa-plus"></i> Add Training
+              </button>
+            </div>
+            
+            <div class="feat-category" data-category="weaknesses">
+              <label class="feat-category-label">Weaknesses</label>
+              <ul class="feat-list">
+                {{#each system.animalCompanion.feats.weaknesses as |feat idx|}}
+                  <li class="feat-entry flexrow">
+                    <input type="text" name="system.animalCompanion.feats.weaknesses.{{idx}}" value="{{feat}}" />
+                    <a class="feat-remove" data-category="weaknesses" data-index="{{idx}}" title="Remove"><i class="fas fa-trash"></i></a>
+                  </li>
+                {{/each}}
+              </ul>
+              <button type="button" class="feat-add" data-category="weaknesses">
+                <i class="fas fa-plus"></i> Add Weakness
+              </button>
+            </div>
         </div>
 
       </section>
