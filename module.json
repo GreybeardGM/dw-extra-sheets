@@ -11,7 +11,7 @@
     "verified": "12"
   },
   "styles": [
-    "styles/hireling.css",
+    "styles/extra-sheets.css",
     "styles/stash.css",
     "styles/fixes.css"
   ],
