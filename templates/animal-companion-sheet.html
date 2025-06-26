@@ -23,15 +23,15 @@
             Species
             <i class="fas fa-paw attribute-icon"></i>
           </label>
-          <input type="text" name="system.animal-companion.species" value="{{system.animal-companion.species}}" data-dtype="String"/>
+          <input type="text" name="system.animalCompanion.species" value="{{system.animalCompanion.species}}" data-dtype="String"/>
         </div>
-
+        
         <div class="cell">
           <label class="cell__title">
             Owner
             <i class="fas fa-user attribute-icon"></i>
           </label>
-          <input type="number" name="system.animal-companion.owner" value="{{system.animal-companion.owner}}" data-dtype="String"/>
+          <input type="text" name="system.animalCompanion.owner" value="{{system.animalCompanion.owner}}" data-dtype="String"/>
         </div>
 
         {{!-- AC-Skills --}}
@@ -55,24 +55,24 @@
           </h2>
           <div class="cell cell--abilities">
             <ol class="skill-list">
-              {{#each system.hireling.skills as |skill key|}}
+              {{#each system.animalCompanion.skills as |skill key|}}
                 {{#if (or ../options.configureSkills skill.label)}}
                   <li class="ability flexrow" data-skill="{{key}}">
                     <label
-                      for="system.hireling.skills.{{key}}.value"
+                      for="system.animalCompanion.skills.{{key}}.value"
                       class="cell__title skill-use rollable"
                       data-skill="{{key}}"
                       title="{{skill.label}}"
                     >
                       {{#if ../options.configureSkills}}
-                        <input class="skill-label" type="text" name="system.hireling.skills.{{key}}.label" value="{{skill.label}}" placeholder="Skill Label" />
+                        <input class="skill-label" type="text" name="system.animalCompanion.skills.{{key}}.label" value="{{skill.label}}" placeholder="Skill Label" />
                       {{else}}
                         {{skill.label}}
                       {{/if}}
                     </label>
-                    <input class="ability-mod" type="number" name="system.hireling.skills.{{key}}.value" value="{{skill.value}}" data-dtype="Number"/>
+                    <input class="ability-mod" type="number" name="system.animalCompanion.skills.{{key}}.value" value="{{skill.value}}" data-dtype="Number"/>
                     <div class="skill-max-wrapper">
-                      <input class="ability-value skill-max-input" type="number" name="system.hireling.skills.{{key}}.max" value="{{skill.max}}" data-dtype="Number" />
+                      <input class="ability-value skill-max-input" type="number" name="system.animalCompanion.skills.{{key}}.max" value="{{skill.max}}" data-dtype="Number" />
                       <span class="skill-max-label">Max</span>
                     </div>
                   </li>
