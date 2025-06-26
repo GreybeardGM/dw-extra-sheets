@@ -76,6 +76,30 @@ export function defineAnimalCompanionSheet(baseClass) {
         await resetAnimalCompanionSkills(this.actor);
         this.render();
       });
+
+      html.find(".feat-add").click(ev => {
+        ev.preventDefault();
+        const category = ev.currentTarget.dataset.category;
+        const feats = this.actor.system.animalCompanion.feats?.[category];
+        if (Array.isArray(feats)) {
+          feats.push(""); // Leerer neuer Eintrag
+          this.actor.update({ [`system.animalCompanion.feats.${category}`]: feats });
+          this.render();
+        }
+      });
+      
+      html.find(".feat-remove").click(ev => {
+        ev.preventDefault();
+        const category = ev.currentTarget.dataset.category;
+        const index = parseInt(ev.currentTarget.dataset.index);
+        const feats = this.actor.system.animalCompanion.feats?.[category];
+        if (Array.isArray(feats) && feats[index] !== undefined) {
+          feats.splice(index, 1);
+          this.actor.update({ [`system.animalCompanion.feats.${category}`]: feats });
+          this.render();
+        }
+      });
+
     }
   };
 }
