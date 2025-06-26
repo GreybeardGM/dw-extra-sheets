@@ -1,12 +1,12 @@
 /* === Header Extension === */
-.hireling-sheet .sheet-header__fields {
+.dw-extra-sheet .sheet-header__fields {
   display: flex;
   flex-direction: column;
   gap: 0.3em;
   align-items: flex-start;
 }
 
-.hireling-sheet .field--checkbox {
+.dw-extra-sheet .field--checkbox {
   display: flex;
   align-items: center;
   gap: 0.5em;
@@ -14,7 +14,7 @@
   padding-right: 1em;
 }
 
-.hireling-sheet .field--checkbox input[type="checkbox"] {
+.dw-extra-sheet .field--checkbox input[type="checkbox"] {
   accent-color: var(--color-border-highlight); /* optional: theme color */
   margin: 0;
   padding: 0;
@@ -22,11 +22,11 @@
 }
 
 /* === Skills styling === */
-.hireling-sheet .skills {
+.dw-extra-sheet .skills {
   grid-column: 1 / -1;
 }
 
-.hireling-sheet .skill_header {
+.dw-extra-sheet .skill_header {
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -36,30 +36,30 @@
   padding: 0.13em;
 }
 
-.hireling-sheet .skills--controls {
+.dw-extra-sheet .skills--controls {
   display: flex;
   align-items: center;
   gap: 0.2em;
 }
 
-.hireling-sheet .skills--control {
+.dw-extra-sheet .skills--control {
   font-size: 1em !important;
   min-width: 4em;
   padding: 1px;
   margin: 3px 1px;
 }
 
-.hireling-sheet .skill-max-wrapper {
+.dw-extra-sheet .skill-max-wrapper {
   display: flex;
   align-items: center;
   gap: 0.25em;
 }
 
-.hireling-sheet .skill-max-input {
+.dw-extra-sheet .skill-max-input {
   text-align: center !important;
 }
 
-.hireling-sheet .skill-max-label {
+.dw-extra-sheet .skill-max-label {
   color: #aaa;
   font-style: italic;
   margin-left: 0.15em;
@@ -69,11 +69,11 @@
 }
 
 /* === Tags Fix === */
-.hireling-sheet .tags-label-row {
+.dw-extra-sheet .tags-label-row {
   display: flex;
   align-items: center;
 }
 
-.hireling-sheet .help-text-inline {
+.dw-extra-sheet .help-text-inline {
   white-space: nowrap;
 }
