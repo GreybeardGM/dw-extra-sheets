@@ -1,4 +1,4 @@
-import { prepareEquipmentItems } from "./items.js";
+import { prepareEquipmentItems } from "./utils/items.js";
 
 export function defineStashSheet(baseClass) {
   return class StashSheet extends baseClass {
