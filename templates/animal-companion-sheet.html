@@ -1,4 +1,4 @@
-<form class="dw-extra-sheet {{cssClass}}" autocomplete="off">
+<form class="dw-extra-sheet animal-companion {{cssClass}}" autocomplete="off">
 
   <div class="sheet-wrapper">
 
@@ -9,6 +9,10 @@
       </div>
       <div class="sheet-header__fields">
         <input class="input--title" name="name" type="text" value="{{actor.name}}" placeholder="Name"/>
+        <div class="field--checkbox">
+          <input type="checkbox" id="animal-companion-active" name="system.animalCompanion.active" {{checked system.animalCompanion.active}} />
+          <label for="animal-companion-active">Active Companion</label>
+        </div>
       </div>
     </header>
 
@@ -37,7 +41,7 @@
         {{!-- AC-Skills --}}
         <div class="skills">
           <h2 class="skill_header">
-            <label>Skills</label>
+            <label>Traits</label>
             <div class="skills--controls">
               <button type="button" class="skills--control skill-reset" title="Reset Skills">
                 <i class="fas fa-redo"></i>
