@@ -1,6 +1,6 @@
-import { defineHirelingSheet } from "./hireling-sheet-class.js";
-import { defineAnimalCompanionSheet } from "./animal-companion-sheet-class.js";
-import { defineStashSheet } from "./stash-sheet-class.js";
+import { defineHirelingSheet } from "./hireling-class.js";
+import { defineAnimalCompanionSheet } from "./animal-companion-class.js";
+import { defineStashSheet } from "./stash-class.js";
 import { useHirelingSkill, resetHirelingnSkills } from "./utils/hireling-utils.js";
 
 Hooks.once("ready", () => {
