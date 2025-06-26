@@ -27,10 +27,10 @@ export function defineAnimalCompanionSheet(baseClass) {
 
       // === Ensure inner structures ===
       ac.skills ??= {};
-      ac.skills.ferocity ??= 0;
-      ac.skills.cunning ??= 0;
-      ac.skills.armor ??= 0;
-      ac.skills.instinct ??= 0;
+      ac.skills.ferocity ??= ??= { label: "Ferocity", value: 0, max: 0 };
+      ac.skills.cunning ??= ??= { label: "Cunning", value: 0, max: 0 };
+      ac.skills.armor ??= ??= { label: "Armor", value: 0, max: 0 };
+      ac.skills.instinct ??= ??= { label: "Instinct", value: 0, max: 0 };
 
       ac.feats ??= {};
       ac.feats.strengths ??= [];
