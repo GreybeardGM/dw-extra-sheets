@@ -25,7 +25,7 @@ export function defineStashSheet(baseClass) {
       // Shop Config
       context.stash ??= {};
       context.stash.isShop ??= false;
-      context.user = game.user;
+      context.stash.allAccess ??= game.user.isGM || this.actor.isOwner;
     
       // Get and Prep all items
       await prepareEquipmentItems(context, this.actor);
