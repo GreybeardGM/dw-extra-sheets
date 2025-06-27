@@ -51,6 +51,15 @@ export function defineHirelingSheet(baseClass) {
       context.rank = h.rank;
       context.hirelingClass = h.hirelingClass;
 
+      const enrichmentOptions = {
+        async: true,
+        documents: true,
+        secrets: this.actor.isOwner,
+        rollData: this.actor.getRollData(),
+        relativeTo: this.actor
+      };
+      context.system.details.biographyEnriched = await TextEditor.enrichHTML(biography, enrichmentOptions);
+      
       await prepareEquipmentItems(context, this.actor);
       
       return context;
