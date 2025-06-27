@@ -18,10 +18,6 @@
 
     {{!-- Main --}}
     <section class="sheet-main">
-1{{system.details.biography}}
-2{{system.details.biographyEnriched}}
-3{{{system.details.biography}}}
-4{{{system.details.biographyEnriched}}}
 
       {{!-- Attributes --}}
       <section class="sheet-attributes sheet-attributes--npc">
@@ -134,7 +130,7 @@
 
             <div class="cell cell--description">
               <label class="cell__title">{{localize "DW.Description"}}</label>
-              {{editor system.details.biographyEnriched target="system.details.biography" button=true owner=owner editable=editable}}
+              {{editor system.details.biography target="system.details.biography" button=true owner=owner editable=editable}}
             </div>
 
           </section>
