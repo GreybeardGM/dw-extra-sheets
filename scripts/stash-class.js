@@ -21,6 +21,9 @@ export function defineStashSheet(baseClass) {
     // Get Data
     async getData(options) {
       const context = await super.getData(options);
+
+      // Shop Config
+      context.stash.isShop ??= false;
     
       // Get and Prep all items
       await prepareEquipmentItems(context, this.actor);
