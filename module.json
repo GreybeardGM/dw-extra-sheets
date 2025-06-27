@@ -2,13 +2,13 @@
   "id": "dw-extra-sheets",
   "title": "Dungeon World Extra Sheets",
   "description": "<p>Custom extra sheets for Dungeon World NPCs.</p><p>These sheets are added to NPC-Actors. It allows management of hirelings as per default hireling rules, plus additional functionality for convenience.</p><h4>Hireling features:</h4><ul><li>Skill management</li><li>Loyalty management</li><li>Carry equipment</li><li>Use NPC-Moves</li><li>Tags</li></ul><h4>Stash features:</h4><ul><li>Equipment filtering</li></ul>",
-  "version": "0.3.2",
+  "version": "0.3.3",
   "author": "GreybeardGM",
   "type": "module",
   "system": "dungeonworld",
   "compatibility": {
     "minimum": "12",
-    "verified": "12"
+    "verified": "12.999"
   },
   "styles": [
     "styles/extra-sheets.css",
@@ -16,6 +16,7 @@
     "styles/fixes.css"
   ],
   "esmodules": [
+    "scripts/hireling-class.js",
     "scripts/sheet-register.js"
   ],
   "url": "https://github.com/GreybeardGM/dw-extra-sheets",
