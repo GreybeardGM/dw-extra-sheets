@@ -23,6 +23,7 @@ export function defineStashSheet(baseClass) {
       const context = await super.getData(options);
 
       // Shop Config
+      context.stash ??= {};
       context.stash.isShop ??= false;
     
       // Get and Prep all items
