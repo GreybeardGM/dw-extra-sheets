@@ -92,7 +92,39 @@ export function defineStashSheet(baseClass) {
         this.render();
       });
 
-      // Usual item controls (edit, delete, etc.) are handled by baseClass
+      // Buy logic
+      html.find(".buy-item").click(async (event) => {
+        const li = event.currentTarget.closest(".item");
+        const itemId = li.dataset.itemId;
+        const quantity = parseInt(li.querySelector(".buy-quantity").value || "1");
+      
+        const item = this.actor.items.get(itemId);
+        if (!item) return;
+      
+        const buyer = game.user.character;
+        if (!buyer) return ui.notifications.warn("No character selected.");
+      
+        // Preis überprüfen
+        const price = item.system.price || 0;
+        const totalCost = price * quantity;
+        const buyerCoins = getProperty(buyer.system, "coin") || 0;
+      
+        if (buyerCoins < totalCost) {
+          return ui.notifications.warn("Not enough coin.");
+        }
+      
+        // Item duplizieren & dem Käufer geben
+        const itemData = item.toObject();
+        itemData.system.quantity = quantity;
+        await buyer.createEmbeddedDocuments("Item", [itemData]);
+      
+        // Coin abziehen
+        await buyer.update({ "system.coin": buyerCoins - totalCost });
+      
+        // Optional: Item aus Shop entfernen
+        // await this.actor.deleteEmbeddedDocuments("Item", [itemId]);
+      });
+
     }
   };
 }
