@@ -9,10 +9,12 @@
       </div>
       <div class="sheet-header__fields">
         <input class="input--title" name="name" type="text" value="{{actor.name}}" placeholder="Name"/>
-        <div class="field--checkbox">
-          <input type="checkbox" id="shop-active" name="system.stash.isShop" {{checked system.stash.isShop}} />
-          <label for="shop-active">Shop open</label>
-        </div>
+        {{#if @root.user.isGM}}
+          <div class="field--checkbox">
+            <input type="checkbox" id="shop-active" name="system.stash.isShop" {{checked system.stash.isShop}} />
+            <label for="shop-active">Shop open</label>
+          </div>
+        {{/if}}
       </div>
     </header>
 
