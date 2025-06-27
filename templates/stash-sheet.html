@@ -9,7 +9,7 @@
       </div>
       <div class="sheet-header__fields">
         <input class="input--title" name="name" type="text" value="{{actor.name}}" placeholder="Name"/>
-        {{#if @root.user.isGM}}
+        {{#if stash.allAccess}}
           <div class="field--checkbox">
             <input type="checkbox" id="shop-active" name="system.stash.isShop" {{checked system.stash.isShop}} />
             <label for="shop-active">Shop open</label>
