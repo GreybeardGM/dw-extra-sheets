@@ -7,7 +7,7 @@ export function defineStashSheet(baseClass) {
       options.classes = [...options.classes, "stash"];
       options.width = 560;
       options.height = 670;
-      options.template = `modules/${game.modules.get("dungeonworld-hirelings")?.id}/templates/stash-sheet.html`;
+      options.template = `modules/dw-extra-sheets/templates/stash-sheet.html`;
       return options;
     }
 
