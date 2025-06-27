@@ -8,7 +8,7 @@ export function defineAnimalCompanionSheet(baseClass) {
       options.classes = [...options.classes, "animal-companion"];
       options.width = 560;
       options.height = 730;
-      options.template = `modules/${game.modules.get("dw-extra-sheets")?.id}/templates/animal-companion-sheet.html`;
+      options.template = `modules/dw-extra-sheets/templates/animal-companion-sheet.html`;
       options.tabs = [{ navSelector: ".sheet-tabs", contentSelector: ".sheet-body", initial: "moves" }];
       return options;
     }
