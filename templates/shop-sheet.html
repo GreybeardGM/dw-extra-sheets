@@ -1,4 +1,4 @@
-<form class="stash-sheet {{cssClass}}" autocomplete="off">
+<form class="shop-sheet {{cssClass}}" autocomplete="off">
 
   <div class="sheet-wrapper">
 
@@ -9,12 +9,10 @@
       </div>
       <div class="sheet-header__fields">
         <input class="input--title" name="name" type="text" value="{{actor.name}}" placeholder="Name"/>
-        {{#if stash.allAccess}}
-          <div class="field--checkbox">
-            <input type="checkbox" id="shop-active" name="system.stash.isShop" {{checked system.stash.isShop}} />
-            <label for="shop-active">Shop open</label>
-          </div>
-        {{/if}}
+        <div class="field--checkbox">
+          <input type="checkbox" id="shop-active" name="system.shop.open" {{checked system.shop.open}} />
+          <label for="shop-active">Shop open</label>
+        </div>
       </div>
     </header>
 
