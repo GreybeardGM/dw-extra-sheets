@@ -37,6 +37,14 @@ Hooks.once("ready", () => {
     makeDefault: false
   });
 
+  // Register Shop Sheet
+  const ShopSheet = defineShopSheet(DwActorSheet);
+  Actors.registerSheet("dw-extra-sheets", ShopSheet, {
+    types: ["npc"],
+    label: "Shop Sheet",
+    makeDefault: false
+  });
+
   // Expose Helpers
   window.useHirelingSkill = useHirelingSkill;
   window.resetHirelingSkills = resetHirelingSkills;
