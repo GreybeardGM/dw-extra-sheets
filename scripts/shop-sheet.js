@@ -1,18 +1,18 @@
 import { prepareEquipmentItems } from "./utils/items.js";
 
-export function defineStashSheet(baseClass) {
-  return class StashSheet extends baseClass {
+export function defineShopSheet(baseClass) {
+  return class ShopSheet extends baseClass {
     static get defaultOptions() {
       const options = super.defaultOptions;
       options.classes = [...options.classes, "stash"];
       options.width = 560;
       options.height = 670;
-      options.template = `modules/dw-extra-sheets/templates/stash-sheet.html`;
+      options.template = `modules/dw-extra-sheets/templates/shop-sheet.html`;
       return options;
     }
 
     get template() {
-      return "modules/dw-extra-sheets/templates/stash-sheet.html";
+      return "modules/dw-extra-sheets/templates/shop-sheet.html";
     }
 
     // Save filter selection (survives re-render)
