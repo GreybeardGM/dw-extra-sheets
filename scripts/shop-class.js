@@ -23,9 +23,9 @@ export function defineShopSheet(baseClass) {
       const context = await super.getData(options);
 
       // Shop Config
-      context.stash ??= {};
-      context.stash.isShop ??= false;
-      context.stash.allAccess ??= game.user.isGM || this.actor.isOwner;
+      context.shop ??= {};
+      context.shop.open ??= false;
+      context.shop.allAccess ??= game.user.isGM;
     
       // Get and Prep all items
       await prepareEquipmentItems(context, this.actor);
