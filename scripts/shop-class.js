@@ -120,9 +120,15 @@ export function defineShopSheet(baseClass) {
         await buyer.createEmbeddedDocuments("Item", [itemData]);
         
         await buyer.update({
-          "system.attributes.coin.value": buyerCoins - totalCost,
-          "flags.dw-extra-sheets.lastTransaction": Date.now()
+          "system.attributes.coin.value": buyerCoins - totalCost
         });
+        
+        // Render-Sicherer Sheet-Refresh für v12
+        for (const app of Object.values(ui.windows)) {
+          if (app instanceof ActorSheet && app.actor?.id === buyer.id) {
+            app.render(false);
+          }
+        }
         
         ui.notifications.info(`You spent ${totalCost} Coin.`);
         // Optional: Item aus Shop entfernen
