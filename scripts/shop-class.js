@@ -121,7 +121,14 @@ export function defineShopSheet(baseClass) {
         await buyer.createEmbeddedDocuments("Item", [itemData]);
       
         // Deduct coin
-        await buyer.update({"system.attributes.coin.value": buyerCoins - totalCost});
+        await buyer.update({
+          "system.attributes.coin.value": buyerCoins - totalCost
+        });
+        
+        // Sheet neu rendern, wenn sichtbar
+        if (buyer.sheet?.rendered) {
+          buyer.sheet.render(true);
+        }
         // Optional: Item aus Shop entfernen
         // await this.actor.deleteEmbeddedDocuments("Item", [itemId]);
       });
