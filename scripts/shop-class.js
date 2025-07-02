@@ -109,7 +109,7 @@ export function defineShopSheet(baseClass) {
         // Preis überprüfen
         const price = item.system.price || 0;
         const totalCost = price * quantity;
-        const buyerCoins = buyer.system.coin.value || 0;
+        const buyerCoins = buyer.system.attributes.coin.value || 0;
       
         if (buyerCoins < totalCost) {
           return ui.notifications.warn("Not enough coin.");
@@ -120,14 +120,8 @@ export function defineShopSheet(baseClass) {
         itemData.system.quantity = quantity;
         await buyer.createEmbeddedDocuments("Item", [itemData]);
       
-        // Coin abziehen
-        await buyer.update({
-          system: {
-            coin: {
-              value: buyerCoins - totalCost
-            }
-          }
-        });      
+        // Deduct coin
+        await buyer.update({"system.attributes.coin.value": buyerCoins - totalCost});
         // Optional: Item aus Shop entfernen
         // await this.actor.deleteEmbeddedDocuments("Item", [itemId]);
       });
