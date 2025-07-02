@@ -107,28 +107,30 @@ export function defineShopSheet(baseClass) {
         if (!buyer) return ui.notifications.warn("No character selected.");
       
         // Preis überprüfen
-        const price = item.system.price || 0;
+        const price = Number(item.system.price) || 0;
         const totalCost = price * quantity;
-        const buyerCoins = buyer.system.attributes.coin.value || 0;
-      
+        const buyerCoins = getProperty(buyer.system, "attributes.coin.value") ?? 0;
+        
         if (buyerCoins < totalCost) {
           return ui.notifications.warn("Not enough coin.");
         }
-      
-        // Item duplizieren & dem Käufer geben
+        
         const itemData = item.toObject();
         itemData.system.quantity = quantity;
         await buyer.createEmbeddedDocuments("Item", [itemData]);
-      
-        // Deduct coin
+        
         await buyer.update({
           "system.attributes.coin.value": buyerCoins - totalCost
         });
         
-        // Sheet neu rendern, wenn sichtbar
-        if (buyer.sheet?.rendered) {
-          buyer.sheet.render(true);
+        // Sheet Refresh für alle offenen ActorSheets dieses Characters
+        for (const sheet of Object.values(ui.windows)) {
+          if (sheet instanceof ActorSheet && sheet.actor.id === buyer.id) {
+            sheet.render(true);
+          }
         }
+        
+        ui.notifications.info(`You spent ${totalCost} Coin.`);
         // Optional: Item aus Shop entfernen
         // await this.actor.deleteEmbeddedDocuments("Item", [itemId]);
       });
