@@ -117,17 +117,31 @@ export function defineShopSheet(baseClass) {
         
         const itemData = item.toObject();
         itemData.system.quantity = quantity;
-        await buyer.createEmbeddedDocuments("Item", [itemData]);
         
-        await buyer.update({ "system.attributes.coin.value": buyerCoins - totalCost });
-        // DOM-Feld direkt neu setzen, NACH kurzer Verzögerung
+        // Prüfen, ob der Käufer das Item schon hat (per Name vergleichen)
+        const ownedItem = buyer.items.find(i => i.name === item.name);
+        
+        // Wenn vorhanden: quantity erhöhen
+        if (ownedItem) {
+          const currentQty = ownedItem.system.quantity ?? 1;
+          await buyer.updateEmbeddedDocuments("Item", [{
+            _id: ownedItem.id,
+            "system.quantity": currentQty + quantity
+          }]);
+        } else {
+          // Neu erstellen
+          await buyer.createEmbeddedDocuments("Item", [itemData]);
+        }
+
+        // Coin abziehen
+        const newCoinValue = buyerCoins - totalCost;
+        await buyer.update({ "system.attributes.coin.value": newCoinValue });
+        
         setTimeout(() => {
           for (const app of Object.values(ui.windows)) {
             if (app instanceof ActorSheet && app.actor.id === buyer.id) {
               const input = app.element.find('input[name="system.attributes.coin.value"]');
-              if (input.length) {
-                input.val(buyerCoins - totalCost);
-              }
+              if (input.length) input.val(newCoinValue);
             }
           }
         }, 50);
