@@ -22,12 +22,15 @@ export function defineShopSheet(baseClass) {
     async getData(options) {
       const context = await super.getData(options);
 
-      // Shop Config
-      context.system.shop ??= {};
-      context.system.shop = foundry.utils.mergeObject(
-        { open: false, allAccess: game.user.isGM },
-        context.system.shop ?? {}
-      );
+      const existingShop = context.system.shop ?? {};
+      context.system = {
+        ...context.system,
+        shop: {
+          ...existingShop,
+          open: existingShop.open ?? false,
+          allAccess: game.user.isGM
+        }
+      };
     
       // Get and Prep all items
       await prepareEquipmentItems(context, this.actor);
