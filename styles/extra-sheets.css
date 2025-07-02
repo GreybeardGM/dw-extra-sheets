@@ -77,3 +77,49 @@
 .dw-extra-sheet .help-text-inline {
   white-space: nowrap;
 }
+
+/* Item filter bar: outer container */
+.dw-extra-sheet .item-filters {
+  padding: 0.5em 1em;
+  display: flex;
+  gap: 0.5em;
+  margin-bottom: 0.5em;
+  overflow-x: auto;
+}
+
+/* Each label (filter "pill") */
+.dw-extra-sheet .item-filters label {
+  display: flex;
+  align-items: center;
+  gap: 0.35em;
+  font-size: 0.95em;
+  padding: 0.2em 0.7em 0.2em 0.5em;
+  background: #292c31; /* Slightly lighter than sheet bg, adjust as needed */
+  border-radius: 1em;
+  border: 1px solid transparent;
+  cursor: pointer;
+  white-space: nowrap; /* Prevent label text wrapping */
+  transition: background 0.12s, border-color 0.12s;
+}
+
+/* Radio button: hide native, use accent-color if supported */
+.dw-extra-sheet .item-filters input[type="radio"] {
+  accent-color: #65a3e1; /* Optional: matches blue UI, remove if unwanted */
+  margin-right: 0.2em;
+  width: 1em; height: 1em;
+}
+
+/* Selected state */
+.dw-extra-sheet .item-filters label.selected {
+  background: #23272b;
+  border-color: #65a3e1;
+  color: #65a3e1;
+  font-weight: bold;
+  box-shadow: 0 0 0 1.5px #65a3e1;
+}
+
+/* Make sure text doesn't overflow */
+.dw-extra-sheet .item-filters label span {
+  white-space: nowrap;
+  font-size: 0.93em;
+}
