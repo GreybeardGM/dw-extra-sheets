@@ -4,8 +4,8 @@ export function defineShopSheet(baseClass) {
   return class ShopSheet extends baseClass {
     static get defaultOptions() {
       const options = super.defaultOptions;
-      options.classes = [...options.classes, "stash"];
-      options.width = 560;
+      options.classes = [...options.classes, "shop"];
+      options.width = 640;
       options.height = 670;
       options.template = `modules/dw-extra-sheets/templates/shop-sheet.html`;
       return options;
