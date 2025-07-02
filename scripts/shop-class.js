@@ -121,10 +121,13 @@ export function defineShopSheet(baseClass) {
         await buyer.createEmbeddedDocuments("Item", [itemData]);
       
         // Coin abziehen
-        const newCoin = duplicate(buyer.system.coin);
-        newCoin.value = buyerCoins - totalCost;
-        await buyer.update({ "system.coin": newCoin });
-      
+        await buyer.update({
+          system: {
+            coin: {
+              value: buyerCoins - totalCost
+            }
+          }
+        });      
         // Optional: Item aus Shop entfernen
         // await this.actor.deleteEmbeddedDocuments("Item", [itemId]);
       });
