@@ -12,11 +12,9 @@
   },
   "styles": [
     "styles/extra-sheets.css",
-    "styles/stash.css",
     "styles/fixes.css"
   ],
   "esmodules": [
-    "scripts/hireling-class.js",
     "scripts/sheet-register.js"
   ],
   "url": "https://github.com/GreybeardGM/dw-extra-sheets",
