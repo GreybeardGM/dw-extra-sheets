@@ -123,3 +123,51 @@
   white-space: nowrap;
   font-size: 0.93em;
 }
+
+/* Shop styling */
+.dw-extra-sheet .shop-controls {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 0.3em;
+  margin-left: auto;
+}
+
+.dw-extra-sheet .shop-controls .item-price {
+  font-weight: bold;
+  color: goldenrod;
+  font-size: 0.95em;
+  white-space: nowrap;
+}
+
+.dw-extra-sheet .shop-controls .item-price::after {
+  content: " Coin";
+  font-weight: normal;
+  margin-left: 0.2em;
+  font-size: 0.9em;
+  color: #aaa;
+}
+
+.dw-extra-sheet .shop-controls .buy-quantity {
+  width: 2.5em;
+  text-align: center;
+  padding: 0.1em 0.3em;
+  font-size: 0.9em;
+}
+
+.dw-extra-sheet .shop-controls .buy-item {
+  padding: 0.25em 0.6em;
+  font-size: 0.9em;
+  line-height: 1.2;
+  white-space: nowrap;
+  background: #1f5f4c;
+  color: white;
+  border: none;
+  border-radius: 0.3em;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.dw-extra-sheet .shop-controls .buy-item:hover {
+  background: #268069;
+}
