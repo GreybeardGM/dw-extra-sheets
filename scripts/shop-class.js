@@ -24,8 +24,10 @@ export function defineShopSheet(baseClass) {
 
       // Shop Config
       context.system.shop ??= {};
-      context.system.shop.open ??= false;
-      context.system.shop.allAccess ??= game.user.isGM;
+      context.system.shop = foundry.utils.mergeObject(
+        { open: false, allAccess: game.user.isGM },
+        context.system.shop ?? {}
+      );
     
       // Get and Prep all items
       await prepareEquipmentItems(context, this.actor);
