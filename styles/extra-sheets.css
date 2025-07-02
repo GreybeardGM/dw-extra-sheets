@@ -129,7 +129,9 @@
   display: flex;
   flex-direction: column;
   align-items: flex-end;
-  gap: 0.3em;
+  justify-content: space-between;
+  gap: 0.2em;
+  min-width: 7em;
   margin-left: auto;
 }
 
@@ -143,28 +145,37 @@
 .dw-extra-sheet .shop-controls .item-price::after {
   content: " Coin";
   font-weight: normal;
-  margin-left: 0.2em;
   font-size: 0.9em;
   color: #aaa;
+  margin-left: 0.2em;
+}
+
+.dw-extra-sheet .shop-controls .shop-action-row {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 0.3em;
 }
 
 .dw-extra-sheet .shop-controls .buy-quantity {
-  width: 2.5em;
+  width: 2.8em;
   text-align: center;
-  padding: 0.1em 0.3em;
   font-size: 0.9em;
+  padding: 0.2em 0.3em;
+  box-sizing: border-box;
 }
 
 .dw-extra-sheet .shop-controls .buy-item {
   padding: 0.25em 0.6em;
   font-size: 0.9em;
   line-height: 1.2;
-  white-space: nowrap;
   background: #1f5f4c;
   color: white;
   border: none;
   border-radius: 0.3em;
   cursor: pointer;
+  min-width: 4.8em;
+  text-align: center;
   transition: background 0.2s ease;
 }
 
