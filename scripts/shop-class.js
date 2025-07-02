@@ -103,7 +103,7 @@ export function defineShopSheet(baseClass) {
         const item = this.actor.items.get(itemId);
         if (!item) return;
       
-        const buyer = game.user.character;
+        const buyer = game.actors.get(game.user.character.id);
         if (!buyer) return ui.notifications.warn("No character selected.");
       
         // Preis überprüfen
@@ -120,7 +120,6 @@ export function defineShopSheet(baseClass) {
         await buyer.createEmbeddedDocuments("Item", [itemData]);
         
         await buyer.update({ "system.attributes.coin.value": buyerCoins - totalCost });
-        await buyer.sync();
         
         ui.notifications.info(`You spent ${totalCost} Coin.`);
         // Optional: Item aus Shop entfernen
