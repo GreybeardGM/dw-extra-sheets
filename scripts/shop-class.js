@@ -22,15 +22,12 @@ export function defineShopSheet(baseClass) {
     async getData(options) {
       const context = await super.getData(options);
 
-      const existingShop = context.system.shop ?? {};
-      context.system = {
-        ...context.system,
-        shop: {
-          ...existingShop,
-          open: existingShop.open ?? false,
-          allAccess: game.user.isGM
-        }
-      };
+      const system = this.actor.system;
+      system.shop ??= {};
+      system.shop.open ??= false;
+      system.shop.allAccess = game.user.isGM;
+      
+      context.system = system;  // explizit reinschreiben, obwohl meist schon vorhanden
     
       // Get and Prep all items
       await prepareEquipmentItems(context, this.actor);
