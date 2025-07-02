@@ -131,8 +131,7 @@
   align-items: flex-end;
   justify-content: space-between;
   gap: 0.2em;
-  min-width: 7em;
-  margin-left: auto;
+  margin-right: 1em;
 }
 
 .dw-extra-sheet .shop-controls .item-price {
@@ -166,7 +165,7 @@
 }
 
 .dw-extra-sheet .shop-controls .buy-item {
-  padding: 0.25em 0.6em;
+  padding: 0.25em;
   font-size: 0.9em;
   line-height: 1.2;
   background: #1f5f4c;
@@ -174,7 +173,6 @@
   border: none;
   border-radius: 0.3em;
   cursor: pointer;
-  min-width: 4.8em;
   text-align: center;
   transition: background 0.2s ease;
 }
