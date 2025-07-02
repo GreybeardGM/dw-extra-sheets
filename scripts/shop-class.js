@@ -103,7 +103,7 @@ export function defineShopSheet(baseClass) {
         const item = this.actor.items.get(itemId);
         if (!item) return;
       
-        const buyer = game.actors.get(game.user.character.id);
+        const buyer = game.user.character;
         if (!buyer) return ui.notifications.warn("No character selected.");
       
         // Preis überprüfen
@@ -120,6 +120,17 @@ export function defineShopSheet(baseClass) {
         await buyer.createEmbeddedDocuments("Item", [itemData]);
         
         await buyer.update({ "system.attributes.coin.value": buyerCoins - totalCost });
+        // DOM-Feld direkt neu setzen, NACH kurzer Verzögerung
+        setTimeout(() => {
+          for (const app of Object.values(ui.windows)) {
+            if (app instanceof ActorSheet && app.actor.id === buyer.id) {
+              const input = app.element.find('input[name="system.attributes.coin.value"]');
+              if (input.length) {
+                input.val(buyerCoins - totalCost);
+              }
+            }
+          }
+        }, 50);
         
         ui.notifications.info(`You spent ${totalCost} Coin.`);
         // Optional: Item aus Shop entfernen
