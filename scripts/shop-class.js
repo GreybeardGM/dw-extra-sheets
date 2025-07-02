@@ -119,15 +119,15 @@ export function defineShopSheet(baseClass) {
         itemData.system.quantity = quantity;
         await buyer.createEmbeddedDocuments("Item", [itemData]);
         
-        await buyer.update({
-          system: {
-            attributes: {
-              coin: {
-                value: buyerCoins - totalCost
-              }
-            }
+        await buyer.update({ "system.attributes.coin.value": buyerCoins - totalCost });
+
+        // Manuelles Update im DOM – nur wenn Sheet sichtbar ist
+        for (const app of Object.values(ui.windows)) {
+          if (app instanceof ActorSheet && app.actor.id === buyer.id) {
+            const input = app.element.find('input[name="system.attributes.coin.value"]');
+            if (input.length) input.val(buyerCoins - totalCost);
           }
-        });
+        }
         
         ui.notifications.info(`You spent ${totalCost} Coin.`);
         // Optional: Item aus Shop entfernen
