@@ -109,7 +109,7 @@ export function defineShopSheet(baseClass) {
         // Preis überprüfen
         const price = Number(item.system.price) || 0;
         const totalCost = price * quantity;
-        const buyerCoins = getProperty(buyer.system, "attributes.coin.value") ?? 0;
+        const buyerCoins = buyer.system.attributes.coin.value ?? 0;
         
         if (buyerCoins < totalCost) {
           return ui.notifications.warn("Not enough coin.");
@@ -120,7 +120,8 @@ export function defineShopSheet(baseClass) {
         await buyer.createEmbeddedDocuments("Item", [itemData]);
         
         await buyer.update({ "system.attributes.coin.value": buyerCoins - totalCost });
-
+        await buyer.sync();
+        
         // Manuelles Update im DOM – nur wenn Sheet sichtbar ist
         for (const app of Object.values(ui.windows)) {
           if (app instanceof ActorSheet && app.actor.id === buyer.id) {
