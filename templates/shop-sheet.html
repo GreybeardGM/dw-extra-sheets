@@ -57,7 +57,7 @@
           </h2>
           <ol class="items-list">
           {{#each equipment as |item id|}}
-              <li class="item flexrow" data-item-id="{{item._id}}" draggable="{{#if system.stash.isShop}}false{{else}}true{{/if}}">
+              <li class="item flexrow" data-item-id="{{item._id}}" draggable="{{#if system.shop.isOpen}}false{{else}}true{{/if}}">
                 <h4 class="item-name">
                   <div class="shop-controls" data-item-id="{{item._id}}">
                     <span class="item-price">{{item.system.price}}</span>
@@ -81,8 +81,7 @@
 
                 <div class="item-meta tags">
                   {{#if item.system.uses }}<a class="tag counter uses" data-action="uses">{{localize "DW.Uses"}}: {{item.system.uses}}</a>{{/if}}
-                  {{#if item.system.quantity }}<a class="tag counter quantity" data-action="quantity">{{localize "DW.Qty"}}: {{item.system.quantity}}</a>{{/if}}
-                  {{#if item.system.weight }}<span class="tag">{{localize "DW.Wt"}}: {{item.system.weight}}</span>{{/if}}
+                  <a class="tag counter quantity" data-action="quantity">{{localize "DW.Qty"}}: {{item.system.quantity}}</a>
                 </div>
                 <div class="item-controls">
                     <a class="item-control item-edit" title="Edit Item"><i class="fas fa-edit"></i></a>
@@ -90,6 +89,7 @@
                 </div>
                 <div class="item-description">
                   {{#if item.system.tags}}{{{dwTags item.system.tags}}}{{/if}}
+                  {{#if item.system.weight }}<span class="tag">{{localize "DW.Wt"}}: {{item.system.weight}}</span>{{/if}}
                   <div class="description">{{{item.system.descriptionEnriched}}}</div>
                 </div>
               </li>
