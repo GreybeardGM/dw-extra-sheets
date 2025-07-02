@@ -61,8 +61,10 @@
                 <h4 class="item-name">
                   <div class="shop-controls" data-item-id="{{item._id}}">
                     <span class="item-price">{{item.system.price}}</span>
-                    <input type="number" class="buy-quantity" value="1" min="1" />
-                    <button class="buy-item"><i class="fas fa-shopping-cart"></i> Buy</button>
+                    <div class="shop-action-row">
+                      <input type="number" class="buy-quantity" value="1" min="1" />
+                      <button class="buy-item"><i class="fas fa-shopping-cart"></i> Buy</button>
+                    </div>
                   </div>
                   <div class="item-avatar">
                     <span class="rollable item-rollable" data-roll="{{item.system.rollFormula}}">
