@@ -60,14 +60,15 @@
           <ol class="items-list">
           {{#each equipment as |item id|}}
               <li class="item flexrow" data-item-id="{{item._id}}" draggable="{{#if ../system.shop.allAccess}}true{{else}}false{{/if}}">
-                <h4 class="item-name">
-                  <div class="shop-controls" data-item-id="{{item._id}}">
-                    <span class="item-price">{{item.system.price}}</span>
-                    <div class="shop-action-row">
-                      <input type="number" class="buy-quantity" value="1" min="1" />
-                      <button class="buy-item"><i class="fas fa-coins"></i> Buy</button>
-                    </div>
+                <div class="shop-controls" data-item-id="{{item._id}}">
+                  <span class="item-price">{{item.system.price}}</span>
+                  <div class="shop-action-row">
+                    <input type="number" class="buy-quantity" placeholder="1" min="1" />
+                    <button class="buy-item"><i class="fas fa-coins"></i> Buy</button>
                   </div>
+                </div>
+
+                <h4 class="item-name">
                   <div class="item-avatar">
                     <span class="rollable item-rollable" data-roll="{{item.system.rollFormula}}">
                       {{#if item.system.rollFormula}}
