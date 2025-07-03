@@ -26,16 +26,16 @@
     
         {{#if system.shop.allAccess}}
           <div class="cell cell--shop-config">
-            <label class="cell__title">{{localize "DW.GMNotes"}}</label>
+            <label class="cell__title">{{localize "DWES.GMNotes"}}</label>
             {{editor system.shop.notes target="system.shop.notes" button=true owner=owner editable=editable}}
           </div>
 
           <div class="cell cell--shop-config">
-            <label class="cell__title">{{localize "DW.ShopConfig"}}</label>
+            <label class="cell__title">{{localize "DWES.ShopConfig"}}</label>
         
             <div class="field--checkbox">
               <input type="checkbox" id="shop-limited-stock" name="system.shop.limitedStock" {{checked system.shop.limitedStock}} />
-              <label for="shop-limited-stock">{{localize "DW.LimitedStock"}}</label>
+              <label for="shop-limited-stock">{{localize "DWES.LimitedStock"}}</label>
             </div>
         
             {{!-- Optional: zukünftige Optionen hier ergänzen --}}
@@ -80,7 +80,7 @@
           </section>
 
           <h2 class="cell__title">
-            <label>{{localize "DW.Wares"}}</label>
+            <label>{{localize "DWES.Wares"}}</label>
             {{#if system.shop.allAccess}}
               <div class="item-controls">
                 <button type="button" class="item-control item-create" title='{{localize "DW.Equipment"}}' data-type="equipment">
