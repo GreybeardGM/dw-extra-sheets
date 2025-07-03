@@ -130,6 +130,7 @@
   align-items: center;
   gap: 0.2em;
   margin-right: 1em;
+  flex: 0;
 }
 
 .dw-extra-sheet .shop-controls .item-price {
