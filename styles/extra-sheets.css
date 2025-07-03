@@ -173,7 +173,7 @@
 }
 /* Shop portrait fix */
 .dungeonworld.sheet.shop .cell--image {
-  width: 100%px;
+  width: 100%;
   height: auto;
 }
 
