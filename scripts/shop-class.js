@@ -107,6 +107,12 @@ export function defineShopSheet(baseClass) {
       
       // Buy logic
       html.find(".buy-item").click(async (event) => {
+        // Failsafe: Shop geschlossen?
+        if (!this.actor.system.shop?.open) {
+          ui.notifications.warn("Shop is closed. Please return later.");
+          return;
+        }
+
         const li = event.currentTarget.closest(".item");
         const itemId = li.dataset.itemId;
         const quantity = parseInt(li.querySelector(".buy-quantity").value || "1");
