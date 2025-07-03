@@ -10,7 +10,7 @@
       <div class="sheet-header__fields">
         <input class="input--title" name="name" type="text" value="{{actor.name}}" placeholder="Name"/>
         <div class="field--checkbox">
-          <input type="checkbox" id="shop-active" name="system.shop.open" {{checked system.shop.open}} />
+          <input type="checkbox" id="shop-active" name="system.shop.open" {{checked system.shop.open}} {{#unless system.shop.allAccess}}disabled{{/unless}} />
           <label for="shop-active">Shop open</label>
         </div>
       </div>
@@ -62,10 +62,12 @@
               <li class="item flexrow" data-item-id="{{item._id}}" draggable="{{#if ../system.shop.allAccess}}true{{else}}false{{/if}}">
                 <div class="shop-controls" data-item-id="{{item._id}}">
                   <span class="item-price">{{item.system.price}}</span>
-                  <div class="shop-action-row">
-                    <input type="number" class="buy-quantity" placeholder="1" min="1" />
-                    <button class="buy-item"><i class="fas fa-coins"></i> Buy</button>
-                  </div>
+                  {{#if ../system.shop.open}}
+                    <div class="shop-action-row">
+                      <input type="number" class="buy-quantity" value="1" min="1" />
+                      <button class="buy-item"><i class="fas fa-coins"></i> Buy</button>
+                    </div>
+                  {{/if}}
                 </div>
 
                 <h4 class="item-name">
