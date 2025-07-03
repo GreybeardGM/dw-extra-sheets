@@ -25,6 +25,8 @@ export function defineShopSheet(baseClass) {
       const system = this.actor.system;
       system.shop ??= {};
       system.shop.open ??= false;
+      system.shop.notes ??= "";
+      system.shop.limitedStock ??= false;
       system.shop.allAccess = game.user.isGM;
       
       context.system = system;  // explizit reinschreiben, obwohl meist schon vorhanden
