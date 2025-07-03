@@ -6,7 +6,7 @@ export function defineShopSheet(baseClass) {
       const options = super.defaultOptions;
       options.classes = [...options.classes, "shop"];
       options.width = 640;
-      options.height = 670;
+      options.height = 720;
       options.template = `modules/dw-extra-sheets/templates/shop-sheet.html`;
       return options;
     }
