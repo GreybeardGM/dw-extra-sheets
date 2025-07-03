@@ -96,6 +96,15 @@ export function defineShopSheet(baseClass) {
         this.render();
       });
 
+      // Zugriff prüfen
+      const allAccess = game.user.isGM;
+      if (!allAccess) {
+        // Dragging deaktivieren
+        html.find(".item").each((_, el) => {
+          el.draggable = false;
+        });
+      }
+      
       // Buy logic
       html.find(".buy-item").click(async (event) => {
         const li = event.currentTarget.closest(".item");
