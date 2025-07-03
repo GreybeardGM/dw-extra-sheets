@@ -93,7 +93,7 @@
                     <a class="item-control item-delete" title="Delete Item"><i class="fas fa-trash"></i></a>
                   </div>
                 {{/if}}
-                <div class="item-description" style="padding-left: {{#if ../system.shop.allAccess}}13em{{else}}6em{{/if}};">
+                <div class="item-description" style="padding-left: {{#if ../system.shop.open}}13em{{else}}6em{{/if}};">
                   {{#if item.system.tags}}{{{dwTags item.system.tags}}}{{/if}}
                   <div class="description">{{{item.system.descriptionEnriched}}}</div>
                 </div>
