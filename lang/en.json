@@ -1,10 +1,8 @@
 {
-  "DW": {
-    "Shop": {
-      "Config": "Shop Configuration",
-      "LimitedStock": "Limited Stock",
-      "Wares": "Wares",
-      "GMNotes": "GM Notes"
-    }
+  "DWES": {
+    "ShopConfig": "Shop Configuration",
+    "LimitedStock": "Limited Stock",
+    "Wares": "Wares",
+    "GMNotes": "GM Notes"
   }
 }
