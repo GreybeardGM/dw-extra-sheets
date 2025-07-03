@@ -95,7 +95,7 @@
                 {{/if}}
                 <div class="item-description">
                   {{#if item.system.tags}}{{{dwTags item.system.tags}}}{{/if}}
-                  <div class="description">{{{item.system.descriptionEnriched}}}</div>
+                  <div class="item-description" style="padding-left: {{#if ../system.shop.allAccess}}13em{{else}}6em{{/if}};">{{{item.system.descriptionEnriched}}}</div>
                 </div>
               </li>
           {{/each}}
