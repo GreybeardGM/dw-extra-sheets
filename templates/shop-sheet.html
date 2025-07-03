@@ -62,7 +62,7 @@
               <li class="item flexrow" data-item-id="{{item._id}}" draggable="{{#if ../system.shop.allAccess}}true{{else}}false{{/if}}">
                 <div class="shop-controls" data-item-id="{{item._id}}">
                   {{#if ../system.shop.open}}
-                    <input type="number" class="buy-quantity" value="1" min="1" />
+                    <input type="number" class="buy-quantity" placeholder="1" min="1" />
                     <button class="buy-item"><i class="fas fa-coins"></i> Buy</button>
                   {{/if}}
                   <span class="item-price">{{item.system.price}}</span>
