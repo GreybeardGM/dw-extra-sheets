@@ -171,7 +171,7 @@
 .dw-extra-sheet .shop-controls .buy-item:hover {
   background: #268069;
 }
-
+/* Shop portrait fix */
 .dungeonworld.sheet.shop .cell--image {
   width: 100%px;
   height: auto;
