@@ -124,17 +124,15 @@
 .dw-extra-sheet .shop-controls .item-price {
   font-weight: bold;
   font-size: 1.4em;
-  color: goldenrod;
+  color: #ea3;
   white-space: nowrap;
   width: 3.5em;
   text-align: right;
 }
 
 .dw-extra-sheet .shop-controls .item-price::after {
-  content: " Coin";
-  font-weight: normal;
+  content: "🪙";
   font-size: 0.62em;
-  color: #aaa;
   margin-left: 0.2em;
 }
 
