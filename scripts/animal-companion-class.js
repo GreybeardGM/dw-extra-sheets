@@ -90,8 +90,8 @@ export function defineAnimalCompanionSheet(baseClass) {
       
       html.find(".feat-remove").click(ev => {
         ev.preventDefault();
-        const category = ev.currentTarget.dataset.category;
-        const index = parseInt(ev.currentTarget.dataset.index);
+        const category = event.currentTarget.dataset.category;
+        const index = event.currentTarget.dataset.index;
         const feats = this.actor.system.animalCompanion.feats?.[category];
         if (Array.isArray(feats) && feats[index] !== undefined) {
           feats.splice(index, 1);
