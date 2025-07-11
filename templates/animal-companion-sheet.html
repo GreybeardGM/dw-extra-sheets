@@ -55,18 +55,7 @@
             <ol class="abilities-list">
               {{#each system.animalCompanion.skills as |skill key|}}
                 <li class="ability flexrow" data-skill="{{key}}">
-                  <label
-                    for="system.animalCompanion.skills.{{key}}.value"
-                    class="cell__title skill-use rollable"
-                    data-skill="{{key}}"
-                    title="{{skill.label}}"
-                  >
-                    {{#if ../options.configureSkills}}
-                      <input class="skill-label" type="text" name="system.animalCompanion.skills.{{key}}.label" value="{{skill.label}}" placeholder="Skill Label" />
-                    {{else}}
-                      {{skill.label}}
-                    {{/if}}
-                  </label>
+                  <label>{{skill.label}}</label>
                   <input class="ability-mod" type="number" name="system.animalCompanion.skills.{{key}}.value" value="{{skill.value}}" data-dtype="Number"/>
                   <div class="skill-max-wrapper">
                     <input class="ability-value skill-max-input" type="number" name="system.animalCompanion.skills.{{key}}.max" value="{{skill.max}}" data-dtype="Number" />
