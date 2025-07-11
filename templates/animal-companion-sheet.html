@@ -55,6 +55,7 @@
             <ol class="abilities-list">
               {{#each system.animalCompanion.skills as |skill key|}}
                 <li class="ability flexrow" data-skill="{{key}}">
+                  <input type="hidden" name="system.animalCompanion.skills.{{key}}.label" value="{{skill.label}}" />
                   <label class="cell__title skill-use rollable">{{skill.label}}</label>
                   <input class="ability-mod" type="number" name="system.animalCompanion.skills.{{key}}.value" value="{{skill.value}}" data-dtype="Number"/>
                   <div class="skill-max-wrapper">
