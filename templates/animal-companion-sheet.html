@@ -49,15 +49,6 @@
               <button type="button" class="skills--control skill-reset" title="Reset Skills">
                 <i class="fas fa-redo"></i>
               </button>
-              {{#if options.configureSkills}}
-                <button type="button" class="skills--control skill-done" title="Done">
-                  <i class="fa-solid fa-check"></i>
-                </button>
-              {{else}}
-                <button type="button" class="skills--control skill-configure" title="Configure Skills">
-                  <i class="fa-solid fa-gear"></i>
-                </button>
-              {{/if}}
             </div>
           </h2>
           <div class="cell cell--abilities">
@@ -88,7 +79,7 @@
         </div>
 
         <div class="feats col-override">
-          <h2 class="cell__title">Feats</h2>
+          <h2 class="skill_header">Feats</h2>
           <div class="cell cell--feats">        
             <div class="feat-category" data-category="strengths">
               <label class="feat-category-label">Strengths</label>
