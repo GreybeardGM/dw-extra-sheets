@@ -167,11 +167,10 @@
 
 /* Animal Companion Skill fix */
 .dw-extra-sheet.animal-companion .abilities-list {
-  grid-template-columns: repeat(4, minmax(0, 1fr));
+  grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
 }
 
 .dw-extra-sheet.animal-companion .cell--feats {
-  grid-column: 1 / -1;
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(0, 1fr));
   gap: 0.5em;
