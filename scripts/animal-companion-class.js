@@ -77,24 +77,13 @@ export function defineAnimalCompanionSheet(baseClass) {
         this.render();
       });
 
-      html.find(".feat-add").click(ev => {
-        ev.preventDefault();
-        const category = ev.currentTarget.dataset.category;
-        const feats = [...(this.actor.system.animalCompanion.feats?.[category] ?? [])];
-        feats.push("");
-        this.actor.update({ [`system.animalCompanion.feats.${category}`]: feats });
-      });
+      function autoGrow(el) {
+        el.style.height = "auto";
+        el.style.height = el.scrollHeight + "px";
+      }
       
-      html.find(".feat-remove").click(ev => {
-        ev.preventDefault();
-        const category = ev.currentTarget.dataset.category;
-        const index = Number(ev.currentTarget.dataset.index);
-        const feats = [...(this.actor.system.animalCompanion.feats?.[category] ?? [])];
-        if (!Number.isNaN(index)) {
-          feats.splice(index, 1);
-          this.actor.update({ [`system.animalCompanion.feats.${category}`]: feats });
-        }
-      });
+      html.find("textarea.autogrow").each((_, el) => autoGrow(el));
+      html.find("textarea.autogrow").on("input", ev => autoGrow(ev.currentTarget));
 
     }
   };
