@@ -35,7 +35,7 @@ export function defineAnimalCompanionSheet(baseClass) {
 
       ac.feats ??= {};
       ac.feats.strengthsText ??= "";
-      ac.feats.trainingsText ??= "";
+      ac.feats.trainingsText ??= "Fighting humans";
       ac.feats.weaknessesText ??= "";
 
       ac.owner ??= "";
