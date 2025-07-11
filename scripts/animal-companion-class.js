@@ -34,9 +34,9 @@ export function defineAnimalCompanionSheet(baseClass) {
       ac.skills.instinct ??= defaultSkill("Instinct");
 
       ac.feats ??= {};
-      ac.feats.strengths ??= [];
-      ac.feats.trainings ??= [];
-      ac.feats.weaknesses ??= [];
+      ac.feats.strengthsText ??= "";
+      ac.feats.trainingsText ??= "";
+      ac.feats.weaknessesText ??= "";
 
       ac.owner ??= "";
       ac.species ??= "";
