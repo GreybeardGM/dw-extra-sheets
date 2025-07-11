@@ -178,4 +178,5 @@
 
 .dw-extra-sheet .col-override {
   grid-column: 1 / -1;
+  overflow: hidden;
 }
