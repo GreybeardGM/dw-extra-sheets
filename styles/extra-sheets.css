@@ -193,13 +193,12 @@
 .owner-wrapper {
   display: flex;
   align-items: center;
-  grid-column: span 3;
+  grid-column: span 2;
+  gap: 0.5em;
 }
 
 .owner-img {
-  width: 32px;
-  height: 32px;
-  border-radius: 50%;
+  height: 5em;
   object-fit: cover;
   border: 1px solid var(--color-border-light-tertiary);
 }
