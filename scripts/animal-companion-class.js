@@ -50,13 +50,9 @@ export function defineAnimalCompanionSheet(baseClass) {
           if (ownerActor?.name && ownerActor?.img) {
             ac.owner.name = ownerActor.name;
             ac.owner.img = ownerActor.img;
-          } else {
-            // UUID verweist nicht auf gültigen Actor → zurücksetzen
-            await this.actor.update({ "system.animalCompanion.owner.UUID": "" });
           }
         } catch (e) {
           console.warn("Invalid owner UUID on animal companion:", ac.owner);
-          await this.actor.update({ "system.animalCompanion.owner.UUID": "" });
         }
       }
 
