@@ -192,7 +192,6 @@
 
 .owner-wrapper {
   display: flex;
-  align-items: center;
   grid-column: span 2;
   gap: 0.5em;
 }
