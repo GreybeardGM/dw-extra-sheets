@@ -38,9 +38,27 @@ export function defineAnimalCompanionSheet(baseClass) {
       ac.feats.trainingsText ??= "Fighting humans";
       ac.feats.weaknessesText ??= "";
 
-      ac.owner ??= "";
       ac.species ??= "";
       ac.active ??= false;
+
+      // === Resolve owner actor from UUID ===
+      ac.owner ??= {};
+      ac.owner.UUID ??= "";
+      if (ac.owner.UUID) {
+        try {
+          const ownerActor = await fromUuid(ac.owner.UUID);
+          if (ownerActor?.name && ownerActor?.img) {
+            ac.owner.name = ownerActor.name;
+            ac.owner.img = ownerActor.img;
+          } else {
+            // UUID verweist nicht auf gültigen Actor → zurücksetzen
+            await this.actor.update({ "system.animalCompanion.owner.UUID": "" });
+          }
+        } catch (e) {
+          console.warn("Invalid owner UUID on animal companion:", ac.owner);
+          await this.actor.update({ "system.animalCompanion.owner.UUID": "" });
+        }
+      }
 
       context.animalCompanion = ac;
 
@@ -52,15 +70,14 @@ export function defineAnimalCompanionSheet(baseClass) {
       super.activateListeners(html);
       if (!this.options.editable) return;
 
-      html.find(".skill-configure").click(ev => {
+      html.find(".set-owner-button").click(async (ev) => {
         ev.preventDefault();
-        this.options.configureSkills = true;
-        this.render();
-      });
-
-      html.find(".skill-done").click(ev => {
-        ev.preventDefault();
-        this.options.configureSkills = false;
+        const char = game.user.character;
+        if (!char) {
+          ui.notifications.warn("You don't have an assigned character.");
+          return;
+        }
+        await this.actor.update({ "system.animalCompanion.owner.UUID": char.uuid });
         this.render();
       });
 
