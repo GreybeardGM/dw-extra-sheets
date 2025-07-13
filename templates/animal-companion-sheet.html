@@ -30,8 +30,8 @@
           <input type="text" name="system.animalCompanion.species" value="{{system.animalCompanion.species}}" data-dtype="String"/>
         </div>
 
-        {{#if animalCompanion.owner.UUID}}
-          <div class="owner-wrapper">
+        <div class="owner-wrapper">
+          {{#if animalCompanion.owner.UUID}}
             <div class="cell owner-name">
               <label class="cell__title">
                 Owner
@@ -42,14 +42,12 @@
             <div class="cell owner-image">
               <img src="{{animalCompanion.owner.img}}" class="owner-img" alt="Owner Image"/>
             </div>
-          </div>
-        {{else}}
-          <div class="owner-wrapper">
+          {{else}}
             <button type="button" class="set-owner-button">
               <i class="fas fa-link"></i> Assign to My Character
             </button>
-          </div>
-        {{/if}}
+          {{/if}}
+        </div>
 
         {{!-- AC-Skills --}}
         <div class="skills col-override">
