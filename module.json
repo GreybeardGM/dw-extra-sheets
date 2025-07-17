@@ -17,6 +17,13 @@
   "esmodules": [
     "scripts/sheet-register.js"
   ],
+  "languages": [
+      {
+        "lang": "en",
+        "name": "English",
+        "path": "lang/en.json"
+      }
+  ]
   "url": "https://github.com/GreybeardGM/dw-extra-sheets",
   "manifest": "https://raw.githubusercontent.com/GreybeardGM/dw-extra-sheets/main/module.json",
   "download": "https://github.com/GreybeardGM/dw-extra-sheets/archive/refs/heads/main.zip"
