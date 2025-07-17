@@ -34,7 +34,7 @@
   ],
   
   "url": "https://github.com/GreybeardGM/dw-extra-sheets",
-  "manifest": "https://raw.githubusercontent.com/GreybeardGM/dw-extra-sheets/dev/module-dev.json",
+  "manifest": "https://raw.githubusercontent.com/GreybeardGM/dw-extra-sheets/dev/module.json",
   "download": "https://github.com/GreybeardGM/dw-extra-sheets/archive/refs/heads/dev.zip"
 
 }
