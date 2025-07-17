@@ -1,0 +1,22 @@
+{
+  "DWES.ActiveCompanion": "Aktiver Gefährte",
+  "DWES.Species": "Spezies",
+  "DWES.Owner": "Besitzer",
+  "DWES.AssignOwner": "Mir zuweisen",
+  "DWES.Traits": "Merkmale",
+  "DWES.Max": "Max.",
+  "DWES.Feats": "Besonderheiten",
+  "DWES.Strengths": "Stärken",
+  "DWES.Trainings": "Ausbildungen",
+  "DWES.Weaknesses": "Schwächen",
+  "DWES.ActiveDuty": "Aktiver Dienst",
+  "DWES.Rank": "Rang",
+  "DWES.Cost": "Kosten",
+  "DWES.Loyalty": "Loyalität",
+  "DWES.Skills": "Fertigkeiten",
+  "DWES.ShopOpen": "Shop offen",
+  "DWES.ShopConfig": "Shop-Konfiguration",
+  "DWES.LimitedStock": "Begrenzter Vorrat",
+  "DWES.Wares": "Warenangebot",
+  "DWES.GMNotes": "Notizen (SL)"
+}
