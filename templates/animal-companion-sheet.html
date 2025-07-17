@@ -11,7 +11,7 @@
         <input class="input--title" name="name" type="text" value="{{actor.name}}" placeholder="Name"/>
         <div class="field--checkbox">
           <input type="checkbox" id="animal-companion-active" name="system.animalCompanion.active" {{checked system.animalCompanion.active}} />
-          <label for="animal-companion-active">Active Companion</label>
+          <label for="animal-companion-active">{{localize "DWES.ActiveCompanion"}}</label>
         </div>
       </div>
     </header>
@@ -24,7 +24,7 @@
 
         <div class="cell cell--damage">
           <label class="cell__title">
-            Species
+            {{localize "DWES.Species"}}
             <i class="fas fa-paw attribute-icon"></i>
           </label>
           <input type="text" name="system.animalCompanion.species" value="{{system.animalCompanion.species}}" data-dtype="String"/>
@@ -34,7 +34,7 @@
           {{#if animalCompanion.owner.UUID}}
             <div class="cell owner-name">
               <label class="cell__title">
-                Owner
+                {{localize "DWES.Owner"}}
                 <i class="fas fa-user attribute-icon"></i>
               </label>
               <input type="text" value="{{animalCompanion.owner.name}}" disabled />
@@ -44,7 +44,7 @@
             </div>
           {{else}}
             <button type="button" class="set-owner-button">
-              <i class="fas fa-link"></i> Assign to My Character
+              <i class="fas fa-link"></i> {{localize "DWES.AssignOwner"}}
             </button>
           {{/if}}
         </div>
@@ -52,7 +52,7 @@
         {{!-- AC-Skills --}}
         <div class="skills col-override">
           <h2 class="skill_header">
-            <label>Traits</label>
+            <label>{{localize "DWES.Traits"}}</label>
             <div class="skills--controls">
               <button type="button" class="skills--control skill-reset" title="Reset Skills">
                 <i class="fas fa-redo"></i>
@@ -74,7 +74,7 @@
                   <input class="ability-mod" type="number" name="system.animalCompanion.skills.{{key}}.value" value="{{skill.value}}" data-dtype="Number"/>
                   <div class="skill-max-wrapper">
                     <input class="ability-value skill-max-input" type="number" name="system.animalCompanion.skills.{{key}}.max" value="{{skill.max}}" data-dtype="Number" />
-                    <span class="skill-max-label">Max</span>
+                    <span class="skill-max-label">{{localize "DWES.Max"}}</span>
                   </div>
                   <input type="hidden" name="system.animalCompanion.skills.{{key}}.label" value="{{skill.label}}" />
                 </li>
@@ -84,20 +84,20 @@
         </div>
 
         <div class="feats col-override">
-          <h2 class="skill_header">Feats</h2>
+          <h2 class="skill_header">{{localize "DWES.Feats"}}</h2>
           <div class="cell--feats">        
             <div class="feat-category cell" data-category="strengths">
-              <label class="feat-category-label cell__title">Strengths<i class="fas fa-star attribute-icon"></i></label>
+              <label class="feat-category-label cell__title">{{localize "DWES.Strengths"}}<i class="fas fa-star attribute-icon"></i></label>
                 <textarea name="system.animalCompanion.feats.strengthsText" class="autogrow">{{system.animalCompanion.feats.strengthsText}}</textarea>
             </div>
             
             <div class="feat-category cell" data-category="trainings">
-              <label class="feat-category-label cell__title">Trainings<i class="fas fa-graduation-cap attribute-icon"></i></label>
+              <label class="feat-category-label cell__title">{{localize "DWES.Trainings"}}<i class="fas fa-graduation-cap attribute-icon"></i></label>
                 <textarea name="system.animalCompanion.feats.trainingsText" class="autogrow">{{system.animalCompanion.feats.trainingsText}}</textarea>
             </div>
             
             <div class="feat-category cell" data-category="weaknesses">
-              <label class="feat-category-label cell__title">Weaknesses<i class="fas fa-skull-crossbones attribute-icon"></i></label>
+              <label class="feat-category-label cell__title">{{localize "DWES.Weaknesses"}}<i class="fas fa-skull-crossbones attribute-icon"></i></label>
                 <textarea name="system.animalCompanion.feats.weaknessesText" class="autogrow">{{system.animalCompanion.feats.weaknessesText}}</textarea>
             </div>
           </div>
