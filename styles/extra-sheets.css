@@ -2,6 +2,8 @@
 .dw-extra-sheet .sheet-header__fields {
   display: flex;
   gap: 0.3em;
+  flex-direction: row;
+  width: 100%;
 }
 
 .dw-extra-sheet .field--checkbox {
