@@ -1,6 +1,6 @@
 {
   "id": "dw-extra-sheets",
-  "title": "Dungeon World Extra Sheets DEV",
+  "title": "Dungeon World Extra Sheets",
   "description": "Devepolment version!",
   "author": "GreybeardGM",
   "version": "0.4.1",
@@ -34,7 +34,7 @@
   ],
   
   "url": "https://github.com/GreybeardGM/dw-extra-sheets",
-  "manifest": "https://raw.githubusercontent.com/GreybeardGM/dw-extra-sheets/dev/module.json",
-  "download": "https://github.com/GreybeardGM/dw-extra-sheets/archive/refs/heads/dev.zip"
+  "manifest": "https://raw.githubusercontent.com/GreybeardGM/dw-extra-sheets/main/module.json",
+  "download": "https://github.com/GreybeardGM/dw-extra-sheets/releases/latest/download/module.zip"
 
 }
