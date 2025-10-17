@@ -1,7 +1,7 @@
 {
   "id": "dw-extra-sheets",
   "title": "Dungeon World Extra Sheets",
-  "description": "Devepolment version!",
+  "description": "<p>Custom extra sheets for Dungeon World NPCs.</p><p>These sheets are added to NPC-Actors. It allows management of hirelings as per default hireling rules, plus additional functionality for convenience.</p>",
   "author": "GreybeardGM",
   "version": "0.4.1",
   
