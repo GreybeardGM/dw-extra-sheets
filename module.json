@@ -1,15 +1,15 @@
 {
   "id": "dw-extra-sheets",
-  "title": "Dungeon World Extra Sheets",
-  "description": "Adds custom sheets for hirelings, companions, merchants, and stash actors in Dungeon World.",
+  "title": "Dungeon World Extra Sheets DEV",
+  "description": "Devepolment version!",
   "author": "GreybeardGM",
-  "version": "0.4.0",
+  "version": "0.4.1",
   
   "type": "module",
   "system": "dungeonworld",
   "compatibility": {
     "minimum": "12",
-    "verified": "12.999"
+    "verified": "13.350"
   },
   
   "styles": [
@@ -34,7 +34,7 @@
   ],
   
   "url": "https://github.com/GreybeardGM/dw-extra-sheets",
-  "manifest": "https://raw.githubusercontent.com/GreybeardGM/dw-extra-sheets/main/module.json",
-  "download": "https://github.com/GreybeardGM/dw-extra-sheets/releases/latest/download/module.zip"
+  "manifest": "https://raw.githubusercontent.com/GreybeardGM/dw-extra-sheets/dev/module.json",
+  "download": "https://github.com/GreybeardGM/dw-extra-sheets/archive/refs/heads/dev.zip"
 
 }
