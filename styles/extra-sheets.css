@@ -1,7 +1,5 @@
 /* === Header Extension === */
 .dw-extra-sheet .sheet-header__fields {
-  display: flex;
-  gap: 0.3em;
   width: 100%;
 }
 
