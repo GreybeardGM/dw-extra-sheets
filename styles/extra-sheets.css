@@ -1,9 +1,7 @@
 /* === Header Extension === */
 .dw-extra-sheet .sheet-header__fields {
   display: flex;
-  flex-direction: column;
   gap: 0.3em;
-  align-items: flex-start;
 }
 
 .dw-extra-sheet .field--checkbox {
