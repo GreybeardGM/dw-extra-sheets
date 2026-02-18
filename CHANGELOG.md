@@ -1,5 +1,9 @@
 # Changelog
 
+## [0.4.2] – Unknown Date
+### Changed
+- Implemented targeted performance upgrades and general code cleanup for improved maintainability.
+
 ## [0.4.1] – 2025-10-17
 ### Changes
 - Update for Foundry VTT v13

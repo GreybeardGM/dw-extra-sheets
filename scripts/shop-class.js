@@ -1,5 +1,52 @@
 import { prepareEquipmentItems, sortItemTypes } from "./utils/items.js";
 
+function resolvePurchaseQuantity({ requestedQty, limitedStock, availableQty, itemName }) {
+  if (limitedStock && requestedQty > availableQty) {
+    ui.notifications.info(`Only ${availableQty} ${itemName} available. Adjusted purchase.`);
+    return availableQty;
+  }
+
+  return requestedQty;
+}
+
+async function applyPurchaseToBuyer({ buyer, item, quantity, totalCost, buyerCoins }) {
+  const itemData = item.toObject();
+  itemData.system.quantity = quantity;
+
+  const ownedItem = buyer.items.find(i => i.name === item.name);
+  if (ownedItem) {
+    const currentQty = Number(ownedItem.system.quantity) || 0;
+    await buyer.updateEmbeddedDocuments("Item", [{
+      _id: ownedItem.id,
+      "system.quantity": currentQty + quantity
+    }]);
+  } else {
+    await buyer.createEmbeddedDocuments("Item", [itemData]);
+  }
+
+  const newCoinValue = buyerCoins - totalCost;
+  await buyer.update({ "system.attributes.coin.value": newCoinValue });
+
+  setTimeout(() => {
+    for (const app of Object.values(ui.windows)) {
+      if (app instanceof ActorSheet && app.actor.id === buyer.id) {
+        const input = app.element.find('input[name="system.attributes.coin.value"]');
+        if (input.length) input.val(newCoinValue);
+      }
+    }
+  }, 50);
+}
+
+async function decrementShopStock({ shopActor, itemId, limitedStock, availableQty, purchasedQty }) {
+  if (!limitedStock) return;
+
+  const newStockQty = availableQty - purchasedQty;
+  await shopActor.updateEmbeddedDocuments("Item", [{
+    _id: itemId,
+    "system.quantity": newStockQty
+  }]);
+}
+
 export function defineShopSheet(baseClass) {
   return class ShopSheet extends baseClass {
     static get defaultOptions() {
@@ -104,26 +151,25 @@ export function defineShopSheet(baseClass) {
       
       // Buy logic
       html.find(".buy-item").click(async (event) => {
-        // Failsafe: Shop geschlossen?
-        if (!this.actor.system.shop?.open) {
-          ui.notifications.warn("Shop is closed. Please return later.");
-          return;
-        }
-      
+        if (!this.actor.system.shop?.open) return ui.notifications.warn("Shop is closed. Please return later.");
+
         const li = event.currentTarget.closest(".item");
-        const itemId = li.dataset.itemId;
-        const quantityInput = li.querySelector(".buy-quantity");
-        const requestedQty = Math.max(1, parseInt(quantityInput?.value || "1"));
-      
+        const itemId = li?.dataset?.itemId;
+        if (!itemId) return ui.notifications.warn("No item selected.");
+
         const item = this.actor.items.get(itemId);
-        if (!item) return;
-      
+        if (!item) return ui.notifications.warn("Item no longer available.");
+
         const buyer = game.user.character;
         if (!buyer) return ui.notifications.warn("No character selected.");
-      
-        const shopIsOpen = this.actor.system.shop?.open;
-        if (!shopIsOpen) return ui.notifications.warn("Shop closed. Please return later.");
-      
+
+        const quantityInput = li.querySelector(".buy-quantity");
+        const parsedQty = Number.parseInt(quantityInput?.value || "1", 10);
+        if (!Number.isFinite(parsedQty) || parsedQty < 1) {
+          return ui.notifications.warn("Invalid quantity.");
+        }
+        const requestedQty = parsedQty;
+
         const limitedStock = this.actor.system.shop?.limitedStock;
         const availableQty = Number(item.system.quantity) || 0;
       
@@ -132,60 +178,37 @@ export function defineShopSheet(baseClass) {
           return ui.notifications.warn(`${item.name} is out of stock.`);
         }
       
-        // Determine how many can be bought
-        let actualQty = requestedQty;
-        if (limitedStock && requestedQty > availableQty) {
-          actualQty = availableQty;
-          ui.notifications.info(`Only ${actualQty} ${item.name} available. Adjusted purchase.`);
-        }
-      
+        const actualQty = resolvePurchaseQuantity({
+          requestedQty,
+          limitedStock,
+          availableQty,
+          itemName: item.name
+        });
+
+        if (actualQty < 1) return ui.notifications.warn("No stock available.");
+
         const price = Number(item.system.price) || 0;
         const totalCost = price * actualQty;
         const buyerCoins = buyer.system.attributes.coin.value ?? 0;
-      
-        if (buyerCoins < totalCost) {
-          return ui.notifications.warn("Not enough coin.");
-        }
-      
-        // Clone item and set quantity
-        const itemData = item.toObject();
-        itemData.system.quantity = actualQty;
-      
-        // Add or update item on buyer
-        const ownedItem = buyer.items.find(i => i.name === item.name);
-        if (ownedItem) {
-          const currentQty = ownedItem.system.quantity ?? 1;
-          await buyer.updateEmbeddedDocuments("Item", [{
-            _id: ownedItem.id,
-            "system.quantity": currentQty + actualQty
-          }]);
-        } else {
-          await buyer.createEmbeddedDocuments("Item", [itemData]);
-        }
-      
-        // Deduct coins
-        const newCoinValue = buyerCoins - totalCost;
-        await buyer.update({ "system.attributes.coin.value": newCoinValue });
-      
-        // Update UI input manually
-        setTimeout(() => {
-          for (const app of Object.values(ui.windows)) {
-            if (app instanceof ActorSheet && app.actor.id === buyer.id) {
-              const input = app.element.find('input[name="system.attributes.coin.value"]');
-              if (input.length) input.val(newCoinValue);
-            }
-          }
-        }, 50);
-      
-        // Reduce stock in shop
-        if (limitedStock) {
-          const newStockQty = availableQty - actualQty;
-          await this.actor.updateEmbeddedDocuments("Item", [{
-            _id: item.id,
-            "system.quantity": newStockQty
-          }]);
-        }
-      
+
+        if (buyerCoins < totalCost) return ui.notifications.warn("Not enough coin.");
+
+        await applyPurchaseToBuyer({
+          buyer,
+          item,
+          quantity: actualQty,
+          totalCost,
+          buyerCoins
+        });
+
+        await decrementShopStock({
+          shopActor: this.actor,
+          itemId: item.id,
+          limitedStock,
+          availableQty,
+          purchasedQty: actualQty
+        });
+
         ui.notifications.info(`You bought ${actualQty} ${item.name} for ${totalCost} Coin.`);
       });
 
