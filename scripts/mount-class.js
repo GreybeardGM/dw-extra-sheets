@@ -24,15 +24,46 @@ export function defineMountSheet(baseClass) {
       const mount = system.mount;
 
       mount.active ??= false;
+      mount.species ??= "";
       mount.load ??= { label: game.i18n.localize("DWES.Load"), value: 0, max: 0 };
       mount.load.label ??= game.i18n.localize("DWES.Load");
       mount.load.value ??= 0;
       mount.load.max ??= 0;
 
+      mount.owner ??= {};
+      mount.owner.UUID ??= "";
+      if (mount.owner.UUID) {
+        try {
+          const ownerActor = await fromUuid(mount.owner.UUID);
+          if (ownerActor?.name && ownerActor?.img) {
+            mount.owner.name = ownerActor.name;
+            mount.owner.img = ownerActor.img;
+          }
+        } catch (e) {
+          console.warn("Invalid owner UUID on mount:", mount.owner);
+        }
+      }
+
       context.mount = mount;
 
       await prepareEquipmentItems(context, this.actor);
       return context;
+    }
+
+    activateListeners(html) {
+      super.activateListeners(html);
+      if (!this.options.editable) return;
+
+      html.find(".set-owner-button").click(async (ev) => {
+        ev.preventDefault();
+        const char = game.user.character;
+        if (!char) {
+          ui.notifications.warn("You don't have an assigned character.");
+          return;
+        }
+        await this.actor.update({ "system.mount.owner.UUID": char.uuid });
+        this.render();
+      });
     }
   };
 }
