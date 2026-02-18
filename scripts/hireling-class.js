@@ -30,7 +30,7 @@ export function defineHirelingSheet(baseClass) {
       const h = system.hireling;    
       h.loyalty ??= { value: 0, cost: "" };
       h.skills ??= {};
-      for (let i = 1; i <= 5; i++) {
+      for (let i = 1; i <= 6; i++) {
         h.skills[`skill${i}`] ??= { label: "", value: 0, max: 0 };
       }
       h.active ??= false;
@@ -44,6 +44,7 @@ export function defineHirelingSheet(baseClass) {
         h.skills.skill3,
         h.skills.skill4,
         h.skills.skill5,
+        h.skills.skill6,
       ];
       context.active = h.active;
       context.rank = h.rank;

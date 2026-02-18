@@ -33,6 +33,11 @@ Whether you're managing loyal Hirelings, brave Animal Companions, or cunning Mer
   - GM notes section
   - ⚠️ Requires ownership of the actor to initiate purchases (item handling is safeguarded internally)
 
+- 🐎 **Mount Sheet**
+  A focused sheet for mounts. Features:
+  - Load tracking with value and maximum
+  - Compatibility with items and NPC moves
+
 ---
 
 ## ⚙️ Compatibility
@@ -83,7 +88,6 @@ _(Additional translations welcome!)_
 
 ## 🛠 Planned Features
 
-- 🐴 **Mount Sheet** with carrying capacity and travel traits
 - ⭐ **Monster Sheet Plus** – a future expansion of the default NPC sheet
 
 ---

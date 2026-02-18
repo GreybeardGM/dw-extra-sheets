@@ -3,6 +3,7 @@ import { defineHirelingSheet } from "./hireling-class.js";
 import { defineAnimalCompanionSheet } from "./animal-companion-class.js";
 import { defineStashSheet } from "./stash-class.js";
 import { defineShopSheet } from "./shop-class.js";
+import { defineMountSheet } from "./mount-class.js";
 import { useHirelingSkill, resetHirelingSkills } from "./utils/hireling-utils.js";
 
 Hooks.once("ready", () => {
@@ -47,6 +48,14 @@ Hooks.once("ready", () => {
   ActorsCollection.registerSheet("dw-extra-sheets", ShopSheet, {
     types: ["npc"],
     label: "Shop Sheet",
+    makeDefault: false
+  });
+
+  // Register Mount Sheet
+  const MountSheet = defineMountSheet(DwActorSheet);
+  ActorsCollection.registerSheet("dw-extra-sheets", MountSheet, {
+    types: ["npc"],
+    label: "Mount Sheet",
     makeDefault: false
   });
 
