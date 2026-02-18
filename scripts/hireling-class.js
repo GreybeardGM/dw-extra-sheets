@@ -56,14 +56,8 @@ export function defineHirelingSheet(baseClass) {
         hirelingSkills.push({ key, ...h.skills[key] });
       }
 
-      const hirelingEntries = [...hirelingSkills];
-      if (h.weight.showWeight) {
-        hirelingEntries.push({ key: "weight", ...h.weight, isWeight: true });
-      }
-    
       context.loyalty = [h.loyalty.value, h.loyalty.cost];
       context.skills = hirelingSkills;
-      context.hirelingEntries = hirelingEntries;
       context.hirelingWeight = h.weight;
       context.active = h.active;
       context.rank = h.rank;
