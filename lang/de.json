@@ -18,5 +18,8 @@
   "DWES.ShopConfig": "Shop-Konfiguration",
   "DWES.LimitedStock": "Begrenzter Vorrat",
   "DWES.Wares": "Warenangebot",
-  "DWES.GMNotes": "Notizen (SL)"
+  "DWES.GMNotes": "Notizen (SL)",
+  "DWES.ActiveMount": "Aktives Reittier",
+  "DWES.Mount": "Reittier",
+  "DWES.Load": "Last"
 }
