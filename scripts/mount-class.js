@@ -18,17 +18,23 @@ export function defineMountSheet(baseClass) {
 
     async getData(options) {
       const context = await super.getData(options);
-      const system = this.actor.system;
 
-      system.mount ??= {};
-      const mount = system.mount;
+      await prepareEquipmentItems(context, this.actor);
+
+      context.system.mount ??= {};
+      const mount = context.system.mount;
 
       mount.active ??= false;
       mount.species ??= "";
       mount.load ??= { label: game.i18n.localize("DWES.Load"), value: 0, max: 0 };
       mount.load.label ??= game.i18n.localize("DWES.Load");
-      mount.load.value ??= 0;
       mount.load.max ??= 0;
+
+      mount.load.value = Number(context.weight?.value ?? 0);
+      const loadMax = Number(mount.load.max ?? 0);
+      const loadValue = Number(mount.load.value ?? 0);
+      mount.load.encumbered = loadValue > loadMax;
+      mount.load.overencumbered = loadValue > loadMax + 2;
 
       mount.owner ??= {};
       mount.owner.UUID ??= "";
@@ -46,7 +52,6 @@ export function defineMountSheet(baseClass) {
 
       context.mount = mount;
 
-      await prepareEquipmentItems(context, this.actor);
       return context;
     }
 
