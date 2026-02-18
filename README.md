@@ -35,7 +35,7 @@ Whether you're managing loyal Hirelings, brave Animal Companions, or cunning Mer
 
 - 🐎 **Mount Sheet**
   A focused sheet for mounts. Features:
-  - Load tracking with value and maximum
+  - Weight tracking with value and maximum
   - Compatibility with items and NPC moves
 
 ---

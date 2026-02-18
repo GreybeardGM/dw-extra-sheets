@@ -26,15 +26,15 @@ export function defineMountSheet(baseClass) {
 
       mount.active ??= false;
       mount.species ??= "";
-      mount.load ??= { label: game.i18n.localize("DWES.Load"), value: 0, max: 0 };
-      mount.load.label ??= game.i18n.localize("DWES.Load");
-      mount.load.max ??= 0;
+      mount.weight ??= { label: game.i18n.localize("DWES.Weight"), value: 0, max: 0 };
+      mount.weight.label ??= game.i18n.localize("DWES.Weight");
+      mount.weight.max ??= 0;
 
-      mount.load.value = Number(context.weight?.value ?? 0);
-      const loadMax = Number(mount.load.max ?? 0);
-      const loadValue = Number(mount.load.value ?? 0);
-      mount.load.encumbered = loadValue > loadMax;
-      mount.load.overencumbered = loadValue > loadMax + 2;
+      mount.weight.value = Number(context.weight?.value ?? 0);
+      const weightMax = Number(mount.weight.max ?? 0);
+      const weightValue = Number(mount.weight.value ?? 0);
+      mount.weight.encumbered = weightValue > weightMax;
+      mount.weight.overencumbered = weightValue > weightMax + 2;
 
       mount.owner ??= {};
       mount.owner.UUID ??= "";

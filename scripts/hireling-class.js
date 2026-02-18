@@ -35,16 +35,16 @@ export function defineHirelingSheet(baseClass) {
       for (let i = 1; i <= 5; i++) {
         h.skills[`skill${i}`] ??= { label: "", value: 0, max: 0 };
       }
-      h.load ??= {};
-      h.load.showLoad ??= false;
-      h.load.max ??= 0;
-      h.load.label = game.i18n.localize("DWES.Load");
+      h.weight ??= {};
+      h.weight.showWeight ??= false;
+      h.weight.max ??= 0;
+      h.weight.label = game.i18n.localize("DWES.Weight");
 
-      h.load.value = Number(context.weight?.value ?? 0);
-      const loadMax = Number(h.load.max ?? 0);
-      const loadValue = Number(h.load.value ?? 0);
-      h.load.encumbered = loadValue > loadMax;
-      h.load.overencumbered = loadValue > loadMax + 2;
+      h.weight.value = Number(context.weight?.value ?? 0);
+      const weightMax = Number(h.weight.max ?? 0);
+      const weightValue = Number(h.weight.value ?? 0);
+      h.weight.encumbered = weightValue > weightMax;
+      h.weight.overencumbered = weightValue > weightMax + 2;
 
       h.active ??= false;
       h.rank ??= 0;
@@ -57,14 +57,14 @@ export function defineHirelingSheet(baseClass) {
       }
 
       const hirelingEntries = [...hirelingSkills];
-      if (h.load.showLoad) {
-        hirelingEntries.push({ key: "load", ...h.load, isLoad: true });
+      if (h.weight.showWeight) {
+        hirelingEntries.push({ key: "weight", ...h.weight, isWeight: true });
       }
     
       context.loyalty = [h.loyalty.value, h.loyalty.cost];
       context.skills = hirelingSkills;
       context.hirelingEntries = hirelingEntries;
-      context.hirelingLoad = h.load;
+      context.hirelingWeight = h.weight;
       context.active = h.active;
       context.rank = h.rank;
       context.hirelingClass = h.hirelingClass;
