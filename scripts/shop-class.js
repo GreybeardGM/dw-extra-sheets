@@ -1,4 +1,4 @@
-import { prepareEquipmentItems } from "./utils/items.js";
+import { prepareEquipmentItems, sortItemTypes } from "./utils/items.js";
 
 export function defineShopSheet(baseClass) {
   return class ShopSheet extends baseClass {
@@ -36,16 +36,11 @@ export function defineShopSheet(baseClass) {
       const allItems = context.equipment;
     
       // Get unique itemTypes actually present and sort them
-      const ITEM_TYPE_ORDER = [
-        "weapon", "armor", "dungeongear", "poison", "meal",
-        "service", "transport", "bribe", "giftsfinery", "hoard", "landbuilding"
-      ];
       const typeSet = new Set();
       for (let item of allItems) {
         if (item.system?.itemType) typeSet.add(item.system.itemType);
       }
-      const filterTypes = Array.from(typeSet);
-      filterTypes.sort((a, b) => ITEM_TYPE_ORDER.indexOf(a) - ITEM_TYPE_ORDER.indexOf(b));
+      const filterTypes = sortItemTypes(Array.from(typeSet));
       context.filterTypes = filterTypes;
 
       // Provide Type Labels

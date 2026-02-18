@@ -56,3 +56,21 @@ export async function prepareEquipmentItems(context, actor) {
 
   context.equipment = equipment;
 }
+
+const ITEM_TYPE_ORDER = [
+  "weapon", "armor", "dungeongear", "poison", "meal",
+  "service", "transport", "bribe", "giftsfinery", "hoard", "landbuilding"
+];
+
+function getTypeRank(itemType) {
+  const rank = ITEM_TYPE_ORDER.indexOf(itemType);
+  return rank === -1 ? Number.MAX_SAFE_INTEGER : rank;
+}
+
+export function sortItemTypes(itemTypes) {
+  return [...itemTypes].sort((a, b) => {
+    const rankDiff = getTypeRank(a) - getTypeRank(b);
+    if (rankDiff !== 0) return rankDiff;
+    return a.localeCompare(b);
+  });
+}
