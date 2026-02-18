@@ -54,11 +54,11 @@
           </h2>
           <div class="cell cell--abilities">
             <ol class="abilities-list">
-              <li class="ability flexrow">
+              <li class="ability flexrow cell--load {{#if mount.load.encumbered}}encumbered{{/if}} {{#if mount.load.overencumbered}}overencumbered{{/if}}">
                 <label for="system.mount.load.value" class="cell__title" title="{{system.mount.load.label}}">
                   {{system.mount.load.label}}
                 </label>
-                <input class="ability-mod" type="number" name="system.mount.load.value" value="{{system.mount.load.value}}" data-dtype="Number"/>
+                <input class="ability-mod" type="number" name="system.mount.load.value" value="{{system.mount.load.value}}" data-dtype="Number" readonly />
                 <div class="skill-max-wrapper">
                   <input class="ability-value skill-max-input" type="number" name="system.mount.load.max" value="{{system.mount.load.max}}" data-dtype="Number" />
                   <span class="skill-max-label">{{localize "DWES.Max"}}</span>
