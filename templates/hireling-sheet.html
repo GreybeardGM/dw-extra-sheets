@@ -76,29 +76,47 @@
           </h2>
           <div class="cell cell--abilities">
             <ol class="abilities-list">
-              {{#each system.hireling.skills as |skill key|}}
+              {{#each hirelingEntries as |skill|}}
                 {{#if (or ../options.configureSkills skill.label)}}
-                  <li class="ability flexrow" data-skill="{{key}}">
+                  <li class="ability flexrow {{#if skill.isLoad}}cell--load {{#if skill.encumbered}}encumbered{{/if}} {{#if skill.overencumbered}}overencumbered{{/if}}{{/if}}" data-skill="{{skill.key}}">
                     <label
-                      for="system.hireling.skills.{{key}}.value"
-                      class="cell__title skill-use rollable"
-                      data-skill="{{key}}"
+                      for="{{#if skill.isLoad}}system.hireling.load.value{{else}}system.hireling.skills.{{skill.key}}.value{{/if}}"
+                      class="cell__title {{#unless skill.isLoad}}skill-use rollable{{/unless}}"
+                      data-skill="{{skill.key}}"
                       title="{{skill.label}}"
                     >
                       {{#if ../options.configureSkills}}
-                        <input class="skill-label" type="text" name="system.hireling.skills.{{key}}.label" value="{{skill.label}}" placeholder="Skill Label" />
+                        {{#if skill.isLoad}}
+                          <span>{{skill.label}}</span>
+                        {{else}}
+                          <input class="skill-label" type="text" name="system.hireling.skills.{{skill.key}}.label" value="{{skill.label}}" placeholder="Skill Label" />
+                        {{/if}}
                       {{else}}
                         {{skill.label}}
                       {{/if}}
                     </label>
-                    <input class="ability-mod" type="number" name="system.hireling.skills.{{key}}.value" value="{{skill.value}}" data-dtype="Number"/>
+                    <input class="ability-mod" type="number" name="{{#if skill.isLoad}}system.hireling.load.value{{else}}system.hireling.skills.{{skill.key}}.value{{/if}}" value="{{skill.value}}" data-dtype="Number" {{#if skill.isLoad}}readonly{{/if}}/>
                     <div class="skill-max-wrapper">
-                      <input class="ability-value skill-max-input" type="number" name="system.hireling.skills.{{key}}.max" value="{{skill.max}}" data-dtype="Number" />
-                      <span class="skill-max-label">Max</span>
+                      <input class="ability-value skill-max-input" type="number" name="{{#if skill.isLoad}}system.hireling.load.max{{else}}system.hireling.skills.{{skill.key}}.max{{/if}}" value="{{skill.max}}" data-dtype="Number" />
+                      <span class="skill-max-label">{{localize "DWES.Max"}}</span>
                     </div>
+                    {{#if skill.isLoad}}
+                      <input type="hidden" name="system.hireling.load.label" value="{{skill.label}}" />
+                    {{/if}}
                   </li>
                 {{/if}}
               {{/each}}
+              {{#if options.configureSkills}}
+                <li class="ability flexrow">
+                  <label class="cell__title">{{localize "DWES.Load"}}</label>
+                  <div class="skill-max-wrapper">
+                    <label class="field--checkbox">
+                      <input type="checkbox" name="system.hireling.load.showLoad" {{checked hirelingLoad.showLoad}} />
+                      {{localize "DWES.ShowLoad"}}
+                    </label>
+                  </div>
+                </li>
+              {{/if}}
             </ol>
           </div>
         </div>
