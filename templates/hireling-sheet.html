@@ -101,7 +101,7 @@
               {{/each}}
 
               {{#if (or options.configureSkills hirelingWeight.showWeight)}}
-                <li class="ability flexrow cell--weight {{#if hirelingWeight.encumbered}}encumbered{{/if}} {{#if hirelingWeight.overencumbered}}overencumbered{{/if}}" data-skill="weight">
+                <li class="ability flexrow {{#if hirelingWeight.encumbered}}encumbered{{/if}} {{#if hirelingWeight.overencumbered}}overencumbered{{/if}}" data-skill="weight">
                   <label for="system.hireling.weight.value" class="cell__title" title="{{hirelingWeight.label}}">
                     {{hirelingWeight.label}}
                   </label>
