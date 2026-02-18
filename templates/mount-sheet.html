@@ -21,6 +21,33 @@
 
       {{!-- Attributes --}}
       <section class="sheet-attributes sheet-attributes--npc">
+        <div class="cell cell--damage">
+          <label class="cell__title">
+            {{localize "DWES.Species"}}
+            <i class="fas fa-paw attribute-icon"></i>
+          </label>
+          <input type="text" name="system.mount.species" value="{{system.mount.species}}" data-dtype="String"/>
+        </div>
+
+        <div class="owner-wrapper">
+          {{#if mount.owner.UUID}}
+            <div class="cell owner-name">
+              <label class="cell__title">
+                {{localize "DWES.Owner"}}
+                <i class="fas fa-user attribute-icon"></i>
+              </label>
+              <input type="text" value="{{mount.owner.name}}" disabled />
+            </div>
+            <div class="cell owner-image">
+              <img src="{{mount.owner.img}}" class="owner-img" alt="Owner Image"/>
+            </div>
+          {{else}}
+            <button type="button" class="set-owner-button">
+              <i class="fas fa-link"></i> {{localize "DWES.AssignOwner"}}
+            </button>
+          {{/if}}
+        </div>
+
         <div class="skills col-override">
           <h2 class="skill_header">
             <label>{{localize "DWES.Mount"}}</label>
