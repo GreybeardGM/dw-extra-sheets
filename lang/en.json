@@ -21,5 +21,6 @@
   "DWES.GMNotes": "GM Notes",
   "DWES.ActiveMount": "Active Mount",
   "DWES.Mount": "Mount",
-  "DWES.Load": "Load"
+  "DWES.Load": "Load",
+  "DWES.ShowLoad": "Show Load"
 }

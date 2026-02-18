@@ -200,17 +200,17 @@
 }
 
 /* Mount load status (auto-calculated from carried weight) */
-.dw-extra-sheet.mount .cell--load input[name="system.mount.load.value"][readonly] {
+.dw-extra-sheet .cell--load input[readonly] {
   background: rgba(255, 255, 255, 0.06);
   cursor: default;
 }
 
-.dw-extra-sheet.mount .cell--load.encumbered {
+.dw-extra-sheet .cell--load.encumbered {
   border: 1px solid #bb8f00;
   border-radius: 4px;
 }
 
-.dw-extra-sheet.mount .cell--load.overencumbered {
+.dw-extra-sheet .cell--load.overencumbered {
   border-color: #b52020;
   box-shadow: inset 0 0 0 1px rgba(181, 32, 32, 0.35);
 }

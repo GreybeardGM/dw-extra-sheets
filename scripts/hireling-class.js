@@ -22,6 +22,8 @@ export function defineHirelingSheet(baseClass) {
     async getData(options) {
       const context = await super.getData(options);
       const system = this.actor.system;
+
+      await prepareEquipmentItems(context, this.actor);
     
       // === Initialize blank hireling structure if missing ===
       system.hireling ??= {};
@@ -30,28 +32,43 @@ export function defineHirelingSheet(baseClass) {
       const h = system.hireling;    
       h.loyalty ??= { value: 0, cost: "" };
       h.skills ??= {};
-      for (let i = 1; i <= 6; i++) {
+      for (let i = 1; i <= 5; i++) {
         h.skills[`skill${i}`] ??= { label: "", value: 0, max: 0 };
       }
+      h.load ??= {};
+      h.load.showLoad ??= false;
+      h.load.max ??= 0;
+      h.load.label = game.i18n.localize("DWES.Load");
+
+      h.load.value = Number(context.weight?.value ?? 0);
+      const loadMax = Number(h.load.max ?? 0);
+      const loadValue = Number(h.load.value ?? 0);
+      h.load.encumbered = loadValue > loadMax;
+      h.load.overencumbered = loadValue > loadMax + 2;
+
       h.active ??= false;
       h.rank ??= 0;
       h.hirelingClass ??= "";
+
+      const hirelingSkills = [];
+      for (let i = 1; i <= 5; i++) {
+        const key = `skill${i}`;
+        hirelingSkills.push({ key, ...h.skills[key] });
+      }
+
+      const hirelingEntries = [...hirelingSkills];
+      if (h.load.showLoad) {
+        hirelingEntries.push({ key: "load", ...h.load, isLoad: true });
+      }
     
       context.loyalty = [h.loyalty.value, h.loyalty.cost];
-      context.skills = [
-        h.skills.skill1,
-        h.skills.skill2,
-        h.skills.skill3,
-        h.skills.skill4,
-        h.skills.skill5,
-        h.skills.skill6,
-      ];
+      context.skills = hirelingSkills;
+      context.hirelingEntries = hirelingEntries;
+      context.hirelingLoad = h.load;
       context.active = h.active;
       context.rank = h.rank;
       context.hirelingClass = h.hirelingClass;
 
-      await prepareEquipmentItems(context, this.actor);
-      
       return context;
     }
 

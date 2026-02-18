@@ -12,7 +12,10 @@ export async function useHirelingSkill(actor, skillKey) {
 // Reset all skill points to max
 export async function resetHirelingSkills(actor) {
   const updates = {};
-  for (let [key, skill] of Object.entries(actor.system.hireling.skills || {})) {
+  for (let i = 1; i <= 5; i++) {
+    const key = `skill${i}`;
+    const skill = actor.system.hireling.skills?.[key];
+    if (!skill) continue;
     updates[`system.hireling.skills.${key}.value`] = skill.max;
   }
   await actor.update(updates);

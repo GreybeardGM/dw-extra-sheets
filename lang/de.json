@@ -21,5 +21,6 @@
   "DWES.GMNotes": "Notizen (SL)",
   "DWES.ActiveMount": "Aktives Reittier",
   "DWES.Mount": "Reittier",
-  "DWES.Load": "Last"
+  "DWES.Load": "Last",
+  "DWES.ShowLoad": "Last anzeigen"
 }
