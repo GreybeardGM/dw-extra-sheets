@@ -3,7 +3,7 @@
   "title": "Dungeon World Extra Sheets DEV",
   "description": "Devepolment version!",
   "author": "GreybeardGM",
-  "version": "0.4.2",
+  "version": "0.4.3",
   "type": "module",
   "system": "dungeonworld",
   "compatibility": {
@@ -15,7 +15,8 @@
     "styles/fixes.css"
   ],
   "esmodules": [
-    "scripts/sheet-register.js"
+    "scripts/sheet-register.js",
+    "scripts/Herculean-Appetites-Extension.js"
   ],
   "languages": [
     {
