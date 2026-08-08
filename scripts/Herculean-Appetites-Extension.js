@@ -5,25 +5,26 @@ const APPETITE_FORMULA = "1d6[appetite-d6]+1d8[appetite-d8]";
 const CONTROL_CLASS = "dw-herculean-appetites-toggle";
 const RESULT_CLASS = "dw-herculean-appetites-result";
 
-function text(key) {
-  const german = game.i18n.lang?.toLowerCase().startsWith("de");
-  const strings = german
-    ? {
-        active: "1d6 + 1d8",
-        inactive: "2d6",
-        title: "Zwischen Normalwurf und Herculean Appetites wechseln",
-        complication: "Dein rücksichtsloses Streben verursacht eine Komplikation.",
-        clear: "Keine zusätzliche Appetit-Komplikation."
-      }
-    : {
-        active: "1d6 + 1d8",
-        inactive: "2d6",
-        title: "Toggle between a normal roll and Herculean Appetites",
-        complication: "Your heedless pursuit causes a complication.",
-        clear: "No additional appetite complication."
-      };
+const STRINGS = {
+  de: {
+    active: "1d6 + 1d8",
+    inactive: "2d6",
+    title: "Zwischen Normalwurf und Herculean Appetites wechseln",
+    complication: "Dein rücksichtsloses Streben verursacht eine Komplikation.",
+    clear: "Keine zusätzliche Appetit-Komplikation."
+  },
+  en: {
+    active: "1d6 + 1d8",
+    inactive: "2d6",
+    title: "Toggle between a normal roll and Herculean Appetites",
+    complication: "Your heedless pursuit causes a complication.",
+    clear: "No additional appetite complication."
+  }
+};
 
-  return strings[key];
+function localize(key) {
+  const language = game.i18n.lang?.toLowerCase().startsWith("de") ? "de" : "en";
+  return STRINGS[language][key];
 }
 
 function hasHerculeanAppetites(actor) {
@@ -44,10 +45,6 @@ function hasHerculeanAppetites(actor) {
   });
 }
 
-function getActorFormula(actor) {
-  return String(actor.system.attributes?.rollFormula?.value ?? "");
-}
-
 function isAppetiteFormula(formula) {
   const normalized = formula.toLowerCase();
   return normalized.includes("[appetite-d6]")
@@ -55,7 +52,7 @@ function isAppetiteFormula(formula) {
 }
 
 async function toggleHerculeanAppetites(actor) {
-  const currentFormula = getActorFormula(actor);
+  const currentFormula = String(actor.system.attributes?.rollFormula?.value ?? "");
   const active = isAppetiteFormula(currentFormula);
   const state = actor.getFlag(MODULE_ID, FLAG_KEY) ?? {};
 
@@ -63,7 +60,6 @@ async function toggleHerculeanAppetites(actor) {
     await actor.update({
       "system.attributes.rollFormula.value": state.previousFormula ?? "",
       [`flags.${MODULE_ID}.${FLAG_KEY}`]: {
-        enabled: false,
         previousFormula: ""
       }
     });
@@ -73,38 +69,36 @@ async function toggleHerculeanAppetites(actor) {
   await actor.update({
     "system.attributes.rollFormula.value": APPETITE_FORMULA,
     [`flags.${MODULE_ID}.${FLAG_KEY}`]: {
-      enabled: true,
       previousFormula: currentFormula
     }
   });
-}
-
-function getRootElement(html) {
-  if (html instanceof HTMLElement) return html;
-  if (html?.[0] instanceof HTMLElement) return html[0];
-  return null;
 }
 
 function renderAppetiteControl(app, html) {
   const actor = app.actor;
   if (!actor?.isOwner || !hasHerculeanAppetites(actor)) return;
 
-  const root = getRootElement(html);
+  const root = html instanceof HTMLElement
+    ? html
+    : html?.[0] instanceof HTMLElement
+      ? html[0]
+      : null;
   const target = root?.querySelector(".cell--roll-formula")
     ?? root?.querySelector(".sheet-resources");
   if (!target || target.querySelector(`.${CONTROL_CLASS}`)) return;
 
-  const active = isAppetiteFormula(getActorFormula(actor));
+  const formula = String(actor.system.attributes?.rollFormula?.value ?? "");
+  const active = isAppetiteFormula(formula);
   const button = document.createElement("button");
   button.type = "button";
   button.className = `${CONTROL_CLASS}${active ? " is-active" : ""}`;
-  button.title = text("title");
+  button.title = localize("title");
   button.setAttribute("aria-pressed", String(active));
 
   const icon = document.createElement("i");
   icon.className = active ? "fa-solid fa-fire" : "fa-solid fa-dice";
   const label = document.createElement("span");
-  label.textContent = text(active ? "active" : "inactive");
+  label.textContent = localize(active ? "active" : "inactive");
   button.append(icon, label);
 
   button.addEventListener("click", async event => {
@@ -138,8 +132,9 @@ function readDieResult(root, flavor, denomination) {
 
 function evaluateAppetiteRoll(message) {
   const content = message.content ?? "";
-  if (!content.toLowerCase().includes("appetite-d6")
-    || !content.toLowerCase().includes("appetite-d8")
+  const normalizedContent = content.toLowerCase();
+  if (!normalizedContent.includes("appetite-d6")
+    || !normalizedContent.includes("appetite-d8")
     || content.includes(RESULT_CLASS)) return;
 
   const template = document.createElement("template");
@@ -157,7 +152,7 @@ function evaluateAppetiteRoll(message) {
   const complication = d6 > d8;
   const result = document.createElement("div");
   result.className = `row ${RESULT_CLASS}${complication ? " complication" : " clear"}`;
-  result.textContent = text(complication ? "complication" : "clear");
+  result.textContent = localize(complication ? "complication" : "clear");
 
   const roll = card.querySelector(".roll");
   if (roll) roll.before(result);
