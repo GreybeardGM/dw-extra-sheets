@@ -5,28 +5,22 @@ const APPETITE_FORMULA = "1d6[appetite-d6]+1d8[appetite-d8]";
 const CONTROL_CLASS = "dw-herculean-appetites-toggle";
 const RESULT_CLASS = "dw-herculean-appetites-result";
 
-function text(key, data = {}) {
+function text(key) {
   const german = game.i18n.lang?.toLowerCase().startsWith("de");
   const strings = german
     ? {
-        active: "Herculean Appetites: 1d6 + 1d8",
-        inactive: "Normalwurf: 2d6",
-        enabled: "Herculean Appetites aktiviert.",
-        disabled: "Normalwurf aktiviert.",
+        active: "1d6 + 1d8",
+        inactive: "2d6",
         title: "Zwischen Normalwurf und Herculean Appetites wechseln",
-        complication: `d6 (${data.d6}) > d8 (${data.d8}): Der SL führt eine Komplikation oder Gefahr ein.`,
-        clear: `d6 (${data.d6}) ≤ d8 (${data.d8}): Keine zusätzliche Appetit-Komplikation.`,
-        unreadable: "Herculean Appetites: Die Einzelwürfel konnten nicht ausgewertet werden."
+        complication: "Dein rücksichtsloses Streben verursacht eine Komplikation.",
+        clear: "Keine zusätzliche Appetit-Komplikation."
       }
     : {
-        active: "Herculean Appetites: 1d6 + 1d8",
-        inactive: "Normal roll: 2d6",
-        enabled: "Herculean Appetites enabled.",
-        disabled: "Normal roll enabled.",
+        active: "1d6 + 1d8",
+        inactive: "2d6",
         title: "Toggle between a normal roll and Herculean Appetites",
-        complication: `d6 (${data.d6}) > d8 (${data.d8}): The GM introduces a complication or danger.`,
-        clear: `d6 (${data.d6}) ≤ d8 (${data.d8}): No additional appetite complication.`,
-        unreadable: "Herculean Appetites: Could not evaluate the individual dice."
+        complication: "Your heedless pursuit causes a complication.",
+        clear: "No additional appetite complication."
       };
 
   return strings[key];
@@ -73,7 +67,6 @@ async function toggleHerculeanAppetites(actor) {
         previousFormula: ""
       }
     });
-    ui.notifications.info(text("disabled"));
     return;
   }
 
@@ -84,7 +77,6 @@ async function toggleHerculeanAppetites(actor) {
       previousFormula: currentFormula
     }
   });
-  ui.notifications.info(text("enabled"));
 }
 
 function getRootElement(html) {
@@ -157,19 +149,15 @@ function evaluateAppetiteRoll(message) {
 
   const d6 = readDieResult(template.content, "appetite-d6", 6);
   const d8 = readDieResult(template.content, "appetite-d8", 8);
-  const complication = d6 !== null && d8 !== null && d6 > d8;
+  if (d6 === null || d8 === null) {
+    console.warn(`${MODULE_ID} | Could not evaluate Herculean Appetites dice`, { message });
+    return;
+  }
+
+  const complication = d6 > d8;
   const result = document.createElement("div");
   result.className = `row ${RESULT_CLASS}${complication ? " complication" : " clear"}`;
-
-  const icon = document.createElement("i");
-  icon.className = complication
-    ? "fa-solid fa-triangle-exclamation"
-    : "fa-solid fa-drumstick-bite";
-  const label = document.createElement("strong");
-  label.textContent = d6 === null || d8 === null
-    ? text("unreadable")
-    : text(complication ? "complication" : "clear", { d6, d8 });
-  result.append(icon, label);
+  result.textContent = text(complication ? "complication" : "clear");
 
   const roll = card.querySelector(".roll");
   if (roll) roll.before(result);
@@ -178,49 +166,6 @@ function evaluateAppetiteRoll(message) {
   message.updateSource({ content: template.innerHTML });
 }
 
-function addStyles() {
-  if (document.getElementById("dw-herculean-appetites-styles")) return;
-
-  const style = document.createElement("style");
-  style.id = "dw-herculean-appetites-styles";
-  style.textContent = `
-    .${CONTROL_CLASS} {
-      align-items: center;
-      display: flex;
-      flex: 1 0 100%;
-      gap: 0.4rem;
-      justify-content: center;
-      margin-top: 0.25rem;
-    }
-
-    .${CONTROL_CLASS}.is-active {
-      background: #7a271a;
-      border-color: #b8462f;
-      color: #fff;
-    }
-
-    .${RESULT_CLASS} {
-      align-items: center;
-      border-left: 4px solid #637563;
-      display: flex;
-      gap: 0.5rem;
-      margin: 0.35rem 0;
-      padding: 0.4rem 0.5rem;
-    }
-
-    .${RESULT_CLASS}.clear {
-      background: rgb(70 100 70 / 15%);
-    }
-
-    .${RESULT_CLASS}.complication {
-      background: rgb(150 35 20 / 18%);
-      border-left-color: #a32618;
-    }
-  `;
-  document.head.append(style);
-}
-
-Hooks.once("init", addStyles);
 Hooks.on("renderActorSheet", renderAppetiteControl);
 Hooks.on("preCreateChatMessage", evaluateAppetiteRoll);
 
