@@ -2,8 +2,8 @@ const MODULE_ID = "dw-extra-sheets";
 const FLAG_KEY = "herculeanAppetites";
 const MOVE_SOURCE_ID = "7EpgYJc7Isi37fD5";
 const APPETITE_FORMULA = "1d6[appetite-d6]+1d8[appetite-d8]";
-const CONTROL_CLASS = "dw-herculean-appetites-toggle";
-const RESULT_CLASS = "dw-herculean-appetites-result";
+const CONTROL_CLASS = "dwes-appetites-toggle";
+const RESULT_CLASS = "dwes-appetites-result";
 
 const STRINGS = {
   de: {
@@ -91,9 +91,18 @@ function renderAppetiteControl(app, html) {
   const active = isAppetiteFormula(formula);
   const button = document.createElement("button");
   button.type = "button";
-  button.className = `${CONTROL_CLASS}${active ? " is-active" : ""}`;
+  button.className = `${CONTROL_CLASS}${active ? ` ${CONTROL_CLASS}--active` : ""}`;
   button.title = localize("title");
   button.setAttribute("aria-pressed", String(active));
+
+  if (active) {
+    // Inline !important is intentional: Dungeon World Night Mode applies the same priority.
+    button.style.setProperty(
+      "background-color",
+      "var(--dwes-appetites-active-background)",
+      "important"
+    );
+  }
 
   const icon = document.createElement("i");
   icon.className = active ? "fa-solid fa-fire" : "fa-solid fa-dice";
@@ -151,8 +160,9 @@ function evaluateAppetiteRoll(message) {
 
   const complication = d6 > d8;
   const result = document.createElement("div");
-  result.className = `row ${RESULT_CLASS}${complication ? " complication" : " clear"}`;
-  result.textContent = localize(complication ? "complication" : "clear");
+  const modifier = complication ? "complication" : "clear";
+  result.className = `row ${RESULT_CLASS} ${RESULT_CLASS}--${modifier}`;
+  result.textContent = localize(modifier);
 
   const roll = card.querySelector(".roll");
   if (roll) roll.before(result);
