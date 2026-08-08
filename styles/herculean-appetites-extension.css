@@ -1,3 +1,19 @@
+:root {
+  /* Muted colors for the active appetite state. Adjust these variables to retheme it. */
+  --dw-ha-active-background: #70433f;
+  --dw-ha-active-border: #98635e;
+  --dw-ha-active-text: #f3e9e7;
+  --dw-ha-active-hover: #7d4b46;
+
+  /* Quiet green feedback for rolls without an additional complication. */
+  --dw-ha-clear-background: rgb(79 104 87 / 22%);
+  --dw-ha-clear-border: #718c78;
+
+  /* The complication notice shares the muted palette of the active button. */
+  --dw-ha-complication-background: rgb(112 67 63 / 24%);
+  --dw-ha-complication-border: #98635e;
+}
+
 .dw-herculean-appetites-toggle {
   align-items: center;
   display: flex;
@@ -9,18 +25,33 @@
   width: auto;
 }
 
-.dw-herculean-appetites-toggle.is-active {
-  background: #7a271a;
-  border-color: #b8462f;
-  color: #fff;
+/* Include the sheet and button selectors so the Dungeon World theme cannot mask the state. */
+.dungeonworld.sheet button.dw-herculean-appetites-toggle.is-active {
+  background: var(--dw-ha-active-background);
+  border-color: var(--dw-ha-active-border);
+  color: var(--dw-ha-active-text);
+}
+
+.dungeonworld.sheet button.dw-herculean-appetites-toggle.is-active:hover,
+.dungeonworld.sheet button.dw-herculean-appetites-toggle.is-active:focus-visible {
+  background: var(--dw-ha-active-hover);
+  border-color: var(--dw-ha-active-border);
+  color: var(--dw-ha-active-text);
 }
 
 .dw-herculean-appetites-result {
-  border-left: 3px solid #637563;
+  border-left: 3px solid;
+  border-radius: 2px;
   margin: 0.25rem 0;
   padding: 0.2rem 0.4rem;
 }
 
 .dw-herculean-appetites-result.complication {
-  border-left-color: #a32618;
+  background: var(--dw-ha-complication-background);
+  border-left-color: var(--dw-ha-complication-border);
+}
+
+.dw-herculean-appetites-result.clear {
+  background: var(--dw-ha-clear-background);
+  border-left-color: var(--dw-ha-clear-border);
 }
