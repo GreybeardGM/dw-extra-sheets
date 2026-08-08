@@ -1,0 +1,26 @@
+.dw-herculean-appetites-toggle {
+  align-items: center;
+  display: flex;
+  flex: 0 0 auto;
+  gap: 0.35rem;
+  justify-content: center;
+  margin-top: 0.25rem;
+  padding-inline: 0.5rem;
+  width: auto;
+}
+
+.dw-herculean-appetites-toggle.is-active {
+  background: #7a271a;
+  border-color: #b8462f;
+  color: #fff;
+}
+
+.dw-herculean-appetites-result {
+  border-left: 3px solid #637563;
+  margin: 0.25rem 0;
+  padding: 0.2rem 0.4rem;
+}
+
+.dw-herculean-appetites-result.complication {
+  border-left-color: #a32618;
+}
