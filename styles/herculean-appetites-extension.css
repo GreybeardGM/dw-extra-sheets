@@ -15,21 +15,12 @@
 }
 
 .dw-herculean-appetites-toggle {
-  align-items: center;
-  display: flex;
-  flex: 0 0 auto;
-  gap: 0.35rem;
-  justify-content: center;
   margin-top: 0.25rem;
-  padding-inline: 0.5rem;
-  width: auto;
 }
 
 /* Include the sheet and button selectors so the Dungeon World theme cannot mask the state. */
 .dungeonworld.sheet button.dw-herculean-appetites-toggle.is-active {
-  background: var(--dw-ha-active-background);
   border-color: var(--dw-ha-active-border);
-  color: var(--dw-ha-active-text);
 }
 
 .dungeonworld.sheet button.dw-herculean-appetites-toggle.is-active:hover,
