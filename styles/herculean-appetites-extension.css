@@ -1,48 +1,38 @@
 :root {
-  /* Muted colors for the active appetite state. Adjust these variables to retheme it. */
-  --dw-ha-active-background: #70433f;
-  --dw-ha-active-border: #98635e;
-  --dw-ha-active-text: #f3e9e7;
-  --dw-ha-active-hover: #7d4b46;
+  /* Active button palette. The background is applied inline to override Night Mode. */
+  --dwes-appetites-active-background: #70433f;
+  --dwes-appetites-active-border: #98635e;
+  --dwes-appetites-active-text: #f3e9e7;
 
-  /* Quiet green feedback for rolls without an additional complication. */
-  --dw-ha-clear-background: rgb(79 104 87 / 22%);
-  --dw-ha-clear-border: #718c78;
-
-  /* The complication notice shares the muted palette of the active button. */
-  --dw-ha-complication-background: rgb(112 67 63 / 24%);
-  --dw-ha-complication-border: #98635e;
+  /* Roll result palettes. */
+  --dwes-appetites-clear-background: rgb(79 104 87 / 22%);
+  --dwes-appetites-clear-border: #718c78;
+  --dwes-appetites-complication-background: rgb(112 67 63 / 24%);
+  --dwes-appetites-complication-border: #98635e;
 }
 
-.dw-herculean-appetites-toggle {
+.dwes-appetites-toggle {
   margin-top: 0.25rem;
 }
 
-/* Include the sheet and button selectors so the Dungeon World theme cannot mask the state. */
-.dungeonworld.sheet button.dw-herculean-appetites-toggle.is-active {
-  border-color: var(--dw-ha-active-border);
+.dwes-appetites-toggle--active {
+  border-color: var(--dwes-appetites-active-border);
+  color: var(--dwes-appetites-active-text);
 }
 
-.dungeonworld.sheet button.dw-herculean-appetites-toggle.is-active:hover,
-.dungeonworld.sheet button.dw-herculean-appetites-toggle.is-active:focus-visible {
-  background: var(--dw-ha-active-hover);
-  border-color: var(--dw-ha-active-border);
-  color: var(--dw-ha-active-text);
-}
-
-.dw-herculean-appetites-result {
+.dwes-appetites-result {
   border-left: 3px solid;
   border-radius: 2px;
   margin: 0.25rem 0;
   padding: 0.2rem 0.4rem;
 }
 
-.dw-herculean-appetites-result.complication {
-  background: var(--dw-ha-complication-background);
-  border-left-color: var(--dw-ha-complication-border);
+.dwes-appetites-result--complication {
+  background: var(--dwes-appetites-complication-background);
+  border-left-color: var(--dwes-appetites-complication-border);
 }
 
-.dw-herculean-appetites-result.clear {
-  background: var(--dw-ha-clear-background);
-  border-left-color: var(--dw-ha-clear-border);
+.dwes-appetites-result--clear {
+  background: var(--dwes-appetites-clear-background);
+  border-left-color: var(--dwes-appetites-clear-border);
 }
