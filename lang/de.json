@@ -22,5 +22,11 @@
   "DWES.ActiveMount": "Aktives Reittier",
   "DWES.Mount": "Reittier",
   "DWES.Weight": "Gewicht",
-  "DWES.ShowWeight": "Gewicht anzeigen"
+  "DWES.ShowWeight": "Gewicht anzeigen",
+  "DWES.HirelingRollTitle": "Gefolgsleute befehligen",
+  "DWES.HirelingRollTrigger": "Wenn sich ein Gefolgsmann aufgrund deiner Befehle in einer gefährlichen, erniedrigenden oder schlichtweg verrückten Situation wiederfindet, würfle +Loyalität.",
+  "DWES.HirelingRollSuccess": "Sie bleiben standhaft und führen den Befehl aus.",
+  "DWES.HirelingRollPartial": "Vorerst gehorchen sie, doch später stellen sie ernsthafte Forderungen. Erfülle sie, sonst verlässt dich der Gefolgsmann im größten Streit.",
+  "DWES.HirelingRollFailure": "Sie weigern sich, geraten in Panik oder verschlimmern die Lage.",
+  "DWES.HirelingRollNoResult": "Kein Dungeon-World-Würfelergebnis entspricht dieser Summe."
 }
