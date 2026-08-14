@@ -72,9 +72,9 @@ export function defineHirelingSheet(baseClass) {
       if (!this.options.editable) return;
 
       // Loyalty Roll
-      html.find(".hireling-loyalty-roll").click(ev => {
+      html.find(".hireling-loyalty-roll").click(async ev => {
         ev.preventDefault();
-        this._rollHirelingLoyalty();
+        await this._rollHirelingLoyalty();
       });
       
       // Config button
@@ -120,22 +120,22 @@ export function defineHirelingSheet(baseClass) {
       });
 
       if (!resultEntry) {
-        ui.notifications.error("No Dungeon World roll result matches this total.");
+        ui.notifications.error(game.i18n.localize("DWES.HirelingRollNoResult"));
         return;
       }
 
       const [resultType, resultRange] = resultEntry;
       const resultDetails = {
-        success: "They stand firm and carry out the order.",
-        partial: "They do it for now, but come back with serious demands later. Meet them or the hireling quits on the worst terms.",
-        failure: "They refuse, panic, or make things worse."
+        success: game.i18n.localize("DWES.HirelingRollSuccess"),
+        partial: game.i18n.localize("DWES.HirelingRollPartial"),
+        failure: game.i18n.localize("DWES.HirelingRollFailure")
       }[resultType] ?? "";
 
       const templateData = {
         actor,
         image: "icons/skills/social/thumbsup-approval-like.webp",
-        title: "Order Hirelings",
-        trigger: "When a hireling finds themselves in a dangerous, degrading, or just flat-out crazy situation due to your orders, roll +Loyalty.",
+        title: game.i18n.localize("DWES.HirelingRollTitle"),
+        trigger: game.i18n.localize("DWES.HirelingRollTrigger"),
         result: resultType,
         resultLabel: game.i18n.localize(resultRange.label ?? resultType),
         resultDetails,
@@ -144,7 +144,8 @@ export function defineHirelingSheet(baseClass) {
       };
 
       const template = "systems/dungeonworld/templates/chat/chat-move.html";
-      const { renderTemplate } = foundry.applications.handlebars;
+      const renderTemplate = globalThis.renderTemplate
+        ?? globalThis.foundry?.applications?.handlebars?.renderTemplate;
       const content = await renderTemplate(template, templateData);
       const chatData = {
         user: game.user.id,
