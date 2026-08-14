@@ -1,9 +1,9 @@
 {
   "id": "dw-extra-sheets",
-  "title": "Dungeon World Extra Sheets DEV",
-  "description": "<h2>🧪 Development Version</h2><p><strong>Dungeon World Extra Sheets</strong> expands Dungeon World with dedicated actor sheets for Hirelings, Animal Companions, Stashes, Merchants, and Mounts.</p><p>Purpose-built controls support skills, loyalty, inventory, purchases, carrying weight, and NPC moves. A Herculean Appetites helper also switches the Barbarian roll formula and marks additional complications directly in chat.</p><p>Includes English and German localization for Foundry VTT 12 and 13.</p>",
+  "title": "Dungeon World Extra Sheets",
+  "description": "<p><strong>Dungeon World Extra Sheets</strong> expands Dungeon World with dedicated actor sheets for Hirelings, Animal Companions, Stashes, Merchants, and Mounts.</p><p>Purpose-built controls support skills, loyalty, inventory, purchases, carrying weight, and NPC moves. A Herculean Appetites helper also switches the Barbarian roll formula and marks additional complications directly in chat.</p><p>Includes English and German localization for Foundry VTT 12 and 13.</p>",
   "author": "GreybeardGM",
-  "version": "0.4.6",
+  "version": "0.4.7",
   "type": "module",
   "system": "dungeonworld",
   "compatibility": {
@@ -32,6 +32,6 @@
     }
   ],
   "url": "https://github.com/GreybeardGM/dw-extra-sheets",
-  "manifest": "https://raw.githubusercontent.com/GreybeardGM/dw-extra-sheets/dev/module.json",
-  "download": "https://github.com/GreybeardGM/dw-extra-sheets/archive/refs/heads/dev.zip"
+  "manifest": "https://raw.githubusercontent.com/GreybeardGM/dw-extra-sheets/v0.4.7/module.json",
+  "download": "https://github.com/GreybeardGM/dw-extra-sheets/archive/refs/tags/v0.4.7.zip"
 }
