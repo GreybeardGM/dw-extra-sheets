@@ -1,5 +1,11 @@
 # Changelog
 
+## [0.4.7] – 2026-08-14
+
+### Changed
+- The Loyalty button on the Hireling sheet now uses Dungeon World's native roll-result configuration.
+- Localized the Hireling loyalty roll chat card and its error notification in English and German.
+
 ## [0.4.6] – 2026-08-08
 
 ### Added
