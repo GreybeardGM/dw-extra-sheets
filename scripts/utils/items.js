@@ -39,6 +39,11 @@ export async function prepareEquipmentItems(context, actor) {
   };
 
   const equipment = [];
+  const coinValue = Number(context.system?.attributes?.coin?.value ?? 0);
+  const coinWeightSetting = Number(game.settings.get("dungeonworld", "coinWeight"));
+  const coinWeight = coinWeightSetting > 0 ? Math.floor(coinValue / coinWeightSetting) : 0;
+  let equipmentWeight = 0;
+
   for (let i of context.items) {
     const item = actor.items.get(i._id);
     enrichmentOptions.relativeTo = item ?? null;
@@ -51,8 +56,41 @@ export async function prepareEquipmentItems(context, actor) {
     // Robust default image (V10–V13+)
     i.img = i.img || CONFIG?.Token?.defaults?.texture?.src || "icons/svg/item-bag.svg";
 
-    if (i.type === "equipment") equipment.push(i);
+    if (i.type === "equipment") {
+      equipment.push(i);
+
+      // Mirrors Dungeon World character weight behavior:
+      // no equipped-filter, quantity * weight for all equipment entries.
+      const itemQuantity = Number(i.system?.quantity);
+      const itemWeight = Number(i.system?.weight);
+      if (itemWeight > 0) {
+        equipmentWeight += itemQuantity * itemWeight;
+      }
+    }
   }
 
   context.equipment = equipment;
+  context.weight = {
+    coin: coinWeight,
+    equipment: equipmentWeight,
+    value: coinWeight + equipmentWeight,
+  };
+}
+
+const ITEM_TYPE_ORDER = [
+  "weapon", "armor", "dungeongear", "poison", "meal",
+  "service", "transport", "bribe", "giftsfinery", "hoard", "landbuilding"
+];
+
+function getTypeRank(itemType) {
+  const rank = ITEM_TYPE_ORDER.indexOf(itemType);
+  return rank === -1 ? Number.MAX_SAFE_INTEGER : rank;
+}
+
+export function sortItemTypes(itemTypes) {
+  return [...itemTypes].sort((a, b) => {
+    const rankDiff = getTypeRank(a) - getTypeRank(b);
+    if (rankDiff !== 0) return rankDiff;
+    return a.localeCompare(b);
+  });
 }

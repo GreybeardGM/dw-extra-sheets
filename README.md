@@ -1,7 +1,7 @@
 # 🐉 Dungeon World: Extra Sheets
 
-**A module for Foundry VTT (v12+) that adds enhanced character sheets for special NPC types in Dungeon World.**  
-Whether you're managing loyal Hirelings, brave Animal Companions, or cunning Merchants, this module brings tailored UI support and functionality to enrich your Dungeon World experience.
+**A module for Foundry VTT v12–13 that adds focused actor sheets and character-sheet helpers to Dungeon World.**  
+Manage Hirelings, Animal Companions, Stashes, Merchants, and Mounts with interfaces tailored to their roles, and handle the Barbarian's Herculean Appetites without changing roll formulas by hand.
 
 ---
 
@@ -12,33 +12,46 @@ Whether you're managing loyal Hirelings, brave Animal Companions, or cunning Mer
   - Skill management
   - Compatibility with items and NPC moves
   - Loyalty rolls
-  - Various QoL features to simplify hireling handling
+  - Optional weight calculation
+  - Quality-of-life features for hireling management
 
 - 🐾 **Animal Companion Sheet**  
-  For rangers and druids who fight alongside furry (or scaly) friends. Features:
+  For rangers and druids who fight alongside furry or scaly friends. Includes:
   - Basic stat tracking
   - Strengths, Trainings, and Weaknesses
   - Compatibility with items and NPC moves
-  - Various QoL features for animal companions
+  - Quality-of-life features for animal companions
 
 - 🎁 **Stash Sheet**  
-  Simplified storage sheet for loot piles, hideouts, or treasure chests. Features:
+  A simplified storage sheet for loot piles, hideouts, or treasure chests. Includes:
   - Item category filters
 
 - 🛍️ **Merchant Sheet**  
-  A minimal but functional sheet for shopkeeping NPCs. Features:
+  A minimal sheet for shopkeeping NPCs. Includes:
   - Item category filters
-  - Players can buy items and add them to their character
-  - Unlimited stock (GM-defined)
-  - GM notes section
-  - ⚠️ Requires ownership of the actor to initiate purchases (item handling is safeguarded internally)
+  - Player purchases transferred directly to the character
+  - Unlimited GM-defined stock
+  - GM notes
+  - Ownership safeguards for purchases
+
+- 🐎 **Mount Sheet**  
+  A focused sheet for mounts. Includes:
+  - Current and maximum weight tracking
+  - Compatibility with items and NPC moves
+
+- 🔥 **Herculean Appetites Helper**  
+  A character-sheet control for Barbarians with the Herculean Appetites move. Includes:
+  - A compact `2d6` / `1d6 + 1d8` toggle
+  - Preservation of an existing custom roll formula
+  - Automatic evaluation of the appetite dice
+  - A concise, localized complication result in the existing chat card
 
 ---
 
 ## ⚙️ Compatibility
 
-- ✔️ Foundry VTT version 12 or later
-- ✔️ Fully compatible with the official [Dungeon World System](https://foundryvtt.com/packages/dungeonworld)
+- ✔️ Foundry VTT versions 12 and 13
+- ✔️ [Dungeon World System](https://foundryvtt.com/packages/dungeonworld)
 
 ---
 
@@ -46,7 +59,7 @@ Whether you're managing loyal Hirelings, brave Animal Companions, or cunning Mer
 
 ### Foundry VTT
 
-1. Install the module using this manifest URL:  
+1. Install the module using this manifest URL:
 
 [https://raw.githubusercontent.com/GreybeardGM/dw-extra-sheets/main/module.json](https://raw.githubusercontent.com/GreybeardGM/dw-extra-sheets/main/module.json)
 
@@ -56,20 +69,17 @@ Whether you're managing loyal Hirelings, brave Animal Companions, or cunning Mer
 
 ## 🔧 Usage
 
-To use an extra sheet:
+### Extra sheets
 
 1. Create or open an NPC actor.
-2. Open the **Sheet Configuration** from the actor's sheet (click the gear icon).
-3. Choose one of the available extra sheet types from the dropdown menu.
+2. Open **Sheet Configuration** from the actor sheet.
+3. Choose one of the available extra sheet types.
 
----
+### Herculean Appetites
 
-## 🧪 Development Notes
-
-This module is under active development. Feedback, suggestions, and contributions are very welcome!
-
-- Author: [GreybeardGM](https://github.com/GreybeardGM)
-- Repository: [github.com/GreybeardGM/dungeonworld-extra-sheets](https://github.com/GreybeardGM/dungeonworld-extra-sheets)
+1. Add the **Herculean Appetites** move to a character.
+2. Open the character sheet and use the button beside the roll formula.
+3. Roll moves normally; the selected formula remains active until switched back.
 
 ---
 
@@ -77,13 +87,21 @@ This module is under active development. Feedback, suggestions, and contribution
 
 - 🇬🇧 English
 - 🇩🇪 German  
-_(Additional translations welcome!)_
+_(Additional translations are welcome.)_
+
+---
+
+## 🧪 Development
+
+This module is under active development. Feedback, suggestions, and contributions are welcome.
+
+- Author: [GreybeardGM](https://github.com/GreybeardGM)
+- Repository: [github.com/GreybeardGM/dw-extra-sheets](https://github.com/GreybeardGM/dw-extra-sheets)
 
 ---
 
 ## 🛠 Planned Features
 
-- 🐴 **Mount Sheet** with carrying capacity and travel traits
 - ⭐ **Monster Sheet Plus** – a future expansion of the default NPC sheet
 
 ---

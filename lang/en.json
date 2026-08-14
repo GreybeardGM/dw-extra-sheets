@@ -18,5 +18,15 @@
   "DWES.ShopConfig": "Shop Configuration",
   "DWES.LimitedStock": "Limited Stock",
   "DWES.Wares": "Wares",
-  "DWES.GMNotes": "GM Notes"
+  "DWES.GMNotes": "GM Notes",
+  "DWES.ActiveMount": "Active Mount",
+  "DWES.Mount": "Mount",
+  "DWES.Weight": "Weight",
+  "DWES.ShowWeight": "Show Weight",
+  "DWES.HirelingRollTitle": "Order Hirelings",
+  "DWES.HirelingRollTrigger": "When a hireling finds themselves in a dangerous, degrading, or just flat-out crazy situation due to your orders, roll +Loyalty.",
+  "DWES.HirelingRollSuccess": "They stand firm and carry out the order.",
+  "DWES.HirelingRollPartial": "They do it for now, but come back with serious demands later. Meet them or the hireling quits on the worst terms.",
+  "DWES.HirelingRollFailure": "They refuse, panic, or make things worse.",
+  "DWES.HirelingRollNoResult": "No Dungeon World roll result matches this total."
 }

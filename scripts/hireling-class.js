@@ -22,6 +22,8 @@ export function defineHirelingSheet(baseClass) {
     async getData(options) {
       const context = await super.getData(options);
       const system = this.actor.system;
+
+      await prepareEquipmentItems(context, this.actor);
     
       // === Initialize blank hireling structure if missing ===
       system.hireling ??= {};
@@ -33,24 +35,34 @@ export function defineHirelingSheet(baseClass) {
       for (let i = 1; i <= 5; i++) {
         h.skills[`skill${i}`] ??= { label: "", value: 0, max: 0 };
       }
+      h.weight ??= {};
+      h.weight.showWeight ??= false;
+      h.weight.max ??= 0;
+      h.weight.label = game.i18n.localize("DWES.Weight");
+
+      h.weight.value = Number(context.weight?.value ?? 0);
+      const weightMax = Number(h.weight.max ?? 0);
+      const weightValue = Number(h.weight.value ?? 0);
+      h.weight.encumbered = weightValue > weightMax;
+      h.weight.overencumbered = weightValue > weightMax + 2;
+
       h.active ??= false;
       h.rank ??= 0;
       h.hirelingClass ??= "";
-    
+
+      const hirelingSkills = [];
+      for (let i = 1; i <= 5; i++) {
+        const key = `skill${i}`;
+        hirelingSkills.push({ key, ...h.skills[key] });
+      }
+
       context.loyalty = [h.loyalty.value, h.loyalty.cost];
-      context.skills = [
-        h.skills.skill1,
-        h.skills.skill2,
-        h.skills.skill3,
-        h.skills.skill4,
-        h.skills.skill5,
-      ];
+      context.skills = hirelingSkills;
+      context.hirelingWeight = h.weight;
       context.active = h.active;
       context.rank = h.rank;
       context.hirelingClass = h.hirelingClass;
 
-      await prepareEquipmentItems(context, this.actor);
-      
       return context;
     }
 
@@ -60,9 +72,9 @@ export function defineHirelingSheet(baseClass) {
       if (!this.options.editable) return;
 
       // Loyalty Roll
-      html.find(".hireling-loyalty-roll").click(ev => {
+      html.find(".hireling-loyalty-roll").click(async ev => {
         ev.preventDefault();
-        this._rollHirelingLoyalty();
+        await this._rollHirelingLoyalty();
       });
       
       // Config button
@@ -100,44 +112,61 @@ export function defineHirelingSheet(baseClass) {
       const loyalty = actor.system.hireling.loyalty?.value ?? 0;
       const roll = new Roll("2d6 + @loyalty", { loyalty });
       await roll.evaluate({ async: true });
-    
-      let resultType, resultLabel, resultText;
-      if (roll.total >= 10) {
-        resultType = "success";
-        resultLabel = "Success";
-        resultText = "They stand firm and carry out the order.";
-      } else if (roll.total >= 7) {
-        resultType = "partial";
-        resultLabel = "Partial Success";
-        resultText = "They do it for now, but come back with serious demands later. Meet them or the hireling quits on the worst terms.";
-      } else {
-        resultType = "failure";
-        resultLabel = "Failure";
-        resultText = "They refuse, panic, or make things worse.";
-      }
-    
-      const flavor = `
-        <section class="dw-chat-card">
-          <div class="cell cell--chat dw chat-card move-card">
-            <div class="chat-title row flexrow">
-              <img class="item-icon" src="icons/skills/social/thumbsup-approval-like.webp" alt="Order Hirelings"/>
-              <h2 class="cell__title">Order Hirelings</h2>
-            </div>
-            <div class="row"><strong>Trigger:</strong> When a hireling finds themselves in a dangerous, degrading, or just flat-out crazy situation due to your orders, <b>roll +Loyalty</b>.</div>
-            <div class="row result ${resultType}">
-              <div class="result-label">${resultLabel}</div>
-              <div class="result-details">${resultText}</div>
-            </div>
-          </div>
-        </section>
-      `;
-    
-      await roll.toMessage({
-        speaker: ChatMessage.getSpeaker({ actor }),
-        flavor: flavor,
-        sound: CONFIG.sounds.dice
-        // You can add flags or whisper here as well
+
+      const resultEntry = Object.entries(CONFIG.DW.rollResults).find(([, range]) => {
+        const meetsStart = range.start == null || roll.total >= range.start;
+        const meetsEnd = range.end == null || roll.total <= range.end;
+        return meetsStart && meetsEnd;
       });
+
+      if (!resultEntry) {
+        ui.notifications.error(game.i18n.localize("DWES.HirelingRollNoResult"));
+        return;
+      }
+
+      const [resultType, resultRange] = resultEntry;
+      const resultDetails = {
+        success: game.i18n.localize("DWES.HirelingRollSuccess"),
+        partial: game.i18n.localize("DWES.HirelingRollPartial"),
+        failure: game.i18n.localize("DWES.HirelingRollFailure")
+      }[resultType] ?? "";
+
+      const templateData = {
+        actor,
+        image: "icons/skills/social/thumbsup-approval-like.webp",
+        title: game.i18n.localize("DWES.HirelingRollTitle"),
+        trigger: game.i18n.localize("DWES.HirelingRollTrigger"),
+        result: resultType,
+        resultLabel: game.i18n.localize(resultRange.label ?? resultType),
+        resultDetails,
+        roll,
+        rollDw: await roll.render()
+      };
+
+      const template = "systems/dungeonworld/templates/chat/chat-move.html";
+      const renderTemplate = globalThis.renderTemplate
+        ?? globalThis.foundry?.applications?.handlebars?.renderTemplate;
+      const content = await renderTemplate(template, templateData);
+      const chatData = {
+        user: game.user.id,
+        speaker: ChatMessage.getSpeaker({ actor }),
+        content
+      };
+
+      const rollMode = game.settings.get("core", "rollMode");
+      if (["gmroll", "blindroll"].includes(rollMode)) {
+        chatData.whisper = ChatMessage.getWhisperRecipients("GM");
+      }
+      if (rollMode === "selfroll") chatData.whisper = [game.user.id];
+      if (rollMode === "blindroll") chatData.blind = true;
+
+      if (game.dice3d) {
+        await game.dice3d.showForRoll(roll, game.user, true, chatData.whisper, chatData.blind);
+      } else {
+        chatData.sound = CONFIG.sounds.dice;
+      }
+
+      await ChatMessage.create(chatData);
     }
 
   };
