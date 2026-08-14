@@ -55,14 +55,14 @@ export function defineHirelingSheet(baseClass) {
         const key = `skill${i}`;
         hirelingSkills.push({ key, ...h.skills[key] });
       }
-    
+
       context.loyalty = [h.loyalty.value, h.loyalty.cost];
       context.skills = hirelingSkills;
       context.hirelingWeight = h.weight;
       context.active = h.active;
       context.rank = h.rank;
       context.hirelingClass = h.hirelingClass;
-      
+
       return context;
     }
 
