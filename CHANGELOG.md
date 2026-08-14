@@ -1,6 +1,6 @@
 # Changelog
 
-## [0.4.6] – 2026-08-08
+## [0.4.6] – 2026-08-14
 
 ### Added
 - Added optional weight calculation support for Hirelings.
