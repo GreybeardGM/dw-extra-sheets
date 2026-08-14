@@ -100,44 +100,60 @@ export function defineHirelingSheet(baseClass) {
       const loyalty = actor.system.hireling.loyalty?.value ?? 0;
       const roll = new Roll("2d6 + @loyalty", { loyalty });
       await roll.evaluate({ async: true });
-    
-      let resultType, resultLabel, resultText;
-      if (roll.total >= 10) {
-        resultType = "success";
-        resultLabel = "Success";
-        resultText = "They stand firm and carry out the order.";
-      } else if (roll.total >= 7) {
-        resultType = "partial";
-        resultLabel = "Partial Success";
-        resultText = "They do it for now, but come back with serious demands later. Meet them or the hireling quits on the worst terms.";
-      } else {
-        resultType = "failure";
-        resultLabel = "Failure";
-        resultText = "They refuse, panic, or make things worse.";
-      }
-    
-      const flavor = `
-        <section class="dw-chat-card">
-          <div class="cell cell--chat dw chat-card move-card">
-            <div class="chat-title row flexrow">
-              <img class="item-icon" src="icons/skills/social/thumbsup-approval-like.webp" alt="Order Hirelings"/>
-              <h2 class="cell__title">Order Hirelings</h2>
-            </div>
-            <div class="row"><strong>Trigger:</strong> When a hireling finds themselves in a dangerous, degrading, or just flat-out crazy situation due to your orders, <b>roll +Loyalty</b>.</div>
-            <div class="row result ${resultType}">
-              <div class="result-label">${resultLabel}</div>
-              <div class="result-details">${resultText}</div>
-            </div>
-          </div>
-        </section>
-      `;
-    
-      await roll.toMessage({
-        speaker: ChatMessage.getSpeaker({ actor }),
-        flavor: flavor,
-        sound: CONFIG.sounds.dice
-        // You can add flags or whisper here as well
+
+      const resultEntry = Object.entries(CONFIG.DW.rollResults).find(([, range]) => {
+        const meetsStart = range.start == null || roll.total >= range.start;
+        const meetsEnd = range.end == null || roll.total <= range.end;
+        return meetsStart && meetsEnd;
       });
+
+      if (!resultEntry) {
+        ui.notifications.error("No Dungeon World roll result matches this total.");
+        return;
+      }
+
+      const [resultType, resultRange] = resultEntry;
+      const resultDetails = {
+        success: "They stand firm and carry out the order.",
+        partial: "They do it for now, but come back with serious demands later. Meet them or the hireling quits on the worst terms.",
+        failure: "They refuse, panic, or make things worse."
+      }[resultType] ?? "";
+
+      const templateData = {
+        actor,
+        image: "icons/skills/social/thumbsup-approval-like.webp",
+        title: "Order Hirelings",
+        trigger: "When a hireling finds themselves in a dangerous, degrading, or just flat-out crazy situation due to your orders, roll +Loyalty.",
+        result: resultType,
+        resultLabel: game.i18n.localize(resultRange.label ?? resultType),
+        resultDetails,
+        roll,
+        rollDw: await roll.render()
+      };
+
+      const template = "systems/dungeonworld/templates/chat/chat-move.html";
+      const { renderTemplate } = foundry.applications.handlebars;
+      const content = await renderTemplate(template, templateData);
+      const chatData = {
+        user: game.user.id,
+        speaker: ChatMessage.getSpeaker({ actor }),
+        content
+      };
+
+      const rollMode = game.settings.get("core", "rollMode");
+      if (["gmroll", "blindroll"].includes(rollMode)) {
+        chatData.whisper = ChatMessage.getWhisperRecipients("GM");
+      }
+      if (rollMode === "selfroll") chatData.whisper = [game.user.id];
+      if (rollMode === "blindroll") chatData.blind = true;
+
+      if (game.dice3d) {
+        await game.dice3d.showForRoll(roll, game.user, true, chatData.whisper, chatData.blind);
+      } else {
+        chatData.sound = CONFIG.sounds.dice;
+      }
+
+      await ChatMessage.create(chatData);
     }
 
   };
