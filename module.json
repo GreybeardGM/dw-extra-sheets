@@ -1,9 +1,9 @@
 {
   "id": "dw-extra-sheets",
-  "title": "Dungeon World Extra Sheets",
+  "title": "Dungeon World Extra Sheets DEV",
   "description": "<p><strong>Dungeon World Extra Sheets</strong> expands Dungeon World with dedicated actor sheets for Hirelings, Animal Companions, Stashes, Merchants, and Mounts.</p><p>Purpose-built controls support skills, loyalty, inventory, purchases, carrying weight, and NPC moves. A Herculean Appetites helper also switches the Barbarian roll formula and marks additional complications directly in chat.</p><p>Includes English and German localization for Foundry VTT 12 and 13.</p>",
   "author": "GreybeardGM",
-  "version": "0.4.7",
+  "version": "0.4.7-dev",
   "type": "module",
   "system": "dungeonworld",
   "compatibility": {
