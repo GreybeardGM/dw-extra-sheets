@@ -1,5 +1,16 @@
 # Changelog
 
+## [0.4.8-dev.2] – 2026-11-02
+
+### Added
+- Three consecutive recovery pips below each of the six character debilities.
+- Separate actor flags for the six remaining recovery counters (0–3), with owner-only editing.
+- Localized tooltips, keyboard controls, and read-only counters for other viewers.
+
+### Changed
+- Reserved space below the original ability cells for pips, preserving field and modifier-circle positions.
+- Recovery counters are manual and do not toggle the system's debility checkboxes.
+
 ## [0.4.7] – 2026-08-14
 
 ### Added

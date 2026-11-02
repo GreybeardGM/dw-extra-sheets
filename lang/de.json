@@ -1,4 +1,7 @@
 {
+  "DWES.RecoveryRemaining": "{ability}: verbleibende Erholungszeit {count}/3",
+  "DWES.RecoverySet": "{ability}: verbleibende Erholungszeit auf {count} setzen",
+  "DWES.RecoverySaveError": "Die Erholungszeit konnte nicht gespeichert werden.",
   "DWES.ActiveCompanion": "Aktiver Gefährte",
   "DWES.Species": "Spezies",
   "DWES.Owner": "Besitzer",

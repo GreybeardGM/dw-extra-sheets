@@ -1,4 +1,7 @@
 {
+  "DWES.RecoveryRemaining": "{ability}: remaining recovery time {count}/3",
+  "DWES.RecoverySet": "{ability}: set remaining recovery time to {count}",
+  "DWES.RecoverySaveError": "Could not save the recovery time.",
   "DWES.ActiveCompanion": "Active Companion",
   "DWES.Species": "Species",
   "DWES.Owner": "Owner",

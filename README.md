@@ -7,6 +7,11 @@ Manage Hirelings, Animal Companions, Stashes, Merchants, and Mounts with interfa
 
 ## ✨ Features
 
+- **Debility Recovery Pips**
+  Three small pips below each character debility track its remaining recovery time (0–3).
+  Click a pip to fill up to it; click the last filled pip again to reduce the count by one.
+  Only owners can edit the counters, which are saved separately on the actor and do not toggle debilities.
+
 - 📜 **Hireling Sheet**  
   A streamlined sheet for Hirelings. Includes:
   - Skill management
