@@ -1,5 +1,14 @@
 # Changelog
 
+## [0.4.8-dev.3] – 2026-11-04
+
+### Changed
+- Replaced each character debility checkbox with compact recovery pips before its label.
+- Removed the additional pip row and its reserved vertical space.
+- Pip changes now save the recovery counter and the native debility together: 0 clears it, 1–3 activate it.
+- Existing active debilities without a positive counter display three pips; inactive debilities display none.
+- Kept the debility label outside a checkbox label to prevent unintended activation and stale form submissions.
+
 ## [0.4.8-dev.2] – 2026-11-02
 
 ### Added

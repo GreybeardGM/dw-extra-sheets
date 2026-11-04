@@ -4,8 +4,10 @@ const ABILITIES = new Set(["str", "dex", "con", "int", "wis", "cha"]);
 const GROUP_CLASS = "dwes-debility-recovery";
 
 function recoveryValue(actor, ability) {
-  const value = Number(actor.getFlag(MODULE_ID, FLAG_KEY)?.[ability] ?? 0);
-  return Number.isFinite(value) ? Math.min(3, Math.max(0, Math.trunc(value))) : 0;
+  // The system's debility remains authoritative, including for older actors.
+  if (!actor.system.abilities?.[ability]?.debility) return 0;
+  const value = Math.trunc(Number(actor.getFlag(MODULE_ID, FLAG_KEY)?.[ability]));
+  return Number.isFinite(value) && value > 0 ? Math.min(3, value) : 3;
 }
 
 function canEdit(app) {
@@ -39,20 +41,30 @@ function renderDebilityRecovery(app, html) {
 
   for (const cell of root.querySelectorAll(".cell--abilities .abilities-list > .ability[data-ability]")) {
     const ability = cell.dataset.ability;
-    if (!ABILITIES.has(ability) || !cell.querySelector(".ability-debility")) continue;
+    if (!ABILITIES.has(ability)) continue;
 
     const label = cell.querySelector(".ability-rollable")?.textContent.trim() ?? ability;
-    let group = cell.querySelector(`:scope > .${GROUP_CLASS}`);
+    let group = cell.querySelector(`.dwes-debility-control > .${GROUP_CLASS}`);
     if (group) {
       updateGroup(app, group, ability, label, group.dataset.pending === "true");
       continue;
     }
 
-    // CSS reserves space below the original cell without changing its height.
-    // This preserves both its flex layout and the modifier circle's position.
-    cell.classList.add("dwes-has-recovery");
+    const original = cell.querySelector("label.ability-debility");
+    const checkbox = original?.querySelector(`input[name="system.abilities.${ability}.debility"]`);
+    if (!checkbox) continue;
 
-    group = document.createElement("div");
+    // Replace the label as well as its input: buttons inside a checkbox label
+    // would otherwise inherit its click activation behavior.
+    const control = document.createElement("div");
+    control.className = "ability-debility dwes-debility-control";
+    // A text-only label preserves the system's label typography without
+    // associating it with any of the adjacent pip buttons.
+    const caption = document.createElement("label");
+    caption.className = "dwes-debility-label";
+    caption.textContent = original.textContent.trim();
+
+    group = document.createElement("span");
     group.className = GROUP_CLASS;
     group.setAttribute("role", "group");
 
@@ -71,8 +83,11 @@ function renderDebilityRecovery(app, html) {
         group.dataset.pending = "true";
         updateGroup(app, group, ability, label, true);
         try {
-          // Update only this attribute, preserving the other five counters.
-          await actor.update({ [`flags.${MODULE_ID}.${FLAG_KEY}.${ability}`]: next });
+          // Save the counter and the native debility atomically for this actor.
+          await actor.update({
+            [`flags.${MODULE_ID}.${FLAG_KEY}.${ability}`]: next,
+            [`system.abilities.${ability}.debility`]: next > 0
+          });
         } catch (error) {
           console.error(`${MODULE_ID} | Could not update debility recovery`, error);
           ui.notifications.error(game.i18n.localize("DWES.RecoverySaveError"));
@@ -84,7 +99,8 @@ function renderDebilityRecovery(app, html) {
       group.append(button);
     }
 
-    cell.append(group);
+    control.append(group, caption);
+    original.replaceWith(control);
     updateGroup(app, group, ability, label);
   }
 }

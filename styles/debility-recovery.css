@@ -1,32 +1,23 @@
-/* Confined to character ability cells extended by this module. */
-.dungeonworld.sheet .cell--abilities .ability.dwes-has-recovery {
-  position: relative;
-  margin-bottom: 22px;
-  min-width: 0;
+/* Replace only the original debility checkbox, retaining its label and row. */
+.dungeonworld.sheet .ability .dwes-debility-control {
+  gap: 3px;
 }
 
-.dungeonworld.sheet .ability.dwes-has-recovery > .dwes-debility-recovery {
-  position: absolute;
-  top: 100%;
-  left: 0;
-  right: 0;
-  height: 22px;
-  display: flex;
+.dungeonworld.sheet .dwes-debility-control > .dwes-debility-recovery {
+  display: inline-flex;
   align-items: center;
-  gap: 3px;
-  min-width: 0;
-  box-sizing: border-box;
-  padding: 0 8px 6px;
+  gap: 0;
+  flex: 0 0 auto;
 }
 
 .dungeonworld.sheet .dwes-debility-recovery > button.dwes-recovery-pip {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  flex: 0 0 16px;
-  width: 16px;
-  min-width: 16px;
-  height: 16px;
+  flex: 0 0 8px;
+  width: 8px;
+  min-width: 8px;
+  height: 18px;
   min-height: 0;
   margin: 0;
   padding: 0;
@@ -44,8 +35,8 @@
   content: "";
   display: block;
   box-sizing: border-box;
-  width: 9px;
-  height: 9px;
+  width: 6px;
+  height: 6px;
   border: 1px solid currentColor;
   border-radius: 50%;
 }
@@ -56,7 +47,7 @@
 
 .dungeonworld.sheet .dwes-recovery-pip:focus-visible {
   outline: 2px solid currentColor;
-  outline-offset: 1px;
+  outline-offset: 0;
 }
 
 .dungeonworld.sheet .dwes-recovery-pip:disabled {
