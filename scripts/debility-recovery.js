@@ -73,6 +73,14 @@ function renderDebilityRecovery(app, html) {
       button.type = "button";
       button.className = "dwes-recovery-pip";
       button.dataset.pip = String(pip);
+      // Keep the visual independent of Foundry's button pseudo-elements.
+      const circle = document.createElement("span");
+      circle.className = "dwes-recovery-circle";
+      circle.setAttribute("aria-hidden", "true");
+      const dot = document.createElement("span");
+      dot.className = "dwes-recovery-dot";
+      circle.append(dot);
+      button.append(circle);
       button.addEventListener("click", async event => {
         event.preventDefault();
         event.stopPropagation();

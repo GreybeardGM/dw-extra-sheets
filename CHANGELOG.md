@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.4.8-dev.4] – 2026-11-04
+
+### Changed
+- Restyled recovery pips as white circles with black borders and centered blue dots when active.
+- Isolated the pip visuals from Foundry button styles and pseudo-elements, including Dungeon World nightmode.
+- Retained compact inline placement, hover feedback, and a visible keyboard focus indicator.
+
 ## [0.4.8-dev.3] – 2026-11-04
 
 ### Changed

@@ -11,46 +11,64 @@
 }
 
 .dungeonworld.sheet .dwes-debility-recovery > button.dwes-recovery-pip {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  flex: 0 0 8px;
-  width: 8px;
-  min-width: 8px;
-  height: 18px;
-  min-height: 0;
-  margin: 0;
-  padding: 0;
-  border: 0;
-  border-radius: 3px;
-  /* Dungeon World's nightmode sets all button backgrounds/colors !important. */
-  background: transparent !important;
-  color: inherit !important;
-  box-shadow: none;
-  line-height: 1;
-  cursor: pointer;
+  /* Foundry themes and Dungeon World nightmode style buttons, including with
+     !important. Reset just our controls before setting their compact geometry. */
+  all: unset !important;
+  appearance: none !important;
+  display: grid !important;
+  place-items: center !important;
+  box-sizing: border-box !important;
+  flex: 0 0 9px !important;
+  width: 9px !important;
+  min-width: 9px !important;
+  max-width: 9px !important;
+  height: 18px !important;
+  min-height: 18px !important;
+  max-height: 18px !important;
+  cursor: pointer !important;
 }
 
-.dungeonworld.sheet .dwes-recovery-pip::before {
-  content: "";
-  display: block;
+.dungeonworld.sheet .dwes-debility-recovery > button.dwes-recovery-pip::before,
+.dungeonworld.sheet .dwes-debility-recovery > button.dwes-recovery-pip::after {
+  content: none !important;
+  display: none !important;
+}
+
+.dungeonworld.sheet .dwes-recovery-pip > .dwes-recovery-circle {
+  display: grid;
+  place-items: center;
   box-sizing: border-box;
-  width: 6px;
-  height: 6px;
-  border: 1px solid currentColor;
+  width: 8px;
+  height: 8px;
+  border: 1px solid #111;
   border-radius: 50%;
+  background: #fff;
+  pointer-events: none;
 }
 
-.dungeonworld.sheet .dwes-recovery-pip[aria-pressed="true"]::before {
-  background: currentColor;
+.dungeonworld.sheet .dwes-recovery-circle > .dwes-recovery-dot {
+  display: block;
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: #005bbb;
+  opacity: 0;
 }
 
-.dungeonworld.sheet .dwes-recovery-pip:focus-visible {
-  outline: 2px solid currentColor;
-  outline-offset: 0;
+.dungeonworld.sheet .dwes-recovery-pip[aria-pressed="true"] .dwes-recovery-dot {
+  opacity: 1;
 }
 
-.dungeonworld.sheet .dwes-recovery-pip:disabled {
-  cursor: default;
-  opacity: 0.6;
+.dungeonworld.sheet .dwes-recovery-pip:not(:disabled):hover > .dwes-recovery-circle {
+  box-shadow: 0 0 0 1px #005bbb;
+}
+
+.dungeonworld.sheet .dwes-debility-recovery > button.dwes-recovery-pip:focus-visible {
+  outline: 2px solid #005bbb !important;
+  outline-offset: 0 !important;
+}
+
+.dungeonworld.sheet .dwes-debility-recovery > button.dwes-recovery-pip:disabled {
+  cursor: default !important;
+  opacity: 0.65 !important;
 }
