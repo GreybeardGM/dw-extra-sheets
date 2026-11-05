@@ -14,21 +14,19 @@ function canEdit(app) {
   return app.actor.isOwner && app.isEditable;
 }
 
-function updateGroup(app, group, ability, label, pending = false) {
+function updateControl(app, button, ability, label, pending = false) {
   const value = recoveryValue(app.actor, ability);
   const description = game.i18n.format("DWES.RecoveryRemaining", { ability: label, count: value });
-  group.title = description;
-  group.setAttribute("aria-label", description);
-
-  for (const button of group.querySelectorAll("button")) {
-    const pip = Number(button.dataset.pip);
-    const target = pip === value ? pip - 1 : pip;
-    const title = game.i18n.format("DWES.RecoverySet", { ability: label, count: target });
-    button.setAttribute("aria-pressed", String(pip <= value));
-    button.setAttribute("aria-label", title);
-    button.title = title;
-    button.disabled = pending || !canEdit(app);
-  }
+  const next = value === 0 ? 3 : value - 1;
+  const action = game.i18n.format("DWES.RecoverySet", { ability: label, count: next });
+  button.title = `${description}\n${action}`;
+  button.setAttribute("aria-label", `${description}. ${action}`);
+  button.setAttribute("aria-pressed", String(value > 0));
+  button.dataset.value = String(value);
+  button.disabled = pending || !canEdit(app);
+  button.querySelector("img").src = foundry.utils.getRoute(
+    `modules/${MODULE_ID}/assets/icons/debility-recovery-${value}.svg`
+  );
 }
 
 function renderDebilityRecovery(app, html) {
@@ -44,9 +42,9 @@ function renderDebilityRecovery(app, html) {
     if (!ABILITIES.has(ability)) continue;
 
     const label = cell.querySelector(".ability-rollable")?.textContent.trim() ?? ability;
-    let group = cell.querySelector(`.dwes-debility-control > .${GROUP_CLASS}`);
-    if (group) {
-      updateGroup(app, group, ability, label, group.dataset.pending === "true");
+    const existing = cell.querySelector(".dwes-debility-control .dwes-recovery-cycle");
+    if (existing) {
+      updateControl(app, existing, ability, label, existing.dataset.pending === "true");
       continue;
     }
 
@@ -59,57 +57,53 @@ function renderDebilityRecovery(app, html) {
     const control = document.createElement("div");
     control.className = "ability-debility dwes-debility-control";
     // A text-only label preserves the system's label typography without
-    // associating it with any of the adjacent pip buttons.
+    // associating it with the adjacent recovery button.
     const caption = document.createElement("label");
     caption.className = "dwes-debility-label";
     caption.textContent = original.textContent.trim();
 
-    group = document.createElement("span");
+    const group = document.createElement("span");
     group.className = GROUP_CLASS;
-    group.setAttribute("role", "group");
+    const button = document.createElement("button");
+    button.type = "button";
+    button.className = "dwes-recovery-cycle";
+    // Static SVG assets live inside the module; getRoute handles URL prefixes.
+    const icon = document.createElement("img");
+    icon.className = "dwes-recovery-icon";
+    icon.alt = "";
+    icon.setAttribute("aria-hidden", "true");
+    icon.width = 16;
+    icon.height = 16;
+    icon.draggable = false;
+    button.append(icon);
+    button.addEventListener("click", async event => {
+      event.preventDefault();
+      event.stopPropagation();
+      if (!canEdit(app) || button.dataset.pending === "true") return;
 
-    for (let pip = 1; pip <= 3; pip++) {
-      const button = document.createElement("button");
-      button.type = "button";
-      button.className = "dwes-recovery-pip";
-      button.dataset.pip = String(pip);
-      // Keep the visual independent of Foundry's button pseudo-elements.
-      const circle = document.createElement("span");
-      circle.className = "dwes-recovery-circle";
-      circle.setAttribute("aria-hidden", "true");
-      const dot = document.createElement("span");
-      dot.className = "dwes-recovery-dot";
-      circle.append(dot);
-      button.append(circle);
-      button.addEventListener("click", async event => {
-        event.preventDefault();
-        event.stopPropagation();
-        if (!canEdit(app) || group.dataset.pending === "true") return;
-
-        const current = recoveryValue(actor, ability);
-        const next = current === pip ? pip - 1 : pip;
-        group.dataset.pending = "true";
-        updateGroup(app, group, ability, label, true);
-        try {
-          // Save the counter and the native debility atomically for this actor.
-          await actor.update({
-            [`flags.${MODULE_ID}.${FLAG_KEY}.${ability}`]: next,
-            [`system.abilities.${ability}.debility`]: next > 0
-          });
-        } catch (error) {
-          console.error(`${MODULE_ID} | Could not update debility recovery`, error);
-          ui.notifications.error(game.i18n.localize("DWES.RecoverySaveError"));
-        } finally {
-          delete group.dataset.pending;
-          updateGroup(app, group, ability, label);
-        }
-      });
-      group.append(button);
-    }
+      const current = recoveryValue(actor, ability);
+      const next = current === 0 ? 3 : current - 1;
+      button.dataset.pending = "true";
+      updateControl(app, button, ability, label, true);
+      try {
+        // Save the counter and the native debility atomically for this actor.
+        await actor.update({
+          [`flags.${MODULE_ID}.${FLAG_KEY}.${ability}`]: next,
+          [`system.abilities.${ability}.debility`]: next > 0
+        });
+      } catch (error) {
+        console.error(`${MODULE_ID} | Could not update debility recovery`, error);
+        ui.notifications.error(game.i18n.localize("DWES.RecoverySaveError"));
+      } finally {
+        delete button.dataset.pending;
+        updateControl(app, button, ability, label);
+      }
+    });
+    group.append(button);
 
     control.append(group, caption);
     original.replaceWith(control);
-    updateGroup(app, group, ability, label);
+    updateControl(app, button, ability, label);
   }
 }
 

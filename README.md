@@ -7,12 +7,12 @@ Manage Hirelings, Animal Companions, Stashes, Merchants, and Mounts with interfa
 
 ## ✨ Features
 
-- **Debility Recovery Pips**
-  Three compact pips replace each character debility checkbox and track its remaining recovery time (0–3).
-  Click a pip to fill up to it; click the last filled pip again to reduce the count by one.
-  Zero pips clear the debility; one to three pips activate it, saving both values together.
-  Existing active debilities without a positive recovery count display three pips; inactive debilities display none.
-  Only owners can edit the pips.
+- **Debility Recovery Circle**
+  A segmented circle replaces each character debility checkbox and tracks its remaining recovery time (0–3).
+  Each click cycles through empty → full → two thirds → one third → empty (0 → 3 → 2 → 1 → 0).
+  An empty circle clears the debility; any blue filling activates it, saving both values together.
+  Existing active debilities without a positive recovery count display a full circle; inactive debilities display an empty circle.
+  Only owners can edit the circle. Its four SVG states are bundled in `assets/icons/` inside this module.
 
 - 📜 **Hireling Sheet**  
   A streamlined sheet for Hirelings. Includes:

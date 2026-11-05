@@ -1,5 +1,15 @@
 # Changelog
 
+## [0.4.8-dev.5] – 2026-11-05
+
+### Changed
+- Replaced each set of three recovery pips with one larger, segmented recovery circle.
+- Each click cycles 0 → 3 → 2 → 1 → 0, updating the native debility together with its counter.
+- Kept existing counter values, ownership checks, tooltips, and keyboard controls.
+
+### Added
+- Four self-contained SVG state icons in `assets/icons/`, loaded through Foundry's route helper for URL-prefix support.
+
 ## [0.4.8-dev.4] – 2026-11-04
 
 ### Changed
