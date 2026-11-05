@@ -14,17 +14,10 @@
   /* Foundry themes and Dungeon World nightmode style buttons, including with
      !important. Reset just our controls before setting their compact geometry. */
   all: unset !important;
-  appearance: none !important;
-  display: grid !important;
   place-items: center !important;
   box-sizing: border-box !important;
-  flex: 0 0 18px !important;
-  width: 18px !important;
-  min-width: 18px !important;
-  max-width: 18px !important;
-  height: 18px !important;
-  min-height: 18px !important;
-  max-height: 18px !important;
+  flex: 0 0 25px !important;
+  height: 25px !important;
   border-radius: 50% !important;
   cursor: pointer !important;
 }
@@ -39,12 +32,8 @@
   all: unset !important;
   display: block !important;
   box-sizing: border-box !important;
-  width: 16px !important;
-  min-width: 16px !important;
-  max-width: 16px !important;
-  height: 16px !important;
-  min-height: 16px !important;
-  max-height: 16px !important;
+  width: 25px !important;
+  height: 25px !important;
   border-radius: 50% !important;
   pointer-events: none !important;
 }
