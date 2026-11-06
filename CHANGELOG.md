@@ -1,16 +1,40 @@
 # Changelog
 
-## [0.8.4] – Date unknown
+## [0.4.8] – Date unknown
 
 ### Added
-- Dedicated NPC sheets for Hirelings, Animal Companions, Merchants, Stashes and Mounts, with role-specific skills, inventory, ownership and carrying-weight controls.
-- Item category filters for storage and merchant inventories, plus merchant purchases and stock controls.
-- Optional weight tracking for Hirelings.
-- A Herculean Appetites toggle for character sheets that preserves custom roll formulas and reports appetite complications in chat.
-- Debility recovery circles on character sheets, with owner-editable recovery counters synchronized with the native debility state.
-- English and German localization.
+- Debility recovery circles on character sheets, with owner-editable recovery counters synchronized with the native debility state and localized tooltips.
 
 ### Changed and fixed
-- Added Foundry VTT v13 compatibility alongside v12.
-- Integrated Hireling loyalty rolls with Dungeon World's native roll results and localized chat output.
-- Improved sheet layout and theme compatibility, including nightmode styling for character controls.
+- Improved character-control styling and nightmode compatibility while retaining keyboard focus and read-only states.
+- Isolated module styles from unrelated sheets and chat interfaces.
+
+## [0.4.7] – 2026-08-14
+
+### Added
+- Added optional weight calculation support for Hirelings.
+- Added a separately initialized Herculean Appetites extension for character actors that have the move.
+  - Added a compact sheet toggle between the normal `2d6` roll and the marked `1d6 + 1d8` appetite roll.
+  - Added automatic evaluation of the marked dice and a localized chat result for an additional complication.
+  - Added a dedicated stylesheet for the extension.
+
+### Changed
+- The Loyalty button on the Hireling sheet now uses Dungeon World's native roll-result configuration.
+- Localized the Hireling loyalty roll chat card and its error notification in English and German.
+- Implemented targeted performance upgrades and general code cleanup for improved maintainability.
+
+## [0.4.1] – 2025-10-17
+
+### Changed
+- Updated compatibility for Foundry VTT v13.
+
+## [0.4.0] – 2025-07-17
+
+### Added
+- Initial public release of the module.
+- Hireling Sheet with skill management and loyalty rolling.
+- Animal Companion Sheet with strengths, trainings, and weaknesses.
+- Merchant Sheet with buying functionality and category filters.
+- Stash Sheet for simple item storage.
+- English and German localization.
+
