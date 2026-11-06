@@ -11,7 +11,7 @@
     "verified": "13.350"
   },
   "styles": [
-    "styles/DWES-extra-sheets.css",
+    "styles/DWES-npc.css",
     "styles/DWES-sheet-fixes.css",
     "styles/DWES-chat.css",
     "styles/DWES-character-sheet.css"

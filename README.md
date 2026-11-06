@@ -104,12 +104,12 @@ _(Additional translations are welcome.)_
 
 All stylesheet filenames start with `DWES` for easier identification in browser developer tools:
 
-- `styles/DWES-extra-sheets.css`: custom NPC sheets, scoped to `.dwes-extra-sheet`.
+- `styles/DWES-npc.css`: custom NPC sheets, scoped to `.dwes-npc`.
 - `styles/DWES-sheet-fixes.css`: shared Dungeon World sheet layout fixes.
 - `styles/DWES-character-sheet.css`: character-sheet controls for Herculean Appetites and debility recovery.
 - `styles/DWES-chat.css`: Herculean Appetites chat results.
 
-Module controls and custom properties use the `dwes-` prefix. See [CSS naming](docs/css-naming.md) and the [2026-11-06 review](docs/review-2026-11-06.md). Shared system overrides are scoped to `.dungeonworld.sheet`; custom sheet rules use `.dwes-extra-sheet`. Theme compatibility overrides using `!important` are retained.
+Module controls and custom properties use the `dwes-` prefix. See [CSS naming](docs/css-naming.md) and the [2026-11-06 review](docs/review-2026-11-06.md). Shared system overrides are scoped to `.dungeonworld.sheet`; custom sheet rules use `.dwes-npc`. Theme compatibility overrides using `!important` are retained.
 
 This module is under active development. Feedback, suggestions, and contributions are welcome.
 
