@@ -1,4 +1,4 @@
-<form class="dw-extra-sheet hireling {{cssClass}}" autocomplete="off">
+<form class="dwes-extra-sheet hireling {{cssClass}}" autocomplete="off">
 
   <div class="sheet-wrapper">
 
@@ -10,8 +10,8 @@
       <div class="sheet-header__fields">
         <input class="input--title" name="name" type="text" value="{{actor.name}}" placeholder="Name"/>
         <div class="field--checkbox">
-          <input type="checkbox" id="hireling-active" name="system.hireling.active" {{checked system.hireling.active}} />
-          <label for="hireling-active">{{localize "DWES.ActiveDuty"}}</label>
+          <input type="checkbox" id="dwes-hireling-active-{{actor._id}}" name="system.hireling.active" {{checked system.hireling.active}} />
+          <label for="dwes-hireling-active-{{actor._id}}">{{localize "DWES.ActiveDuty"}}</label>
         </div>
       </div>
     </header>
@@ -39,7 +39,7 @@
         </div>
 
         <div class="cell">
-          <label class="cell__title hireling-loyalty-roll rollable">
+          <label class="cell__title dwes-hireling__loyalty-roll rollable">
             <i class="fas fa-dice-d20"></i>
             {{localize "DWES.Loyalty"}}
             <i class="fas fa-thumbs-up attribute-icon"></i>
@@ -56,19 +56,19 @@
         </div>
 
         {{!-- Skills --}}
-        <div class="skills col-override">
-          <h2 class="skill_header">
+        <div class="skills dwes-extra-sheet__full-width">
+          <h2 class="dwes-skills__header">
             <label>{{localize "DWES.Skills"}}</label>
-            <div class="skills--controls">
-              <button type="button" class="skills--control skill-reset" title="Reset Skills">
+            <div class="dwes-skills__controls">
+              <button type="button" class="dwes-skills__control dwes-skills__reset" title="Reset Skills">
                 <i class="fas fa-redo"></i>
               </button>
               {{#if options.configureSkills}}
-                <button type="button" class="skills--control skill-done" title="Done">
+                <button type="button" class="dwes-skills__control dwes-skills__done" title="Done">
                   <i class="fa-solid fa-check"></i>
                 </button>
               {{else}}
-                <button type="button" class="skills--control skill-configure" title="Configure Skills">
+                <button type="button" class="dwes-skills__control dwes-skills__configure" title="Configure Skills">
                   <i class="fa-solid fa-gear"></i>
                 </button>
               {{/if}}
@@ -81,7 +81,7 @@
                   <li class="ability flexrow" data-skill="{{skill.key}}">
                     <label
                       for="system.hireling.skills.{{skill.key}}.value"
-                      class="cell__title skill-use rollable"
+                      class="cell__title dwes-skills__use rollable"
                       data-skill="{{skill.key}}"
                       title="{{skill.label}}"
                     >
@@ -92,9 +92,9 @@
                       {{/if}}
                     </label>
                     <input class="ability-mod" type="number" name="system.hireling.skills.{{skill.key}}.value" value="{{skill.value}}" data-dtype="Number"/>
-                    <div class="skill-max-wrapper">
-                      <input class="ability-value skill-max-input" type="number" name="system.hireling.skills.{{skill.key}}.max" value="{{skill.max}}" data-dtype="Number" />
-                      <span class="skill-max-label">{{localize "DWES.Max"}}</span>
+                    <div class="dwes-skills__max">
+                      <input class="ability-value dwes-skills__max-input" type="number" name="system.hireling.skills.{{skill.key}}.max" value="{{skill.max}}" data-dtype="Number" />
+                      <span class="dwes-skills__max-label">{{localize "DWES.Max"}}</span>
                     </div>
                   </li>
                 {{/if}}
@@ -106,9 +106,9 @@
                     {{hirelingWeight.label}}
                   </label>
                   <input class="ability-mod" type="number" name="system.hireling.weight.value" value="{{hirelingWeight.value}}" data-dtype="Number" readonly />
-                  <div class="skill-max-wrapper">
-                    <input class="ability-value skill-max-input" type="number" name="system.hireling.weight.max" value="{{hirelingWeight.max}}" data-dtype="Number" />
-                    <span class="skill-max-label">{{localize "DWES.Max"}}</span>
+                  <div class="dwes-skills__max">
+                    <input class="ability-value dwes-skills__max-input" type="number" name="system.hireling.weight.max" value="{{hirelingWeight.max}}" data-dtype="Number" />
+                    <span class="dwes-skills__max-label">{{localize "DWES.Max"}}</span>
                     {{#if options.configureSkills}}
                       <label class="field--checkbox">
                         <input type="checkbox" name="system.hireling.weight.showWeight" {{checked hirelingWeight.showWeight}} />
@@ -141,11 +141,11 @@
 
             {{!-- Tags --}}
             <div class="cell cell--tags">
-              <div class="tags-label-row">
-                <label for="tag" class="control-label">{{localize "DW.Tags"}}</label>
-                <span class="help-text help-text-inline">{{localize "DW.TagsHelp"}}</span>
+              <div class="dwes-tags__label-row">
+                <label for="dwes-tags-{{actor._id}}" class="control-label">{{localize "DW.Tags"}}</label>
+                <span class="help-text dwes-tags__help">{{localize "DW.TagsHelp"}}</span>
               </div>
-              <input class="tags-input-source" name="system.tags" id="tag" placeholder="write some tags" value="{{ system.tags }}" />
+              <input class="tags-input-source" name="system.tags" id="dwes-tags-{{actor._id}}" placeholder="write some tags" value="{{ system.tags }}" />
             </div>
 
             <div class="cell cell--description">
@@ -260,3 +260,4 @@
   </div>
 
 </form>
+

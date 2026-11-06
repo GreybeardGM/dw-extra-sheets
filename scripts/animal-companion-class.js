@@ -66,7 +66,7 @@ export function defineAnimalCompanionSheet(baseClass) {
       super.activateListeners(html);
       if (!this.options.editable) return;
 
-      html.find(".set-owner-button").click(async (ev) => {
+      html.find(".dwes-owner__assign").click(async (ev) => {
         ev.preventDefault();
         const char = game.user.character;
         if (!char) {
@@ -77,14 +77,14 @@ export function defineAnimalCompanionSheet(baseClass) {
         this.render();
       });
 
-      html.find(".skill-use").click(async ev => {
+      html.find(".dwes-skills__use").click(async ev => {
         ev.preventDefault();
         const idx = ev.currentTarget.dataset.skill;
         await useAnimalCompanionSkill(this.actor, idx);
         this.render();
       });
 
-      html.find(".skill-reset").click(async ev => {
+      html.find(".dwes-skills__reset").click(async ev => {
         ev.preventDefault();
         await resetAnimalCompanionSkills(this.actor);
         this.render();
@@ -95,9 +95,10 @@ export function defineAnimalCompanionSheet(baseClass) {
         el.style.height = el.scrollHeight + "px";
       }
       
-      html.find("textarea.autogrow").each((_, el) => autoGrow(el));
-      html.find("textarea.autogrow").on("input", ev => autoGrow(ev.currentTarget));
+      html.find("textarea.dwes-companion__autogrow").each((_, el) => autoGrow(el));
+      html.find("textarea.dwes-companion__autogrow").on("input", ev => autoGrow(ev.currentTarget));
 
     }
   };
 }
+

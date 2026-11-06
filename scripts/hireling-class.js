@@ -72,26 +72,26 @@ export function defineHirelingSheet(baseClass) {
       if (!this.options.editable) return;
 
       // Loyalty Roll
-      html.find(".hireling-loyalty-roll").click(async ev => {
+      html.find(".dwes-hireling__loyalty-roll").click(async ev => {
         ev.preventDefault();
         await this._rollHirelingLoyalty();
       });
       
       // Config button
-      html.find(".skill-configure").click(ev => {
+      html.find(".dwes-skills__configure").click(ev => {
         ev.preventDefault();
         this.options.configureSkills = true;
         this.render();
       });
       // Config done    
-      html.find(".skill-done").click(ev => {
+      html.find(".dwes-skills__done").click(ev => {
         ev.preventDefault();
         this.options.configureSkills = false;
         this.render();
       });
 
       // Use a Skill Point
-      html.find(".skill-use").click(async ev => {
+      html.find(".dwes-skills__use").click(async ev => {
         ev.preventDefault();
         const idx = ev.currentTarget.dataset.skill;
         await useHirelingSkill(this.actor, idx);
@@ -99,7 +99,7 @@ export function defineHirelingSheet(baseClass) {
       });
       
       // Reset Skill Points
-      html.find(".skill-reset").click(async ev => {
+      html.find(".dwes-skills__reset").click(async ev => {
         ev.preventDefault();
         await resetHirelingSkills(this.actor);
         this.render();
@@ -171,3 +171,4 @@ export function defineHirelingSheet(baseClass) {
 
   };
 }
+

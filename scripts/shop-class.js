@@ -24,17 +24,8 @@ async function applyPurchaseToBuyer({ buyer, item, quantity, totalCost, buyerCoi
     await buyer.createEmbeddedDocuments("Item", [itemData]);
   }
 
-  const newCoinValue = buyerCoins - totalCost;
-  await buyer.update({ "system.attributes.coin.value": newCoinValue });
-
-  setTimeout(() => {
-    for (const app of Object.values(ui.windows)) {
-      if (app instanceof ActorSheet && app.actor.id === buyer.id) {
-        const input = app.element.find('input[name="system.attributes.coin.value"]');
-        if (input.length) input.val(newCoinValue);
-      }
-    }
-  }, 50);
+  // Document updates let Foundry refresh the buyer's open sheets.
+  await buyer.update({ "system.attributes.coin.value": buyerCoins - totalCost });
 }
 
 async function decrementShopStock({ shopActor, itemId, limitedStock, availableQty, purchasedQty }) {
@@ -76,7 +67,7 @@ export function defineShopSheet(baseClass) {
       system.shop.limitedStock ??= false;
       system.shop.allAccess = game.user.isGM;
       
-      context.system = system;  // explizit reinschreiben, obwohl meist schon vorhanden
+      context.system = system;
     
       // Get and Prep all items
       await prepareEquipmentItems(context, this.actor);
@@ -140,17 +131,17 @@ export function defineShopSheet(baseClass) {
         this.render();
       });
 
-      // Zugriff prüfen
+      // Check access
       const allAccess = game.user.isGM;
       if (!allAccess) {
-        // Dragging deaktivieren
+        // Disable dragging for players
         html.find(".item").each((_, el) => {
           el.draggable = false;
         });
       }
       
       // Buy logic
-      html.find(".buy-item").click(async (event) => {
+      html.find(".dwes-shop__buy").click(async (event) => {
         if (!this.actor.system.shop?.open) return ui.notifications.warn("Shop is closed. Please return later.");
 
         const li = event.currentTarget.closest(".item");
@@ -163,7 +154,7 @@ export function defineShopSheet(baseClass) {
         const buyer = game.user.character;
         if (!buyer) return ui.notifications.warn("No character selected.");
 
-        const quantityInput = li.querySelector(".buy-quantity");
+        const quantityInput = li.querySelector(".dwes-shop__quantity");
         const parsedQty = Number.parseInt(quantityInput?.value || "1", 10);
         if (!Number.isFinite(parsedQty) || parsedQty < 1) {
           return ui.notifications.warn("Invalid quantity.");
@@ -215,3 +206,4 @@ export function defineShopSheet(baseClass) {
     }
   };
 }
+

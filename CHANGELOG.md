@@ -3,6 +3,9 @@
 ## Unreleased
 
 ### Changed
+- Applied `dwes-` naming consistently to custom sheet controls, selectors, and actor-specific form IDs.
+- Removed the delayed global buyer-window sweep; purchases rely on Foundry document updates.
+- Translated remaining non-English code comments and documented the AGENTS.md review findings.
 - Prefixed all stylesheet filenames with `DWES` and updated the module manifest.
 - Combined character-sheet helpers into `DWES-character-sheet.css`, keeping chat result styles separate.
 - Scoped generic item controls and owner/shop styles to Dungeon World or module sheets.

@@ -1,9 +1,9 @@
 /* === Header Extension === */
-.dw-extra-sheet .sheet-header__fields {
+.dwes-extra-sheet .sheet-header__fields {
   width: 100%;
 }
 
-.dw-extra-sheet .field--checkbox {
+.dwes-extra-sheet .field--checkbox {
   display: flex;
   align-items: center;
   gap: 0.5em;
@@ -11,7 +11,7 @@
   padding-right: 1em;
 }
 
-.dw-extra-sheet .field--checkbox input[type="checkbox"] {
+.dwes-extra-sheet .field--checkbox input[type="checkbox"] {
   accent-color: var(--color-border-highlight); /* optional: theme color */
   margin: 0;
   padding: 0;
@@ -20,7 +20,7 @@
 
 /* === Skills styling === */
 
-.dw-extra-sheet .skill_header {
+.dwes-extra-sheet .dwes-skills__header {
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -30,30 +30,30 @@
   padding: 0.13em;
 }
 
-.dw-extra-sheet .skills--controls {
+.dwes-extra-sheet .dwes-skills__controls {
   display: flex;
   align-items: center;
   gap: 0.2em;
 }
 
-.dw-extra-sheet .skills--control {
+.dwes-extra-sheet .dwes-skills__control {
   font-size: 1em !important;
   min-width: 4em;
   padding: 1px;
   margin: 3px 1px;
 }
 
-.dw-extra-sheet .skill-max-wrapper {
+.dwes-extra-sheet .dwes-skills__max {
   display: flex;
   align-items: center;
   gap: 0.25em;
 }
 
-.dw-extra-sheet .skill-max-input {
+.dwes-extra-sheet .dwes-skills__max-input {
   text-align: center !important;
 }
 
-.dw-extra-sheet .skill-max-label {
+.dwes-extra-sheet .dwes-skills__max-label {
   color: #aaa;
   font-style: italic;
   margin-left: 0.15em;
@@ -63,23 +63,23 @@
 }
 
 /* === Tags Fix === */
-.dw-extra-sheet .tags-label-row {
+.dwes-extra-sheet .dwes-tags__label-row {
   display: flex;
   align-items: center;
 }
 
-.dw-extra-sheet .help-text-inline {
+.dwes-extra-sheet .dwes-tags__help {
   white-space: nowrap;
 }
 
 /* Item filter bar: outer container */
-.dw-extra-sheet .item-filters {
+.dwes-extra-sheet .dwes-item-filters {
   padding: 0.5em 1em;
   gap: 0.5em;
 }
 
 /* Each label (filter "pill") */
-.dw-extra-sheet .item-filters label {
+.dwes-extra-sheet .dwes-item-filters label {
   color: #fff;
   font-size: 0.9em;
   padding: 0.2em 0.7em 0.2em 0.5em;
@@ -92,14 +92,14 @@
 }
 
 /* Radio button: hide native, use accent-color if supported */
-.dw-extra-sheet .item-filters input[type="radio"] {
+.dwes-extra-sheet .dwes-item-filters input[type="radio"] {
   accent-color: #65a3e1; /* Optional: matches blue UI, remove if unwanted */
   margin-right: 0.2em;
   height: 1em;
 }
 
 /* Selected state */
-.dw-extra-sheet .item-filters label.selected {
+.dwes-extra-sheet .dwes-item-filters label.selected {
   color: #65a3e1;
   background: #23272b;
   border-color: #65a3e1;
@@ -107,7 +107,7 @@
 }
 
 /* Shop styling */
-.dw-extra-sheet .shop-controls {
+.dwes-extra-sheet .dwes-shop__controls {
   display: flex;
   align-items: center;
   gap: 0.2em;
@@ -115,7 +115,7 @@
   flex: 0;
 }
 
-.dw-extra-sheet .shop-controls .item-price {
+.dwes-extra-sheet .dwes-shop__controls .dwes-shop__price {
   font-weight: bold;
   font-size: 1.4em;
   color: #ea3;
@@ -124,61 +124,61 @@
   text-align: right;
 }
 
-.dw-extra-sheet .shop-controls .item-price::after {
+.dwes-extra-sheet .dwes-shop__controls .dwes-shop__price::after {
   content: "🪙";
   font-size: 0.62em;
   margin-left: 0.2em;
 }
 
-.dw-extra-sheet .shop-controls .shop-action-row {
+.dwes-extra-sheet .dwes-shop__controls .dwes-shop__actions {
   display: flex;
   flex-direction: row;
   align-items: center;
   gap: 0.3em;
 }
 
-.dw-extra-sheet .shop-controls .buy-quantity {
+.dwes-extra-sheet .dwes-shop__controls .dwes-shop__quantity {
   width: 2.2em;
   text-align: center;
   font-size: 0.9em;
 }
 
-.dw-extra-sheet .shop-controls .buy-item {
+.dwes-extra-sheet .dwes-shop__controls .dwes-shop__buy {
   width: 5em;
   font-size: 0.9em;
 }
 
-.dw-extra-sheet .shop-controls .buy-item:hover {
+.dwes-extra-sheet .dwes-shop__controls .dwes-shop__buy:hover {
   background: #268069;
 }
 
-.dungeonworld.sheet.shop .dw-extra-sheet .items-list .item.out-of-stock {
+.dungeonworld.sheet.shop .dwes-extra-sheet .items-list .item.dwes-shop__out-of-stock {
   opacity: 0.25;
 }
 
 /* Shop portrait fix */
-.dungeonworld.sheet.shop .dw-extra-sheet .cell--image {
+.dungeonworld.sheet.shop .dwes-extra-sheet .cell--image {
   width: 100%;
   height: auto;
 }
 
 /* Animal Companion Skill fix */
-.dw-extra-sheet.animal-companion .abilities-list {
+.dwes-extra-sheet.animal-companion .abilities-list {
   grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
 }
 
-.dw-extra-sheet.animal-companion .cell--feats {
+.dwes-extra-sheet.animal-companion .cell--feats {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(0, 1fr));
   gap: 0.5em;
 }
 
-.dw-extra-sheet .col-override {
+.dwes-extra-sheet .dwes-extra-sheet__full-width {
   grid-column: 1 / -1;
   overflow: hidden;
 }
 
-.dw-extra-sheet.animal-companion textarea.autogrow {
+.dwes-extra-sheet.animal-companion textarea.dwes-companion__autogrow {
   width: 100%;
   min-height: 4em;
   resize: none;
@@ -187,13 +187,13 @@
   font-family: inherit;
 }
 
-.dw-extra-sheet .owner-wrapper {
+.dwes-extra-sheet .dwes-owner {
   display: flex;
   grid-column: span 2;
   gap: 0.5em;
 }
 
-.dw-extra-sheet .owner-img {
+.dwes-extra-sheet .dwes-owner__image {
   height: 5em;
   object-fit: cover;
   border: 1px solid var(--color-border-light-tertiary);

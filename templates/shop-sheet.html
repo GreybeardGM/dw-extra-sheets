@@ -1,4 +1,4 @@
-<form class="dw-extra-sheet {{cssClass}}" autocomplete="off">
+<form class="dwes-extra-sheet {{cssClass}}" autocomplete="off">
 
   <div class="sheet-wrapper">
 
@@ -7,8 +7,8 @@
       <div class="sheet-header__fields">
         <input class="input--title" name="name" type="text" value="{{actor.name}}" placeholder="Name"/>
         <div class="field--checkbox">
-          <input type="checkbox" id="shop-active" name="system.shop.open" {{checked system.shop.open}} {{#unless system.shop.allAccess}}disabled{{/unless}} />
-          <label for="shop-active">{{localize "DWES.ShopOpen"}}</label>
+          <input type="checkbox" id="dwes-shop-open-{{actor._id}}" name="system.shop.open" {{checked system.shop.open}} {{#unless system.shop.allAccess}}disabled{{/unless}} />
+          <label for="dwes-shop-open-{{actor._id}}">{{localize "DWES.ShopOpen"}}</label>
         </div>
       </div>
     </header>
@@ -34,11 +34,11 @@
             <label class="cell__title">{{localize "DWES.ShopConfig"}}</label>
         
             <div class="field--checkbox">
-              <input type="checkbox" id="shop-limited-stock" name="system.shop.limitedStock" {{checked system.shop.limitedStock}} />
-              <label for="shop-limited-stock">{{localize "DWES.LimitedStock"}}</label>
+              <input type="checkbox" id="dwes-shop-limited-stock-{{actor._id}}" name="system.shop.limitedStock" {{checked system.shop.limitedStock}} />
+              <label for="dwes-shop-limited-stock-{{actor._id}}">{{localize "DWES.LimitedStock"}}</label>
             </div>
         
-            {{!-- Optional: zukünftige Optionen hier ergänzen --}}
+            {{!-- Optional: add future options here --}}
           </div>
         {{/if}}
       </div>
@@ -55,7 +55,7 @@
       <section class="sheet-body">
 
         {{!-- Filter --}}
-        <div class="item-filters flexrow">
+        <div class="dwes-item-filters flexrow">
           <label class="{{#if (eq activeFilter 'all')}}selected{{/if}}">
             <input type="radio" name="itemFilter" value="all" {{#if (eq activeFilter 'all')}}checked{{/if}}>
             <span>All</span>
@@ -91,13 +91,13 @@
           </h2>
           <ol class="items-list">
           {{#each equipment as |item id|}}
-            <li class="item flexrow {{#if (and ../system.shop.limitedStock (eq item.system.quantity 0))}}out-of-stock{{/if}}" data-item-id="{{item._id}}" draggable="{{#if ../system.shop.allAccess}}true{{else}}false{{/if}}">
-              <div class="shop-controls" data-item-id="{{item._id}}">
+            <li class="item flexrow {{#if (and ../system.shop.limitedStock (eq item.system.quantity 0))}}dwes-shop__out-of-stock{{/if}}" data-item-id="{{item._id}}" draggable="{{#if ../system.shop.allAccess}}true{{else}}false{{/if}}">
+              <div class="dwes-shop__controls" data-item-id="{{item._id}}">
                 {{#if ../system.shop.open}}
-                  <input type="number" class="buy-quantity" placeholder="1" min="1" />
-                  <button class="buy-item"><i class="fas fa-coins"></i> Buy</button>
+                  <input type="number" class="dwes-shop__quantity" placeholder="1" min="1" />
+                  <button class="dwes-shop__buy"><i class="fas fa-coins"></i> Buy</button>
                 {{/if}}
-                <span class="item-price">{{item.system.price}}</span>
+                <span class="dwes-shop__price">{{item.system.price}}</span>
               </div>
 
               <h4 class="item-name">
@@ -141,3 +141,4 @@
   </div>
 
 </form>
+

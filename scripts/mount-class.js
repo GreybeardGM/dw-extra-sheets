@@ -59,7 +59,7 @@ export function defineMountSheet(baseClass) {
       super.activateListeners(html);
       if (!this.options.editable) return;
 
-      html.find(".set-owner-button").click(async (ev) => {
+      html.find(".dwes-owner__assign").click(async (ev) => {
         ev.preventDefault();
         const char = game.user.character;
         if (!char) {
@@ -72,3 +72,4 @@ export function defineMountSheet(baseClass) {
     }
   };
 }
+

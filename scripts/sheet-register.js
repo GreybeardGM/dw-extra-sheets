@@ -7,7 +7,7 @@ import { defineMountSheet } from "./mount-class.js";
 import { useHirelingSkill, resetHirelingSkills } from "./utils/hireling-utils.js";
 
 Hooks.once("ready", () => {
-  // Foundry V13+: namespaced Actors collection; fallback für V12
+  // Foundry V13+: namespaced Actors collection; fallback for V12
   const ActorsCollection =
     foundry?.documents?.collections?.Actors ?? globalThis.Actors;
 
@@ -65,3 +65,4 @@ Hooks.once("ready", () => {
 
   console.log("✅📜 Greybeard.GM DW Extra Sheets ready!");
 });
+
