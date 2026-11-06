@@ -7,12 +7,9 @@ Manage Hirelings, Animal Companions, Stashes, Merchants, and Mounts with interfa
 
 ## ✨ Features
 
-- **Debility Recovery Circle**
-  A segmented circle replaces each character debility checkbox and tracks its remaining recovery time (0–3).
-  Each click cycles through empty → full → two thirds → one third → empty (0 → 3 → 2 → 1 → 0).
-  An empty circle clears the debility; any blue filling activates it, saving both values together.
-  Existing active debilities without a positive recovery count display a full circle; inactive debilities display an empty circle.
-  Only owners can edit the circle. Its four SVG states are bundled in `assets/icons/` inside this module.
+- **Debility Recovery Circle**  
+  Click the circle beside a character's debility to track recovery from three steps down to zero.
+  An empty circle clears the debility. Only the actor's owners can change it.
 
 - 📜 **Hireling Sheet**  
   A streamlined sheet for Hirelings. Includes:
@@ -100,16 +97,7 @@ _(Additional translations are welcome.)_
 
 ## 🧪 Development
 
-### Stylesheets
-
-All stylesheet filenames start with `DWES` for easier identification in browser developer tools:
-
-- `styles/DWES-npc.css`: custom NPC sheets, scoped to `.dwes-npc`.
-- `styles/DWES-sheet-fixes.css`: shared Dungeon World sheet layout fixes.
-- `styles/DWES-character-sheet.css`: character-sheet controls for Herculean Appetites and debility recovery.
-- `styles/DWES-chat.css`: Herculean Appetites chat results.
-
-Module controls and custom properties use the `dwes-` prefix. See [CSS naming](docs/css-naming.md) and the [2026-11-06 review](docs/review-2026-11-06.md). Shared system overrides are scoped to `.dungeonworld.sheet`; custom sheet rules use `.dwes-npc`. Theme compatibility overrides using `!important` are retained.
+Contributor guidance lives in [AGENTS.md](AGENTS.md). See [CSS naming](docs/css-naming.md) for stylesheet organization and UI conventions, and the [technical review](docs/review-2026-11-06.md) for existing findings.
 
 This module is under active development. Feedback, suggestions, and contributions are welcome.
 
