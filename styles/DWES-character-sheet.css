@@ -1,3 +1,20 @@
+/* Character-sheet helpers: Herculean Appetites and debility recovery. */
+.dwes-appetites-toggle {
+  /* Background is applied inline to override Dungeon World Night Mode. */
+  --dwes-appetites-active-background: #70433f;
+  --dwes-appetites-active-border: #98635e;
+  --dwes-appetites-active-text: #f3e9e7;
+}
+
+.dwes-appetites-toggle {
+  margin-top: 0.25rem;
+}
+
+.dwes-appetites-toggle--active {
+  border-color: var(--dwes-appetites-active-border);
+  color: var(--dwes-appetites-active-text);
+}
+
 /* Replace only the original debility checkbox, retaining its label and row. */
 .dungeonworld.sheet .ability .dwes-debility-control {
   gap: 3px;
@@ -51,3 +68,4 @@
   cursor: default !important;
   opacity: 0.65 !important;
 }
+

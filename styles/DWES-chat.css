@@ -1,23 +1,9 @@
-:root {
-  /* Active button palette. The background is applied inline to override Night Mode. */
-  --dwes-appetites-active-background: #70433f;
-  --dwes-appetites-active-border: #98635e;
-  --dwes-appetites-active-text: #f3e9e7;
-
-  /* Roll result palettes. */
+/* Herculean Appetites chat results; independent of character-sheet controls. */
+.dwes-appetites-result {
   --dwes-appetites-clear-background: rgb(79 104 87 / 22%);
   --dwes-appetites-clear-border: #718c78;
   --dwes-appetites-complication-background: rgb(112 67 63 / 24%);
   --dwes-appetites-complication-border: #98635e;
-}
-
-.dwes-appetites-toggle {
-  margin-top: 0.25rem;
-}
-
-.dwes-appetites-toggle--active {
-  border-color: var(--dwes-appetites-active-border);
-  color: var(--dwes-appetites-active-text);
 }
 
 .dwes-appetites-result {
@@ -36,3 +22,4 @@
   background: var(--dwes-appetites-clear-background);
   border-left-color: var(--dwes-appetites-clear-border);
 }
+

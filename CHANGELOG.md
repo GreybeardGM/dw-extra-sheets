@@ -1,5 +1,13 @@
 # Changelog
 
+## Unreleased
+
+### Changed
+- Prefixed all stylesheet filenames with `DWES` and updated the module manifest.
+- Combined character-sheet helpers into `DWES-character-sheet.css`, keeping chat result styles separate.
+- Scoped generic item controls and owner/shop styles to Dungeon World or module sheets.
+- Scoped Herculean Appetites color variables to their controls and chat results.
+
 ## [0.4.8-dev.5] – 2026-11-05
 
 ### Changed
@@ -65,3 +73,4 @@
 - Merchant Sheet with buying functionality and category filters.
 - Stash Sheet for simple item storage.
 - English and German localization.
+

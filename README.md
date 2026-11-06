@@ -100,6 +100,17 @@ _(Additional translations are welcome.)_
 
 ## 🧪 Development
 
+### Stylesheets
+
+All stylesheet filenames start with `DWES` for easier identification in browser developer tools:
+
+- `styles/DWES-extra-sheets.css`: custom NPC sheets, scoped to `.dw-extra-sheet`.
+- `styles/DWES-sheet-fixes.css`: shared Dungeon World sheet layout fixes.
+- `styles/DWES-character-sheet.css`: character-sheet controls for Herculean Appetites and debility recovery.
+- `styles/DWES-chat.css`: Herculean Appetites chat results.
+
+Module controls and custom properties use the `dwes-` prefix. Shared system overrides are scoped to `.dungeonworld.sheet`; custom sheet rules use `.dw-extra-sheet`. Theme compatibility overrides using `!important` are retained.
+
 This module is under active development. Feedback, suggestions, and contributions are welcome.
 
 - Author: [GreybeardGM](https://github.com/GreybeardGM)
@@ -117,3 +128,4 @@ This module is under active development. Feedback, suggestions, and contribution
 
 This module is released under the **MIT License**.  
 Dungeon World © Sage Kobold Productions.
+

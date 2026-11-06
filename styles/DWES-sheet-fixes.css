@@ -1,5 +1,5 @@
 /* Adds room for scrollbar in the equipment and moves lists */
-.items-list .item-controls {
+.dungeonworld.sheet .items-list .item-controls {
   margin-right: 12px;
 }
 
@@ -7,3 +7,4 @@
 .dungeonworld.sheet .sheet-wrapper .sheet-main {
   height: calc(100% - 109px);
 }
+
